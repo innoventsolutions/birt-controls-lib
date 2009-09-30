@@ -1,0 +1,18 @@
+#labels Featured
+= Organization =
+This project generates two new ReportItem components, the RotatedTextItem and DotBar.
+The project is split into two separate plugins:
+* bb-birt-controls
+* bb-birt-controls-ui
+If you create ReportItem extensions you should split your UI components from the engine only components.
+The UI components have dependencies to the Eclipse UI plugins.  These UI components are not published
+in the ReportEngine distributions.  
+
+If you combine both the UI and engine components into a single plugin, you will have load 
+errors when you try to deploy the plugin to a BIRT runtime instance.
+
+== Designer Installation ==
+== Runtime Installation ==
+== RotatedText Usage ==
+== DotBar Usage ==
+

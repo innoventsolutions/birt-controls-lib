@@ -1,6 +1,6 @@
 #labels Featured
 = Organization =
-This project generates two new ReportItem components, the RotatedTextItem and DotBar.
+This project generates two new !ReportItem components, the !RotatedTextItem and !DotBar.
 The project is split into two separate plugins:
 * bb-birt-controls
 * bb-birt-controls-ui
@@ -11,8 +11,8 @@ in the ReportEngine distributions.
 If you combine both the UI and engine components into a single plugin, you will have load 
 errors when you try to deploy the plugin to a BIRT runtime instance.
 
-== Designer Installation ==
-== Runtime Installation ==
-== RotatedText Usage ==
-== DotBar Usage ==
+== DesignerInstallation ==
+== RuntimeInstallation ==
+== RotatedTextUsage ==
+== DotBarUsage ==
 

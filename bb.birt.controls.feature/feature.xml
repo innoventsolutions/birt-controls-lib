@@ -308,6 +308,17 @@ personal injury, loss of privacy, moral rights or the disclosure
 of confidential information.
    </license>
 
+   <requires>
+      <import plugin="org.eclipse.core.runtime" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.birt.report.engine" version="2.3.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.birt.report.designer.core" version="2.3.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.birt.report.designer.ui" version="2.3.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.birt.report.designer.ui.views" version="2.3.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.forms" version="3.3.0" match="greaterOrEqual"/>
+      <import plugin="bb.birt.controls" version="1.0.0" match="greaterOrEqual"/>
+   </requires>
+
    <plugin
          id="bb.birt.controls"
          download-size="0"

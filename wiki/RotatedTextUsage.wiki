@@ -22,6 +22,11 @@
 </tr>
 </table>
 
-To use the !RotatedText drag it into a cell in any data powered container [List, Table, Grid, CrossTab].  After dropping the !RotatedText control into the cell, you will see the !RotatedText editor.  You can get back to the !RotatedText editor by either double clicking on the control, or by going to the General tab in the Property Editor.
+To use the !RotatedText drag it into a cell in any data powered container [List, Table, Grid, !CrossTab].  After dropping the !RotatedText control into the cell, you will see the !RotatedText editor.  You can get back to the !RotatedText editor by either double clicking on the control, or by going to the General tab in the Property Editor.<p>
+ * Expression will show the result of any valid BIRT Expression
+ * Angle is the angle that the text will appear at.
+ * Font, Size, Style, and Color apply to the text from the expression.
+ * Wrap Point controls the point at which the text will wrap.  
+ * Link URL allows you to create a hyper link for the control.
 http://birt-controls-lib.googlecode.com/svn/wiki/rotated.attach/editor.png
 

@@ -2,7 +2,8 @@
 
 [UsageGuide Usage Guide]
 
+[DotBarUsage DotBar Usage]
+
 [RotatedTextUsage RotatedText Usage]
 
-[DotBarUsage DotBar Usage]
   

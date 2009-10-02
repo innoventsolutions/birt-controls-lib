@@ -16,7 +16,7 @@ errors when you try to deploy the plugin to a BIRT runtime instance.
   http://birt-controls-lib.googlecode.com/svn/wiki/usage.attach/dotbar.jpg
 </td>
 <td>
-== [RotatedTextUsage RotatedText Usage] ==
+== [DotBarUsage DotBar Usage] ==
 </td>
 </tr>
 <tr>
@@ -24,7 +24,7 @@ errors when you try to deploy the plugin to a BIRT runtime instance.
   http://birt-controls-lib.googlecode.com/svn/wiki/usage.attach/rotatedtext.jpg
 </td>
 <td>
-== [DotBarUsage DotBar Usage] ==
+== [RotatedTextUsage RotatedText Usage] ==
 </td>
 </tr>
 </table>

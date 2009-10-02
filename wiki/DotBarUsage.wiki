@@ -22,18 +22,19 @@ http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/editor.png
 Controlling the DotBar is fairly easy, there are just three basic sections.  The general section is first and controls the data and how it will be displayed.<p>
  * Expression is any expression that evaluates to an Integer.
  * Orientation controls whether the dots will go left to right first or up and down.
- * Wrap Point will control how many dots are on a row or column before they wrap.  Typically you will use either 5 or 10, numbers that make it easier to compare at a  glance.
+ * Wrap Point will control how many dots are on a row or column before they wrap. <p> 
+  (Typically you will use either 5 or 10, numbers that make it easier to compare at a  glance.)
  * Designer Display Value only works at design time and controls how many dots show up in your layout view.    
 http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/general.png
 
-The shape, color, and size of the symbol can be controlled through the Dot section of the editor.  
+The shape, color, and size of the symbol can be controlled through the Dot section of the editor.<p>  
 * Spacing controls how much white space exists between each dot
 * Shape controls whether you see a circle, rectangles or triangles.
 * Height & Width control the size of each dot
 * You can also control the fill color and the background color of the dots
 http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/dot.png
 
-By default the !DotBar does not display the numeric value.  The number can be shown using the number section.  
+By default the !DotBar does not display the numeric value.  The number can be shown using the number section.<p>  
 * Position controls whether the number shows up and if it is before or after the dots.
 * Font, Bold, Italic and Color all control the look of the number.
 * Width and Height control how much space will be reserved for the number.

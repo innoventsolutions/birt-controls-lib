@@ -11,8 +11,6 @@ in the ReportEngine distributions.
 If you combine both the UI and engine components into a single plugin, you will have load 
 errors when you try to deploy the plugin to a BIRT runtime instance.
 
-== [DesignerInstallation Designer Installation] ==
-== [RuntimeInstallation Runtime Installation] ==
 == [RotatedTextUsage RotatedText Usage] ==
 == [DotBarUsage DotBar Usage] ==
   

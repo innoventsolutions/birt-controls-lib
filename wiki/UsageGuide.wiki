@@ -10,7 +10,21 @@ in the ReportEngine distributions.
 
 If you combine both the UI and engine components into a single plugin, you will have load 
 errors when you try to deploy the plugin to a BIRT runtime instance.
-
+<table>
+<tr>
+<td>
+  http://birt-controls-lib.googlecode.com/svn/wiki/usage.attach/dotbar.png
+</td>
+<td>
 == [RotatedTextUsage RotatedText Usage] ==
+</td>
+</tr>
+<tr>
+<td>
+  http://birt-controls-lib.googlecode.com/svn/wiki/usage.attach/rotatedtext.png
+</td>
+<td>
 == [DotBarUsage DotBar Usage] ==
-  
+</td>
+</tr>
+</table>

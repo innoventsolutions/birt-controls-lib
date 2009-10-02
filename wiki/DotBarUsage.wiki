@@ -17,9 +17,12 @@
 </table>
 Once you have dragged the !DotBar control onto the page, you will see the !DotBar editor dialog come up.  The !DotBar editor can show up as either a dialog or under the BIRT Property Editor it will show up on the general tab.  
 http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/editor.png
+
 The general section controls the data and how it will be displayed
 http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/general.png
+
 The shape, color, and size of the symbol can be controlled through the Dot section of the editor.
 http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/dot.png
+
 By default the !DotBar does not display the numeric value.  The number can be shown using the number section.  In addition, you can control the numbers position, font, color of an optional number. 
 http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/number.png

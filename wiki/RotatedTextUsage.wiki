@@ -20,3 +20,7 @@
 	<td>
 	</td>
 </tr>
+
+To use the !RotatedText drag it into a cell in any data powered container [List, Table, Grid, CrossTab].  After dropping the !RotatedText control into the cell, you will see the !RotatedText editor.  You can get back to the !RotatedText editor by either double clicking on the control, or by going to the General tab in the Property Editor.
+http://birt-controls-lib.googlecode.com/svn/wiki/rotated.attach/editor.png
+

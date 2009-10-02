@@ -16,10 +16,10 @@
 </tr>
 </table>
 
-To use the DotBar drag it into a cell in any data powered container [List, Table, Grid, CrossTab].  After dropping the !DotBar control into the cell, you will see the !DotBar editor.  You can get back to the DotBar editor by either double clicking on the control, or by going to the General tab in the Property Editor.
+To use the !DotBar drag it into a cell in any data powered container [List, Table, Grid, CrossTab].  After dropping the !DotBar control into the cell, you will see the !DotBar editor.  You can get back to the !DotBar editor by either double clicking on the control, or by going to the General tab in the Property Editor.
 http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/editor.png
 
-Controlling the DotBar is fairly easy, there are just three basic sections.  The general section is first and controls the data and how it will be displayed.<p>
+Controlling the !DotBar is fairly easy, there are just three basic sections.  The general section is first and controls the data and how it will be displayed.<p>
  * Expression is any expression that evaluates to an Integer.
  * Orientation controls whether the dots will go left to right first or up and down.
  * Wrap Point will control how many dots are on a row or column before they wrap. <p> 
@@ -40,6 +40,6 @@ By default the !DotBar does not display the numeric value.  The number can be sh
  * Width and Height control how much space will be reserved for the number.
  * Size controls the font size.
 You may say why do I have to control Width/Height and Size.  Height/Width are a reservation for how much space you are reserving for the number.  
-The size is how the number will be.  Future editions of the DotBar may scan ahead through the list of all values to dynamically calculate the Height/Width,
+The size is how the number will be.  Future editions of the !DotBar may scan ahead through the list of all values to dynamically calculate the Height/Width,
 but they are not in this revision of the control.
 http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/number.png

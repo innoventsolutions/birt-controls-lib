@@ -28,17 +28,17 @@ Controlling the DotBar is fairly easy, there are just three basic sections.  The
 http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/general.png
 
 The shape, color, and size of the symbol can be controlled through the Dot section of the editor.<p>  
-* Spacing controls how much white space exists between each dot
-* Shape controls whether you see a circle, rectangles or triangles.
-* Height & Width control the size of each dot
-* You can also control the fill color and the background color of the dots
+ * Spacing controls how much white space exists between each dot
+ * Shape controls whether you see a circle, rectangles or triangles.
+ * Height & Width control the size of each dot
+ * You can also control the fill color and the background color of the dots
 http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/dot.png
 
 By default the !DotBar does not display the numeric value.  The number can be shown using the number section.<p>  
-* Position controls whether the number shows up and if it is before or after the dots.
-* Font, Bold, Italic and Color all control the look of the number.
-* Width and Height control how much space will be reserved for the number.
-* Size controls the font size.
+ * Position controls whether the number shows up and if it is before or after the dots.
+ * Font, Bold, Italic and Color all control the look of the number.
+ * Width and Height control how much space will be reserved for the number.
+ * Size controls the font size.
 You may say why do I have to control Width/Height and Size.  Height/Width are a reservation for how much space you are reserving for the number.  
 The size is how the number will be.  Future editions of the DotBar may scan ahead through the list of all values to dynamically calculate the Height/Width,
 but they are not in this revision of the control.

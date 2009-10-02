@@ -1,0 +1,22 @@
+<table>
+<tr>
+	<td>
+	= Installation =
+	The first step is to insure that the plugins have been installed on your system.  If you look in the palette view you should see both the DotBar and the
+	RotatedText control listed at the end of the ReportItems section.  (see right). 
+	
+	If you do not see the controls, then there is an issue in your plugin installation.  Please verify that the both the:
+	* bb.birt.controls.jar
+	* bb.birt.controls.ui.jar 
+	Are available in the $ECLIPSE_HOME/plugins directory of your application. 
+	</td>
+	<td>
+	http://birt-controls-lib.googlecode.com/svn/wiki/usage.attach/palette.png
+	</td>
+</tr>
+<tr>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>

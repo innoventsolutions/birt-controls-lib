@@ -1,6 +1,7 @@
 <table>
 <tr>
 	<td>
+	= Installation =
 	The first step is to insure that the plugins have been installed on your system.  If you look in the palette view you should see both the DotBar and the
 	RotatedText control listed at the end of the ReportItems section.  (see right). 
 	

@@ -1,15 +1,18 @@
 #labels Featured
 = Organization =
 This project generates two new !ReportItem components, the !RotatedTextItem and !DotBar.
-The project is split into two separate plugins:
-* bb-birt-controls
-* bb-birt-controls-ui
-If you create !ReportItem extensions you should split your UI components from the engine only components.
-The UI components have dependencies to the Eclipse UI plugins.  These UI components are not published
-in the !ReportEngine distributions.  
 
-If you combine both the UI and engine components into a single plugin, you will have load 
-errors when you try to deploy the plugin to a BIRT runtime instance.
+The project is split into two separate plugins:
+ * bb-birt-controls
+ * bb-birt-controls-ui
+
+You may ask "Why two plugins for one project?"
+
+The answer is If you put UI components into your BIRT plugin, your ReportEngine deployment will not be able to load the plugin.  
+
+The reason is that the UI portion of the plugin extension have dependencies on the core UI components.  The core UI components are not packaged in !ReportEngine deployments, so if your plugin has those dependencies, it will fail on load.<p>
+(one guess how we figured that out...)
+
 <table>
 <tr>
 <td>

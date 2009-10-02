@@ -1,8 +1,8 @@
 [Installation]
 
 [UsageGuide Usage Guide]
-  * [DesignerInstallation Designer Installation]
-  * [RuntimeInstallation Runtime Installation]
-  * [RotatedTextUsage RotatedText Usage]
-  * [DotBarUsage DotBar Usage]
+
+[RotatedTextUsage RotatedText Usage]
+
+[DotBarUsage DotBar Usage]
   

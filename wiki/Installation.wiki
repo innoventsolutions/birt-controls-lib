@@ -10,7 +10,7 @@ Click on *Manage Sites* then *Add*
 
 Paste this URL in the text box that asks for site 
 {{{
- http://innovent.googlecode.com/svn/trunk/update
+ http://innovent.googlecode.com/svn/trunk/innovent.update
 }}}
 You should now have the Innovent BIRT Plugins update site.  
 

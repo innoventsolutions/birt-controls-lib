@@ -316,21 +316,20 @@ of confidential information.
       <import plugin="org.eclipse.birt.report.designer.ui.views" version="2.3.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jface" version="3.4.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.forms" version="3.3.0" match="greaterOrEqual"/>
-      <import plugin="birt.controls" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
          id="birt.controls.lib"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0"
          unpack="false"/>
 
    <plugin
          id="birt.controls.lib.ui"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0"
          unpack="false"/>
 
 </feature>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="bb.birt.controls.feature"
+      id="birt.controls.feature"
       label="Bb Birt Controls"
       version="1.0.0">
 
@@ -316,18 +316,18 @@ of confidential information.
       <import plugin="org.eclipse.birt.report.designer.ui.views" version="2.3.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jface" version="3.4.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.forms" version="3.3.0" match="greaterOrEqual"/>
-      <import plugin="bb.birt.controls" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="birt.controls" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
-         id="bb.birt.controls"
+         id="birt.controls"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="bb.birt.controls.ui"
+         id="birt.controls.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

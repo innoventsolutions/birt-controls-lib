@@ -16,7 +16,7 @@ You should now have the Innovent BIRT Plugins update site.
 
 If you only want this plugin, open the tree view and select only the *BIRT Controls* checkbox.  
 
-When deploying to a ReportEngine installation, the bb.birt.controls.jar 
+When deploying to a ReportEngine installation, the birt.controls.jar 
 file will need to be moved to the appropriate plugins directory.  If you are using a stand-alone 
 container, place the jar in:
 {{{

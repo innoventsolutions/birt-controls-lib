@@ -6,8 +6,8 @@
 	!RotatedText control listed at the end of the !ReportItems section.  (see right). 
 	
 	If you do not see the controls, then there is an issue in your plugin installation.  Please verify that the both the:
-	* bb.birt.controls.jar
-	* bb.birt.controls.ui.jar 
+	* birt.controls.jar
+	* birt.controls.ui.jar 
 	Are available in the $ECLIPSE_HOME/plugins directory of your application. 
 	</td>
 	<td>

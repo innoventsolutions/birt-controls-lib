@@ -26,23 +26,20 @@ import org.eclipse.birt.report.model.api.extension.ReportItemFactory;
  * 
  * @author Steve Schafer / Innovent Solutions
  */
-public class DotbarItemFactory extends ReportItemFactory
-{
-  @Override
-  public IReportItem newReportItem( DesignElementHandle designElementHandle )
-  {
-    if ( designElementHandle instanceof ExtendedItemHandle )
-    {
-      ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) designElementHandle;
-      if ( DotbarItem.EXTENSION_NAME.equals( extendedItemHandle.getExtensionName() ) )
-        return new DotbarItem(extendedItemHandle);
-    }
-    return null;
-  }
+public class DotbarItemFactory extends ReportItemFactory {
+	@Override
+	public IReportItem newReportItem(DesignElementHandle designElementHandle) {
+		if (designElementHandle instanceof ExtendedItemHandle) {
+			ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) designElementHandle;
+			if (DotbarItem.EXTENSION_NAME.equals(extendedItemHandle
+					.getExtensionName()))
+				return new DotbarItem(extendedItemHandle);
+		}
+		return null;
+	}
 
-  @Override
-  public IMessages getMessages()
-  {
-    return null;
-  }
+	@Override
+	public IMessages getMessages() {
+		return null;
+	}
 }

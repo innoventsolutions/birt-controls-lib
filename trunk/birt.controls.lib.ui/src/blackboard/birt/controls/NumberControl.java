@@ -24,94 +24,77 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-public class NumberControl
-{
-  private final Text text;
-  private double value = 0;
-  private final List<BbModifyListener> modifyListeners = new ArrayList<BbModifyListener>();
+public class NumberControl {
+	private final Text text;
+	private double value = 0;
+	private final List<BbModifyListener> modifyListeners = new ArrayList<BbModifyListener>();
 
-  public NumberControl( final Composite parent, final int style, final boolean allowNegative )
-  {
-    text = new Text( parent, style );
-    text.addKeyListener( new KeyListener()
-      {
-        public void keyPressed( KeyEvent event )
-        {
-          event.doit = acceptCharacter( event.character );
-        }
+	public NumberControl(final Composite parent, final int style,
+			final boolean allowNegative) {
+		text = new Text(parent, style);
+		text.addKeyListener(new KeyListener() {
+			public void keyPressed(KeyEvent event) {
+				event.doit = acceptCharacter(event.character);
+			}
 
-        private boolean acceptCharacter( char c )
-        {
-          final String string = text.getText();
-          if ( string.length() == 0 && allowNegative && c == '-' )
-            return true;
-          if ( string.indexOf( '.' ) < 0 && c == '.' )
-            return true;
-          if ( Character.isDigit( c ) )
-            return true;
-          if ( Character.isISOControl( c ) )
-            return true;
-          return false;
-        }
+			private boolean acceptCharacter(char c) {
+				final String string = text.getText();
+				if (string.length() == 0 && allowNegative && c == '-')
+					return true;
+				if (string.indexOf('.') < 0 && c == '.')
+					return true;
+				if (Character.isDigit(c))
+					return true;
+				if (Character.isISOControl(c))
+					return true;
+				return false;
+			}
 
-        public void keyReleased( KeyEvent event )
-        {
-          final String string = text.getText();
-          double value;
-          try
-          {
-            value = Double.parseDouble( string );
-          }
-          catch ( NumberFormatException e )
-          {
-            value = 0;
-          }
-          if ( NumberControl.this.value != value )
-          {
-            NumberControl.this.value = value;
-            for ( BbModifyListener listener : modifyListeners )
-              listener.onModified();
-          }
-        }
-      } );
-  }
+			public void keyReleased(KeyEvent event) {
+				final String string = text.getText();
+				double value;
+				try {
+					value = Double.parseDouble(string);
+				} catch (NumberFormatException e) {
+					value = 0;
+				}
+				if (NumberControl.this.value != value) {
+					NumberControl.this.value = value;
+					for (BbModifyListener listener : modifyListeners)
+						listener.onModified();
+				}
+			}
+		});
+	}
 
-  public void setLayoutData( GridData gridData )
-  {
-    text.setLayoutData( gridData );
-  }
+	public void setLayoutData(GridData gridData) {
+		text.setLayoutData(gridData);
+	}
 
-  public double getValue()
-  {
-    return this.value;
-  }
+	public double getValue() {
+		return this.value;
+	}
 
-  public void setValue( double value )
-  {
-    if ( this.value != value )
-    {
-      this.value = value;
-      text.setText( String.valueOf( value ) );
-    }
-  }
+	public void setValue(double value) {
+		if (this.value != value) {
+			this.value = value;
+			text.setText(String.valueOf(value));
+		}
+	}
 
-  public void addFocusListener( FocusListener listener )
-  {
-    text.addFocusListener( listener );
-  }
+	public void addFocusListener(FocusListener listener) {
+		text.addFocusListener(listener);
+	}
 
-  public void removeFocusListener( FocusListener listener )
-  {
-    text.removeFocusListener( listener );
-  }
+	public void removeFocusListener(FocusListener listener) {
+		text.removeFocusListener(listener);
+	}
 
-  public void addModifyListener( BbModifyListener listener )
-  {
-    modifyListeners.add( listener );
-  }
+	public void addModifyListener(BbModifyListener listener) {
+		modifyListeners.add(listener);
+	}
 
-  public void removeModifyListener( BbModifyListener listener )
-  {
-    modifyListeners.remove( listener );
-  }
+	public void removeModifyListener(BbModifyListener listener) {
+		modifyListeners.remove(listener);
+	}
 }

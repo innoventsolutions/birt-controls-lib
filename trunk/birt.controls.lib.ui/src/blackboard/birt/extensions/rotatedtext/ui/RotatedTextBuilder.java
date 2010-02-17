@@ -33,90 +33,74 @@ import blackboard.birt.extensions.rotatedtext.RotatedTextItem;
 /**
  * RotatedTextBuilder
  */
-public class RotatedTextBuilder extends ReportItemBuilderUI
-{
-  public int open( ExtendedItemHandle handle )
-  {
-    try
-    {
-      IReportItem item = handle.getReportItem();
+public class RotatedTextBuilder extends ReportItemBuilderUI {
+	public int open(ExtendedItemHandle handle) {
+		try {
+			IReportItem item = handle.getReportItem();
 
-      if ( item instanceof RotatedTextItem )
-      {
-        RotatedTextEditor editor = new RotatedTextEditor( Display.getCurrent().getActiveShell(), (RotatedTextItem) item );
-        return editor.open();
-      }
-    }
-    catch ( Exception e )
-    {
-      e.printStackTrace();
-    }
-    return Window.CANCEL;
-  }
+			if (item instanceof RotatedTextItem) {
+				RotatedTextEditor editor = new RotatedTextEditor(Display
+						.getCurrent().getActiveShell(), (RotatedTextItem) item);
+				return editor.open();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Window.CANCEL;
+	}
 }
 
 /**
  * RotatedTextEditor
  */
-class RotatedTextEditor extends TrayDialog
-{
-  protected RotatedTextItem textItem;
-  protected ControlGroup controlGroup = new ControlGroup();
+class RotatedTextEditor extends TrayDialog {
+	protected RotatedTextItem textItem;
+	protected ControlGroup controlGroup = new ControlGroup();
 
-  protected RotatedTextEditor( Shell shell, RotatedTextItem textItem )
-  {
-    super( shell );
-    this.textItem = textItem;
-  }
+	protected RotatedTextEditor(Shell shell, RotatedTextItem textItem) {
+		super(shell);
+		this.textItem = textItem;
+	}
 
-  protected void configureShell( Shell newShell )
-  {
-    super.configureShell( newShell );
-    newShell.setText( "Rotated Text Builder" ); //$NON-NLS-1$
-  }
+	protected void configureShell(Shell newShell) {
+		super.configureShell(newShell);
+		newShell.setText("Rotated Text Builder"); //$NON-NLS-1$
+	}
 
-  protected Control createDialogArea( Composite parent )
-  {
-    Composite composite = new Composite( parent, SWT.NONE );
-    GridLayout layout = controlGroup.getGridLayout();
-    layout.marginHeight = convertVerticalDLUsToPixels( IDialogConstants.VERTICAL_MARGIN );
-    layout.marginWidth = convertHorizontalDLUsToPixels( IDialogConstants.HORIZONTAL_MARGIN );
-    layout.verticalSpacing = convertVerticalDLUsToPixels( IDialogConstants.VERTICAL_SPACING );
-    layout.horizontalSpacing = convertHorizontalDLUsToPixels( IDialogConstants.HORIZONTAL_SPACING );
-    composite.setLayout( layout );
-    composite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
-    controlGroup.build( composite, new blackboard.birt.controls.ControlEventHandler()
-      {
-        public void updateModel( String propName )
-        {
-        }
+	protected Control createDialogArea(Composite parent) {
+		Composite composite = new Composite(parent, SWT.NONE);
+		GridLayout layout = controlGroup.getGridLayout();
+		layout.marginHeight = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_MARGIN);
+		layout.marginWidth = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_MARGIN);
+		layout.verticalSpacing = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_SPACING);
+		layout.horizontalSpacing = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_SPACING);
+		composite.setLayout(layout);
+		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
+		controlGroup.build(composite,
+				new blackboard.birt.controls.ControlEventHandler() {
+					public void updateModel(String propName) {
+					}
 
-        public ExtendedItemHandle getModelHandle()
-        {
-          return textItem.getModelHandle();
-        }
-      }, parent.getBackground() );
-    applyDialogFont( composite );
-    initValues();
-    return composite;
-  }
+					public ExtendedItemHandle getModelHandle() {
+						return textItem.getModelHandle();
+					}
+				}, parent.getBackground());
+		applyDialogFont(composite);
+		initValues();
+		return composite;
+	}
 
-  private void initValues()
-  {
-    controlGroup.load( new RotatedTextData( textItem ) );
-  }
+	private void initValues() {
+		controlGroup.load(new RotatedTextData(textItem));
+	}
 
-  protected void okPressed()
-  {
-    try
-    {
-      controlGroup.save( textItem );
-    }
-    catch ( Exception ex )
-    {
-      ex.printStackTrace();
-    }
+	protected void okPressed() {
+		try {
+			controlGroup.save(textItem);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 
-    super.okPressed();
-  }
+		super.okPressed();
+	}
 }

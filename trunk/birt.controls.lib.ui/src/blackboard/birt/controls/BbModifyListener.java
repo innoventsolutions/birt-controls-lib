@@ -13,7 +13,6 @@
  *******************************************************************************/
 package blackboard.birt.controls;
 
-public interface BbModifyListener
-{
-  void onModified();
+public interface BbModifyListener {
+	void onModified();
 }

@@ -26,21 +26,19 @@ import org.eclipse.birt.report.model.api.extension.ReportItemFactory;
  * 
  * @author Steve Schafer / Innovent Solutions
  */
-public class RotatedTextItemFactory extends ReportItemFactory
-{
+public class RotatedTextItemFactory extends ReportItemFactory {
 
-	public IReportItem newReportItem( DesignElementHandle modelHanlde )
-	{
-		if ( modelHanlde instanceof ExtendedItemHandle
-				&& RotatedTextItem.EXTENSION_NAME.equals( ( (ExtendedItemHandle) modelHanlde ).getExtensionName( ) ) )
-		{
-			return new RotatedTextItem( (ExtendedItemHandle) modelHanlde );
+	public IReportItem newReportItem(DesignElementHandle modelHanlde) {
+		if (modelHanlde instanceof ExtendedItemHandle
+				&& RotatedTextItem.EXTENSION_NAME
+						.equals(((ExtendedItemHandle) modelHanlde)
+								.getExtensionName())) {
+			return new RotatedTextItem((ExtendedItemHandle) modelHanlde);
 		}
 		return null;
 	}
 
-	public IMessages getMessages( )
-	{
+	public IMessages getMessages() {
 		return null;
 	}
 

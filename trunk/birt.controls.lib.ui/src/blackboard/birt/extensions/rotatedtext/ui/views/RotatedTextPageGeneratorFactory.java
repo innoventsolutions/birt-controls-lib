@@ -20,26 +20,22 @@ import org.eclipse.core.runtime.IAdapterFactory;
 /**
  * RotatedTextPageGeneratorFactory
  */
-public class RotatedTextPageGeneratorFactory implements IAdapterFactory
-{
+public class RotatedTextPageGeneratorFactory implements IAdapterFactory {
 
-  @SuppressWarnings("unchecked")
-  public Object getAdapter( Object adaptableObject, Class adapterType )
-  {
-    if ( adaptableObject instanceof ExtendedItemHandle )
-    {
-      ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) adaptableObject;
-      String extensionName = extendedItemHandle.getExtensionName();
-      if("RotatedText".equals(extensionName))
-        return new RotatedTextPageGenerator();
-    }
-    return null;
-  }
+	@SuppressWarnings("unchecked")
+	public Object getAdapter(Object adaptableObject, Class adapterType) {
+		if (adaptableObject instanceof ExtendedItemHandle) {
+			ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) adaptableObject;
+			String extensionName = extendedItemHandle.getExtensionName();
+			if ("RotatedText".equals(extensionName))
+				return new RotatedTextPageGenerator();
+		}
+		return null;
+	}
 
-  @SuppressWarnings("unchecked")
-  public Class[] getAdapterList()
-  {
-    return new Class[] { IPageGenerator.class };
-  }
+	@SuppressWarnings("unchecked")
+	public Class[] getAdapterList() {
+		return new Class[] { IPageGenerator.class };
+	}
 
 }

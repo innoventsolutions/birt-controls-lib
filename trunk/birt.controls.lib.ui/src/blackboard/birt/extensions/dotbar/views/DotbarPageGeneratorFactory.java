@@ -18,24 +18,20 @@ import org.eclipse.birt.report.designer.ui.views.IPageGenerator;
 import org.eclipse.birt.report.model.api.ExtendedItemHandle;
 import org.eclipse.core.runtime.IAdapterFactory;
 
-public class DotbarPageGeneratorFactory implements IAdapterFactory
-{
-  @SuppressWarnings("unchecked")
-  public Object getAdapter( Object adaptableObject, Class adapterType )
-  {
-    if ( adaptableObject instanceof ExtendedItemHandle )
-    {
-      ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) adaptableObject;
-      String extensionName = extendedItemHandle.getExtensionName();
-      if("DotBar".equals(extensionName))
-        return new DotbarPageGenerator();
-    }
-    return null;
-  }
+public class DotbarPageGeneratorFactory implements IAdapterFactory {
+	@SuppressWarnings("unchecked")
+	public Object getAdapter(Object adaptableObject, Class adapterType) {
+		if (adaptableObject instanceof ExtendedItemHandle) {
+			ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) adaptableObject;
+			String extensionName = extendedItemHandle.getExtensionName();
+			if ("DotBar".equals(extensionName))
+				return new DotbarPageGenerator();
+		}
+		return null;
+	}
 
-  @SuppressWarnings("unchecked")
-  public Class[] getAdapterList()
-  {
-    return new Class[] { IPageGenerator.class };
-  }
+	@SuppressWarnings("unchecked")
+	public Class[] getAdapterList() {
+		return new Class[] { IPageGenerator.class };
+	}
 }

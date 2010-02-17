@@ -16,9 +16,8 @@ package blackboard.birt.controls;
 
 import org.eclipse.birt.report.model.api.ExtendedItemHandle;
 
-public interface ControlEventHandler
-{
-  void updateModel( final String propName );
+public interface ControlEventHandler {
+	void updateModel(final String propName);
 
-  ExtendedItemHandle getModelHandle();
+	ExtendedItemHandle getModelHandle();
 }

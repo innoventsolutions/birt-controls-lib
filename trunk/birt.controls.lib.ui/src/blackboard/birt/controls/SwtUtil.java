@@ -19,10 +19,8 @@ import org.eclipse.swt.graphics.Device;
 
 import blackboard.birt.extensions.util.ColorSpec;
 
-public class SwtUtil
-{
-  public static Color getSwtColor( Device device, ColorSpec color )
-  {
-    return new Color( device, color.r, color.g, color.b );
-  }
+public class SwtUtil {
+	public static Color getSwtColor(Device device, ColorSpec color) {
+		return new Color(device, color.r, color.g, color.b);
+	}
 }

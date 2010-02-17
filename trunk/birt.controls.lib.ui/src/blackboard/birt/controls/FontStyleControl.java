@@ -27,107 +27,87 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
+public class FontStyleControl {
+	private final Composite composite;
+	private final Button boldButton;
+	private final Button italicButton;
+	private final List<BbModifyListener> listeners = new ArrayList<BbModifyListener>();
 
-public class FontStyleControl
-{
-  private final Composite composite;
-  private final Button boldButton;
-  private final Button italicButton;
-  private final List<BbModifyListener> listeners = new ArrayList<BbModifyListener>();
+	public FontStyleControl(final Composite parent, final int style) {
+		this.composite = new Composite(parent, style);
+		{
+			final GridLayout gridLayout = new GridLayout(2, false);
+			composite.setLayout(gridLayout);
+		}
+		this.boldButton = createBoldButton();
+		this.italicButton = createItalicButton();
+	}
 
-  public FontStyleControl( final Composite parent, final int style )
-  {
-    this.composite = new Composite( parent, style );
-    {
-      final GridLayout gridLayout = new GridLayout( 2, false );
-      composite.setLayout( gridLayout );
-    }
-    this.boldButton = createBoldButton();
-    this.italicButton = createItalicButton();
-  }
+	private Button createBoldButton() {
+		return createButton(AttributeConstant.FONT_WIDTH);
+	}
 
-  private Button createBoldButton()
-  {
-    return createButton( AttributeConstant.FONT_WIDTH );
-  }
+	private Button createItalicButton() {
+		return createButton(AttributeConstant.FONT_STYLE);
+	}
 
-  private Button createItalicButton()
-  {
-    return createButton( AttributeConstant.FONT_STYLE );
-  }
+	private Button createButton(String name) {
+		Button button = new Button(composite, SWT.TOGGLE);
+		button.setImage(ReportPlatformUIImages.getImage(name));
+		button.addSelectionListener(new SelectionListener() {
+			public void widgetDefaultSelected(final SelectionEvent event) {
+			}
 
-  private Button createButton( String name )
-  {
-    Button button = new Button( composite, SWT.TOGGLE );
-    button.setImage( ReportPlatformUIImages.getImage( name ) );
-    button.addSelectionListener( new SelectionListener()
-      {
-        public void widgetDefaultSelected( final SelectionEvent event )
-        {
-        }
+			public void widgetSelected(final SelectionEvent event) {
+				for (BbModifyListener listener : listeners)
+					listener.onModified();
+			}
+		});
+		return button;
+	}
 
-        public void widgetSelected( final SelectionEvent event )
-        {
-          for ( BbModifyListener listener : listeners )
-            listener.onModified();
-        }
-      } );
-    return button;
-  }
+	public void addModifyListener(final BbModifyListener listener) {
+		this.listeners.add(listener);
+	}
 
-  public void addModifyListener( final BbModifyListener listener )
-  {
-    this.listeners.add( listener );
-  }
+	public void removeModifyListener(final BbModifyListener listener) {
+		this.listeners.remove(listener);
+	}
 
-  public void removeModifyListener( final BbModifyListener listener )
-  {
-    this.listeners.remove( listener );
-  }
+	public boolean isBold() {
+		return boldButton.getSelection();
+	}
 
-  public boolean isBold()
-  {
-    return boldButton.getSelection();
-  }
+	public void setBold(boolean bold) {
+		boldButton.setSelection(bold);
+	}
 
-  public void setBold( boolean bold )
-  {
-    boldButton.setSelection( bold );
-  }
+	public boolean isItalic() {
+		return italicButton.getSelection();
+	}
 
-  public boolean isItalic()
-  {
-    return italicButton.getSelection();
-  }
+	public void setItalic(boolean italic) {
+		italicButton.setSelection(italic);
+	}
 
-  public void setItalic( boolean italic )
-  {
-    italicButton.setSelection( italic );
-  }
+	public String getStyle() {
+		return isItalic() ? "italic" : "normal";
+	}
 
-  public String getStyle()
-  {
-    return isItalic() ? "italic" : "normal";
-  }
+	public String getWeight() {
+		return isBold() ? "bold" : "normal";
+	}
 
-  public String getWeight()
-  {
-    return isBold() ? "bold" : "normal";
-  }
+	public void setStyle(final String fontStyle) {
+		italicButton.setSelection("italic".equalsIgnoreCase(fontStyle));
+	}
 
-  public void setStyle( final String fontStyle )
-  {
-    italicButton.setSelection( "italic".equalsIgnoreCase( fontStyle ) );
-  }
+	public void setWeight(final String fontWeight) {
+		boldButton.setSelection("bold".equalsIgnoreCase(fontWeight));
+	}
 
-  public void setWeight( final String fontWeight )
-  {
-    boldButton.setSelection( "bold".equalsIgnoreCase( fontWeight ) );
-  }
-
-  public void setLayoutData( GridData gridData )
-  {
-    composite.setLayoutData( gridData );
-  }
+	public void setLayoutData(GridData gridData) {
+		composite.setLayoutData(gridData);
+	}
 
 }

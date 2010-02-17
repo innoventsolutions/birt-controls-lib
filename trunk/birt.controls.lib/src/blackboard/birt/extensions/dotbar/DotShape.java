@@ -14,8 +14,6 @@
  */
 package blackboard.birt.extensions.dotbar;
 
-import java.util.Arrays;
-
 /**
  * An immutable enumeration of dot shapes.
  * 

@@ -2,7 +2,7 @@
 <feature
       id="birt.controls.lib.feature"
       label="Bb Birt Controls"
-      version="1.0.1">
+      version="1.0.2">
 
    <description url="http://code.google.com/p/birt-controls-lib/">
       BIRT controls represents a best practice implementation of the BIRT Report Item extension point. Based on the initial RotatedTextItem example code, this project represents significant improvements to the control and the way the control was produced.
@@ -322,14 +322,14 @@ of confidential information.
          id="birt.controls.lib"
          download-size="0"
          install-size="0"
-         version="1.0.1"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="birt.controls.lib.ui"
          download-size="0"
          install-size="0"
-         version="1.0.1"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

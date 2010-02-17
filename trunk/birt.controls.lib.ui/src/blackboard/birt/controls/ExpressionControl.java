@@ -76,7 +76,7 @@ public class ExpressionControl extends Composite
   {
     String oldValue = text.getText();
     ExpressionBuilder eb = new ExpressionBuilder( text.getShell(), oldValue );
-    eb.setExpressionProvier( new ExpressionProvider( modelHandle ) );
+    eb.setExpressionProvider( new ExpressionProvider( modelHandle ) );
     String result = oldValue;
 
     if ( eb.open() == Window.OK )

@@ -55,7 +55,10 @@ public class NumberPosition
 
   public static String[] getNames()
   {
-    return Arrays.copyOf( names, names.length );
+	  final String[] newArray = new String[names.length];
+	  for(int i = 0; i < names.length; i++)
+		  newArray[i] = names[i];
+	  return newArray;
   }
 
   /**

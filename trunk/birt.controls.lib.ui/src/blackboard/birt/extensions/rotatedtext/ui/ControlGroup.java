@@ -250,7 +250,7 @@ public class ControlGroup
     final String[] sysFont = DEUtil.getSystemFontNames();
     for ( String item : sysFont )
     {
-      String name = DEUtil.RemoveQuote( item );
+      String name = DEUtil.removeQuote( item );
       list.add( name );
       fontDisplayNameMap.put( name, name );
       fontNameMap.put( name, name );
@@ -268,7 +268,7 @@ public class ControlGroup
 
   private String getFontDisplayName( String fontName )
   {
-    String unquotedFontName = DEUtil.RemoveQuote( fontName );
+    String unquotedFontName = DEUtil.removeQuote( fontName );
     String displayName = fontNameMap.get( unquotedFontName );
     return displayName;
   }

@@ -34,7 +34,6 @@ public class RotatedTextPageGenerator extends AbstractPageGenerator
   private static final String CUSTOM_PAGE_TITLE = "Custom"; //$NON-NLS-1$
   private IPropertyTabUI generalPage;
 
-  @SuppressWarnings("unchecked")
   protected void buildItemContent( CTabItem item )
   {
     if ( itemMap.containsKey( item ) && itemMap.get( item ) == null )

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="birt.controls.lib.feature"
-      label="Bb Birt Controls"
+      label="Birt Controls Library"
       version="1.0.0">
 
    <description url="http://code.google.com/p/birt-controls-lib/">

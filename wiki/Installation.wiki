@@ -8,10 +8,16 @@ Go to Help - Software Updates - Available Software
 
 Click on *Manage Sites* then *Add* 
 
-Paste this URL in the text box that asks for site 
+For BIRT 2.5.1 paste this URL in the text box that asks for site 
 {{{
  http://innovent.googlecode.com/svn/trunk/innovent.update
 }}}
+
+For BIRT 2.3.2 paste this URL in the text box that asks for site 
+{{{
+ http://innovent.googlecode.com/svn/branches/2.3.2/innovent.update
+}}}
+
 You should now have the Innovent BIRT Plugins update site.  
 
 If you only want this plugin, open the tree view and select only the *BIRT Controls* checkbox.  

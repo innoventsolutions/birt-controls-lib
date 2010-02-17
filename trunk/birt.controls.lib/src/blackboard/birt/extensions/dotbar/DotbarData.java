@@ -441,7 +441,8 @@ public class DotbarData
     if ( !( object instanceof DotbarData ) )
       return false;
     DotbarData that = (DotbarData) object;
-    if ( !this.valueExpression.equals( that.valueExpression ) )
+    if ( this.valueExpression == null ? that.valueExpression != null : 
+    	!this.valueExpression.equals( that.valueExpression ) )
       return false;
     if ( this.displayValue != that.displayValue )
       return false;
@@ -487,7 +488,7 @@ public class DotbarData
   @Override
   public int hashCode()
   {
-    int value = valueExpression.hashCode();
+    int value = valueExpression == null ? 0 : valueExpression.hashCode();
     value += displayValue;
     if ( dotWidth != null )
       value += dotWidth.hashCode();

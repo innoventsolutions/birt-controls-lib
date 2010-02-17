@@ -33,118 +33,103 @@ import blackboard.birt.extensions.rotatedtext.RotatedTextItem;
 /**
  * RotatedTextFigure
  */
-public class RotatedTextFigure extends Figure
-{
-  private RotatedTextData lastData;
-  private Image cachedImage;
-  private RotatedTextItem textItem;
+public class RotatedTextFigure extends Figure {
+	private RotatedTextData lastData;
+	private Image cachedImage;
+	private RotatedTextItem textItem;
 
-  RotatedTextFigure( RotatedTextItem textItem )
-  {
-    super();
-    this.textItem = textItem;
+	RotatedTextFigure(RotatedTextItem textItem) {
+		super();
+		this.textItem = textItem;
 
-    addMouseListener( new MouseListener.Stub()
-      {
-        public void mousePressed( MouseEvent me )
-        {
-          if ( me.button == 2 )
-          {
-            try
-            {
-              RotatedTextFigure.this.textItem.setRotationAngle( normalize( RotatedTextFigure.this.textItem.getRotationAngle() + 45 ) );
-            }
-            catch ( SemanticException e )
-            {
-              e.printStackTrace();
-            }
-          }
-        }
-      } );
-  }
+		addMouseListener(new MouseListener.Stub() {
+			public void mousePressed(MouseEvent me) {
+				if (me.button == 2) {
+					try {
+						RotatedTextFigure.this.textItem
+								.setRotationAngle(normalize(RotatedTextFigure.this.textItem
+										.getRotationAngle() + 45));
+					} catch (SemanticException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+	}
 
-  private int normalize( int angle )
-  {
-    angle = angle % 360;
+	private int normalize(int angle) {
+		angle = angle % 360;
 
-    if ( angle < 0 )
-      angle += 360;
+		if (angle < 0)
+			angle += 360;
 
-    return angle;
-  }
+		return angle;
+	}
 
-  public Dimension getMinimumSize( int hint, int hint2 )
-  {
-    return getPreferredSize( hint, hint2 );
-  }
+	public Dimension getMinimumSize(int hint, int hint2) {
+		return getPreferredSize(hint, hint2);
+	}
 
-  public Dimension getPreferredSize( int hint, int hint2 )
-  {
-    Display display = Display.getCurrent();
-    GC gc = null;
+	public Dimension getPreferredSize(int hint, int hint2) {
+		Display display = Display.getCurrent();
+		GC gc = null;
 
-    try
-    {
-      final String text = truncateText( textItem.getText() );
-      final int angle = textItem.getRotationAngle();
-      gc = new GC( display );
-      final Font font = RotatedTextSwtUtil.getSwtFont( display, new RotatedTextData( textItem ) );
-      gc.setFont( font );
-      final Point pt = gc.textExtent( text );
-      double[] info = RotatedTextSwtUtil.computedRotatedInfo( pt.x, pt.y, angle );
+		try {
+			final String text = truncateText(textItem.getText());
+			final int angle = textItem.getRotationAngle();
+			gc = new GC(display);
+			final Font font = RotatedTextSwtUtil.getSwtFont(display,
+					new RotatedTextData(textItem));
+			gc.setFont(font);
+			final Point pt = gc.textExtent(text);
+			double[] info = RotatedTextSwtUtil.computedRotatedInfo(pt.x, pt.y,
+					angle);
 
-      if ( getBorder() != null )
-      {
-        Insets bdInsets = getBorder().getInsets( this );
-        return new Dimension( (int) info[ 0 ] + bdInsets.getWidth(), (int) info[ 1 ] + bdInsets.getHeight() );
-      }
-      return new Dimension( (int) info[ 0 ], (int) info[ 1 ] );
-    }
-    finally
-    {
-      if ( gc != null && !gc.isDisposed() )
-        gc.dispose();
-    }
-  }
+			if (getBorder() != null) {
+				Insets bdInsets = getBorder().getInsets(this);
+				return new Dimension((int) info[0] + bdInsets.getWidth(),
+						(int) info[1] + bdInsets.getHeight());
+			}
+			return new Dimension((int) info[0], (int) info[1]);
+		} finally {
+			if (gc != null && !gc.isDisposed())
+				gc.dispose();
+		}
+	}
 
-  private String truncateText( String text )
-  {
-    if ( text == null )
-      return "";
-    if ( text.length() > 28 )
-      return text.substring( 0, 25 ) + "...";
-    return text;
-  }
+	private String truncateText(String text) {
+		if (text == null)
+			return "";
+		if (text.length() > 28)
+			return text.substring(0, 25) + "...";
+		return text;
+	}
 
-  protected void paintClientArea( Graphics graphics )
-  {
-    final Rectangle r = getClientArea().getCopy();
-    RotatedTextData data = new RotatedTextData( textItem );
+	protected void paintClientArea(Graphics graphics) {
+		final Rectangle r = getClientArea().getCopy();
+		RotatedTextData data = new RotatedTextData(textItem);
 
-    if ( !data.equals( lastData ) || cachedImage == null || cachedImage.isDisposed() )
-    {
-      lastData = data;
+		if (!data.equals(lastData) || cachedImage == null
+				|| cachedImage.isDisposed()) {
+			lastData = data;
 
-      if ( cachedImage != null && !cachedImage.isDisposed() )
-        cachedImage.dispose();
+			if (cachedImage != null && !cachedImage.isDisposed())
+				cachedImage.dispose();
 
-      cachedImage = RotatedTextSwtUtil.createRotatedTextImage( data );
-    }
+			cachedImage = RotatedTextSwtUtil.createRotatedTextImage(data);
+		}
 
-    if ( cachedImage != null && !cachedImage.isDisposed() )
-      graphics.drawImage( cachedImage, r.x, r.y );
-  }
+		if (cachedImage != null && !cachedImage.isDisposed())
+			graphics.drawImage(cachedImage, r.x, r.y);
+	}
 
-  void setRotatedTextItem( RotatedTextItem item )
-  {
-    this.textItem = item;
-  }
+	void setRotatedTextItem(RotatedTextItem item) {
+		this.textItem = item;
+	}
 
-  void dispose()
-  {
-    if ( cachedImage != null && !cachedImage.isDisposed() )
-    {
-      cachedImage.dispose();
-    }
-  }
+	void dispose() {
+		if (cachedImage != null && !cachedImage.isDisposed()) {
+			cachedImage.dispose();
+		}
+	}
 }

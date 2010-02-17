@@ -29,124 +29,109 @@ import blackboard.birt.extensions.util.Util;
  * 
  * @author Steve Schafer / Innovent Solutions
  */
-public class RotatedTextItem extends ReportItem
-{
-  public static final String EXTENSION_NAME = "RotatedText"; //$NON-NLS-1$
-  public static final String TEXT_PROP = "text"; //$NON-NLS-1$
-  public static final String ROTATION_ANGLE_PROP = "rotationAngle"; //$NON-NLS-1$
-  public static final String WRAP_POINT_PROP = "wrapPoint"; //$NON-NLS-1$
-  public static final String FONT_FAMILY_PROP = IStyleModel.FONT_FAMILY_PROP;
-  public static final String FONT_SIZE_PROP = IStyleModel.FONT_SIZE_PROP;
-  public static final String FONT_STYLE_PROP = IStyleModel.FONT_STYLE_PROP;
-  public static final String FONT_WEIGHT_PROP = IStyleModel.FONT_WEIGHT_PROP;
-  public static final String FONT_COLOR_PROP = IStyleModel.COLOR_PROP;
-  public static final String LINK_URL_PROP = "linkURL"; //$NON-NLS-1$
+public class RotatedTextItem extends ReportItem {
+	public static final String EXTENSION_NAME = "RotatedText"; //$NON-NLS-1$
+	public static final String TEXT_PROP = "text"; //$NON-NLS-1$
+	public static final String ROTATION_ANGLE_PROP = "rotationAngle"; //$NON-NLS-1$
+	public static final String WRAP_POINT_PROP = "wrapPoint"; //$NON-NLS-1$
+	public static final String FONT_FAMILY_PROP = IStyleModel.FONT_FAMILY_PROP;
+	public static final String FONT_SIZE_PROP = IStyleModel.FONT_SIZE_PROP;
+	public static final String FONT_STYLE_PROP = IStyleModel.FONT_STYLE_PROP;
+	public static final String FONT_WEIGHT_PROP = IStyleModel.FONT_WEIGHT_PROP;
+	public static final String FONT_COLOR_PROP = IStyleModel.COLOR_PROP;
+	public static final String LINK_URL_PROP = "linkURL"; //$NON-NLS-1$
 
-  private ExtendedItemHandle modelHandle;
+	private ExtendedItemHandle modelHandle;
 
-  RotatedTextItem( ExtendedItemHandle modelHandle )
-  {
-    this.modelHandle = modelHandle;
-  }
+	RotatedTextItem(ExtendedItemHandle modelHandle) {
+		this.modelHandle = modelHandle;
+	}
 
-  public ExtendedItemHandle getModelHandle()
-  {
-    return modelHandle;
-  }
+	public ExtendedItemHandle getModelHandle() {
+		return modelHandle;
+	}
 
-  public String getText()
-  {
-    return modelHandle.getStringProperty( TEXT_PROP );
-  }
+	public String getText() {
+		return modelHandle.getStringProperty(TEXT_PROP);
+	}
 
-  public void setText( String value ) throws SemanticException
-  {
-    modelHandle.setProperty( TEXT_PROP, value );
-  }
+	public void setText(String value) throws SemanticException {
+		modelHandle.setProperty(TEXT_PROP, value);
+	}
 
-  public int getRotationAngle()
-  {
-    return modelHandle.getIntProperty( ROTATION_ANGLE_PROP );
-  }
+	public int getRotationAngle() {
+		return modelHandle.getIntProperty(ROTATION_ANGLE_PROP);
+	}
 
-  public void setRotationAngle( int value ) throws SemanticException
-  {
-    modelHandle.setProperty( ROTATION_ANGLE_PROP, value );
-  }
+	public void setRotationAngle(int value) throws SemanticException {
+		modelHandle.setProperty(ROTATION_ANGLE_PROP, value);
+	}
 
-  public DimensionValue getWrapPoint()
-  {
-    final DimensionHandle dimensionHandle = modelHandle.getDimensionProperty( WRAP_POINT_PROP );
-    final Object value = dimensionHandle.getValue();
-    return (DimensionValue) value;
-  }
+	public DimensionValue getWrapPoint() {
+		final DimensionHandle dimensionHandle = modelHandle
+				.getDimensionProperty(WRAP_POINT_PROP);
+		final Object value = dimensionHandle.getValue();
+		return (DimensionValue) value;
+	}
 
-  public void setWrapPoint( final DimensionValue value ) throws SemanticException
-  {
-    modelHandle.setProperty( WRAP_POINT_PROP, value );
-  }
+	public void setWrapPoint(final DimensionValue value)
+			throws SemanticException {
+		modelHandle.setProperty(WRAP_POINT_PROP, value);
+	}
 
-  public String getFontFamily()
-  {
-    String fontFamily = modelHandle.getStringProperty( FONT_FAMILY_PROP );
-    fontFamily = Util.removeQuotes( fontFamily );
-    if ( fontFamily.startsWith( "@" ) )
-      fontFamily = fontFamily.substring( 1 );
-    return fontFamily;
-  }
+	public String getFontFamily() {
+		String fontFamily = modelHandle.getStringProperty(FONT_FAMILY_PROP);
+		fontFamily = Util.removeQuotes(fontFamily);
+		if (fontFamily.startsWith("@"))
+			fontFamily = fontFamily.substring(1);
+		return fontFamily;
+	}
 
-  public void setFontFamily( String fontFamily ) throws SemanticException
-  {
-    modelHandle.setProperty( FONT_FAMILY_PROP, Util.removeQuotes( fontFamily ) );
-  }
+	public void setFontFamily(String fontFamily) throws SemanticException {
+		modelHandle
+				.setProperty(FONT_FAMILY_PROP, Util.removeQuotes(fontFamily));
+	}
 
-  public String getFontSize()
-  {
-    return modelHandle.getStringProperty( FONT_SIZE_PROP );
-  }
+	public String getFontSize() {
+		return modelHandle.getStringProperty(FONT_SIZE_PROP);
+	}
 
-  public void setFontSize( String fontSize ) throws SemanticException
-  {
-    modelHandle.setProperty( FONT_SIZE_PROP, fontSize );
-  }
+	public void setFontSize(String fontSize) throws SemanticException {
+		modelHandle.setProperty(FONT_SIZE_PROP, fontSize);
+	}
 
-  public boolean isFontItalic()
-  {
-    return "italic".equalsIgnoreCase( modelHandle.getStringProperty( FONT_STYLE_PROP ) );
-  }
+	public boolean isFontItalic() {
+		return "italic".equalsIgnoreCase(modelHandle
+				.getStringProperty(FONT_STYLE_PROP));
+	}
 
-  public void setFontItalic( boolean italic ) throws SemanticException
-  {
-    modelHandle.setProperty( FONT_STYLE_PROP, italic ? "italic" : "normal" );
-  }
+	public void setFontItalic(boolean italic) throws SemanticException {
+		modelHandle.setProperty(FONT_STYLE_PROP, italic ? "italic" : "normal");
+	}
 
-  public boolean isFontBold()
-  {
-    return "bold".equalsIgnoreCase( modelHandle.getStringProperty( FONT_WEIGHT_PROP ) );
-  }
+	public boolean isFontBold() {
+		return "bold".equalsIgnoreCase(modelHandle
+				.getStringProperty(FONT_WEIGHT_PROP));
+	}
 
-  public void setFontBold( boolean bold ) throws SemanticException
-  {
-    modelHandle.setProperty( FONT_WEIGHT_PROP, bold ? "bold" : "normal" );
-  }
+	public void setFontBold(boolean bold) throws SemanticException {
+		modelHandle.setProperty(FONT_WEIGHT_PROP, bold ? "bold" : "normal");
+	}
 
-  public ColorSpec getFontColor()
-  {
-    return ColorSpec.getColor( modelHandle.getStringProperty( FONT_COLOR_PROP ) );
-  }
+	public ColorSpec getFontColor() {
+		return ColorSpec.getColor(modelHandle
+				.getStringProperty(FONT_COLOR_PROP));
+	}
 
-  public void setFontColor( ColorSpec fontColor ) throws SemanticException
-  {
-    modelHandle.setProperty( FONT_COLOR_PROP, fontColor.toRgbString() );
-  }
+	public void setFontColor(ColorSpec fontColor) throws SemanticException {
+		modelHandle.setProperty(FONT_COLOR_PROP, fontColor.toRgbString());
+	}
 
-  public String getLinkURL()
-  {
-    return modelHandle.getStringProperty( LINK_URL_PROP );
-  }
+	public String getLinkURL() {
+		return modelHandle.getStringProperty(LINK_URL_PROP);
+	}
 
-  public void setLinkURL( String linkURL ) throws SemanticException
-  {
-    modelHandle.setProperty( LINK_URL_PROP, linkURL );
-  }
+	public void setLinkURL(String linkURL) throws SemanticException {
+		modelHandle.setProperty(LINK_URL_PROP, linkURL);
+	}
 }

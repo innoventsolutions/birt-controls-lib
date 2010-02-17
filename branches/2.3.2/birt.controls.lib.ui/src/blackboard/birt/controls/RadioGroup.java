@@ -25,62 +25,55 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
-public class RadioGroup extends Composite
-{
-  private final Button[] buttons;
-  public int value;
+public class RadioGroup extends Composite {
+	private final Button[] buttons;
+	public int value;
 
-  public RadioGroup( final Composite parent, final String[] buttonLabels, final int initialValue, final Color backgroundColor )
-  {
-    super( parent, SWT.NONE );
-    this.value = initialValue;
-    GridLayout layout = new GridLayout( buttonLabels.length, false );
-    this.setLayout( layout );
-    final List<Button> list = new ArrayList<Button>();
-    for ( final String buttonText : buttonLabels )
-    {
-      final Button button = new Button( this, SWT.RADIO );
-      button.setText( buttonText );
-      button.setBackground( backgroundColor );
-      button.addSelectionListener( new RadioSelectionListener( list.size() ) );
-      list.add( button );
-    }
-    this.buttons = list.toArray( new Button[ 0 ] );
-  }
+	public RadioGroup(final Composite parent, final String[] buttonLabels,
+			final int initialValue, final Color backgroundColor) {
+		super(parent, SWT.NONE);
+		this.value = initialValue;
+		GridLayout layout = new GridLayout(buttonLabels.length, false);
+		this.setLayout(layout);
+		final List<Button> list = new ArrayList<Button>();
+		for (final String buttonText : buttonLabels) {
+			final Button button = new Button(this, SWT.RADIO);
+			button.setText(buttonText);
+			button.setBackground(backgroundColor);
+			button
+					.addSelectionListener(new RadioSelectionListener(list
+							.size()));
+			list.add(button);
+		}
+		this.buttons = list.toArray(new Button[0]);
+	}
 
-  private final class RadioSelectionListener implements SelectionListener
-  {
-    public final int index;
+	private final class RadioSelectionListener implements SelectionListener {
+		public final int index;
 
-    public RadioSelectionListener( int index )
-    {
-      this.index = index;
-    }
+		public RadioSelectionListener(int index) {
+			this.index = index;
+		}
 
-    public void widgetDefaultSelected( SelectionEvent arg0 )
-    {
-    }
+		public void widgetDefaultSelected(SelectionEvent arg0) {
+		}
 
-    public void widgetSelected( SelectionEvent arg0 )
-    {
-      if ( RadioGroup.this.value != this.index )
-      {
-        RadioGroup.this.value = this.index;
-        notifyListeners( SWT.Modify, null );
-      }
-    }
+		public void widgetSelected(SelectionEvent arg0) {
+			if (RadioGroup.this.value != this.index) {
+				RadioGroup.this.value = this.index;
+				notifyListeners(SWT.Modify, null);
+			}
+		}
 
-  }
+	}
 
-  public void setValue( int i )
-  {
-    buttons[ value ].setSelection( false );
-    value = i;
-    buttons[ value ].setSelection( true );
-  }
+	public void setValue(int i) {
+		buttons[value].setSelection(false);
+		value = i;
+		buttons[value].setSelection(true);
+	}
 
-  public String getButtonName()
-  {
-    return buttons[ value ].getText();
-  }
+	public String getButtonName() {
+		return buttons[value].getText();
+	}
 }

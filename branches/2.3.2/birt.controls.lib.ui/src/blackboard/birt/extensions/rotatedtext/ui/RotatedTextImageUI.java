@@ -25,32 +25,25 @@ import blackboard.birt.extensions.rotatedtext.RotatedTextItem;
 /**
  * RotatedTextImageUI
  */
-public class RotatedTextImageUI implements IReportItemImageProvider
-{
-  public void disposeImage( ExtendedItemHandle handle, Image image )
-  {
-    if ( image != null && !image.isDisposed() )
-      image.dispose();
-  }
+public class RotatedTextImageUI implements IReportItemImageProvider {
+	public void disposeImage(ExtendedItemHandle handle, Image image) {
+		if (image != null && !image.isDisposed())
+			image.dispose();
+	}
 
-  public Image getImage( ExtendedItemHandle handle )
-  {
-    try
-    {
-      IReportItem item = handle.getReportItem();
+	public Image getImage(ExtendedItemHandle handle) {
+		try {
+			IReportItem item = handle.getReportItem();
 
-      if ( item instanceof RotatedTextItem )
-      {
-        final RotatedTextItem textItem = (RotatedTextItem) item;
-        RotatedTextData data = new RotatedTextData( textItem );
-        return RotatedTextSwtUtil.createRotatedTextImage( data );
-      }
-    }
-    catch ( ExtendedElementException e )
-    {
-      e.printStackTrace();
-    }
-    return null;
-  }
+			if (item instanceof RotatedTextItem) {
+				final RotatedTextItem textItem = (RotatedTextItem) item;
+				RotatedTextData data = new RotatedTextData(textItem);
+				return RotatedTextSwtUtil.createRotatedTextImage(data);
+			}
+		} catch (ExtendedElementException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

@@ -28,46 +28,35 @@ import blackboard.birt.extensions.dotbar.DotbarItem;
  * 
  * @author Steve Schafer / Innovent Solutions
  */
-public class DotbarFigureUI extends ReportItemFigureProvider
-{
-  @Override
-  public IFigure createFigure( ExtendedItemHandle handle )
-  {
-    try
-    {
-      IReportItem item = handle.getReportItem();
-      if ( item instanceof DotbarItem )
-        return new DotbarFigure( (DotbarItem) item );
-    }
-    catch ( ExtendedElementException e )
-    {
-      e.printStackTrace();
-    }
-    return null;
-  }
+public class DotbarFigureUI extends ReportItemFigureProvider {
+	@Override
+	public IFigure createFigure(ExtendedItemHandle handle) {
+		try {
+			IReportItem item = handle.getReportItem();
+			if (item instanceof DotbarItem)
+				return new DotbarFigure((DotbarItem) item);
+		} catch (ExtendedElementException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
-  @Override
-  public void disposeFigure( ExtendedItemHandle handle, IFigure figure )
-  {
-    ( (DotbarFigure) figure ).dispose();
-  }
+	@Override
+	public void disposeFigure(ExtendedItemHandle handle, IFigure figure) {
+		((DotbarFigure) figure).dispose();
+	}
 
-  @Override
-  public void updateFigure( ExtendedItemHandle handle, IFigure figure )
-  {
-    try
-    {
-      IReportItem item = handle.getReportItem();
+	@Override
+	public void updateFigure(ExtendedItemHandle handle, IFigure figure) {
+		try {
+			IReportItem item = handle.getReportItem();
 
-      if ( item instanceof DotbarItem )
-      {
-        DotbarFigure dotbarFigure = (DotbarFigure) figure;
-        dotbarFigure.setDotbarItem( (DotbarItem) item );
-      }
-    }
-    catch ( ExtendedElementException e )
-    {
-      e.printStackTrace();
-    }
-  }
+			if (item instanceof DotbarItem) {
+				DotbarFigure dotbarFigure = (DotbarFigure) figure;
+				dotbarFigure.setDotbarItem((DotbarItem) item);
+			}
+		} catch (ExtendedElementException e) {
+			e.printStackTrace();
+		}
+	}
 }

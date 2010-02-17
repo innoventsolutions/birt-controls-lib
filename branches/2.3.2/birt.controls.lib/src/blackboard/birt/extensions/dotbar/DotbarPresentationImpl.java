@@ -37,100 +37,81 @@ import org.eclipse.birt.report.model.api.extension.ExtendedElementException;
  * 
  * @author Steve Schafer / Innovent Solutions
  */
-public class DotbarPresentationImpl extends ReportItemPresentationBase
-{
-  private DotbarItem dotbarItem;
+public class DotbarPresentationImpl extends ReportItemPresentationBase {
+	private DotbarItem dotbarItem;
 
-  @Override
-  public void setModelObject( ExtendedItemHandle modelHandle )
-  {
-    try
-    {
-      dotbarItem = (DotbarItem) modelHandle.getReportItem();
-    }
-    catch ( ExtendedElementException e )
-    {
-      e.printStackTrace();
-    }
-  }
+	@Override
+	public void setModelObject(ExtendedItemHandle modelHandle) {
+		try {
+			dotbarItem = (DotbarItem) modelHandle.getReportItem();
+		} catch (ExtendedElementException e) {
+			e.printStackTrace();
+		}
+	}
 
-  @Override
-  public int getOutputType()
-  {
-    return OUTPUT_AS_IMAGE;
-  }
+	@Override
+	public int getOutputType() {
+		return OUTPUT_AS_IMAGE;
+	}
 
-  public Object onRowSets( IBaseResultSet[] results ) throws BirtException
-  {
-    if ( dotbarItem == null )
-      return null;
+	public Object onRowSets(IBaseResultSet[] results) throws BirtException {
+		if (dotbarItem == null)
+			return null;
 
-    DotbarData config = dotbarItem.getConfiguration();
-    int value = 0;
-    if ( results != null && results.length > 0 )
-    {
-      IBaseResultSet baseResultSet = results[ 0 ];
-      if ( baseResultSet instanceof IQueryResultSet )
-      {
-        IQueryResultSet queryResultSet = (IQueryResultSet) baseResultSet;
-        if ( queryResultSet.isBeforeFirst() )
-          queryResultSet.next();
-        Object object = queryResultSet.evaluate( config.valueExpression );
-        value = translateObject( object );
-      }
-      else if ( baseResultSet instanceof ICubeResultSet )
-      {
-        ICubeResultSet cubeResultSet = (ICubeResultSet) baseResultSet;
-        Object object = cubeResultSet.evaluate( config.valueExpression );
-        value = translateObject( object );
-      }
-    }
-    else
-    {
-      Object object = context.evaluate( config.valueExpression );
-      value = translateObject( object );
-    }
+		DotbarData config = dotbarItem.getConfiguration();
+		int value = 0;
+		if (results != null && results.length > 0) {
+			IBaseResultSet baseResultSet = results[0];
+			if (baseResultSet instanceof IQueryResultSet) {
+				IQueryResultSet queryResultSet = (IQueryResultSet) baseResultSet;
+				if (queryResultSet.isBeforeFirst())
+					queryResultSet.next();
+				Object object = queryResultSet.evaluate(config.valueExpression);
+				value = translateObject(object);
+			} else if (baseResultSet instanceof ICubeResultSet) {
+				ICubeResultSet cubeResultSet = (ICubeResultSet) baseResultSet;
+				Object object = cubeResultSet.evaluate(config.valueExpression);
+				value = translateObject(object);
+			}
+		} else {
+			Object object = context.evaluate(config.valueExpression);
+			value = translateObject(object);
+		}
 
-    DotbarData.Calculator calculator = config.new Calculator( 1, "in", dpi );
-    BufferedImage bufferedImage = calculator.createSwingImage( value, dotbarItem.getModelHandle() );
-    ByteArrayInputStream bis = null;
-    try
-    {
-      ImageIO.setUseCache( false );
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      ImageOutputStream ios = ImageIO.createImageOutputStream( baos );
-      ImageIO.write( bufferedImage, "png", ios ); //$NON-NLS-1$
-      ios.flush();
-      ios.close();
-      bis = new ByteArrayInputStream( baos.toByteArray() );
-    }
-    catch ( IOException e )
-    {
-      e.printStackTrace();
-    }
+		DotbarData.Calculator calculator = config.new Calculator(1, "in", dpi);
+		BufferedImage bufferedImage = calculator.createSwingImage(value,
+				dotbarItem.getModelHandle());
+		ByteArrayInputStream bis = null;
+		try {
+			ImageIO.setUseCache(false);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageOutputStream ios = ImageIO.createImageOutputStream(baos);
+			ImageIO.write(bufferedImage, "png", ios); //$NON-NLS-1$
+			ios.flush();
+			ios.close();
+			bis = new ByteArrayInputStream(baos.toByteArray());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-    return bis;
-  }
+		return bis;
+	}
 
-  private int translateObject( Object object )
-  {
-    if ( object instanceof Integer )
-      return ( (Integer) object ).intValue();
-    if ( object instanceof Long )
-      return ( (Long) object ).intValue();
-    if ( object instanceof BigDecimal )
-      return ( (BigDecimal) object ).intValue();
-    if ( object instanceof Double )
-      return ( (Double) object ).intValue();
-    if ( object instanceof String )
-      try
-      {
-        return Integer.parseInt( (String) object );
-      }
-      catch ( NumberFormatException e )
-      {
-        return 0;
-      }
-    return 0;
-  }
+	private int translateObject(Object object) {
+		if (object instanceof Integer)
+			return ((Integer) object).intValue();
+		if (object instanceof Long)
+			return ((Long) object).intValue();
+		if (object instanceof BigDecimal)
+			return ((BigDecimal) object).intValue();
+		if (object instanceof Double)
+			return ((Double) object).intValue();
+		if (object instanceof String)
+			try {
+				return Integer.parseInt((String) object);
+			} catch (NumberFormatException e) {
+				return 0;
+			}
+		return 0;
+	}
 }

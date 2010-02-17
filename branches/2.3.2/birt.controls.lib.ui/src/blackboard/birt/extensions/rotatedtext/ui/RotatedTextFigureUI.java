@@ -24,44 +24,33 @@ import blackboard.birt.extensions.rotatedtext.RotatedTextItem;
 /**
  * RotatedTextFigureUI
  */
-public class RotatedTextFigureUI extends ReportItemFigureProvider
-{
+public class RotatedTextFigureUI extends ReportItemFigureProvider {
 
-	public IFigure createFigure( ExtendedItemHandle handle )
-	{
-		try
-		{
-			IReportItem item = handle.getReportItem( );
-			if ( item instanceof RotatedTextItem )
-              return new RotatedTextFigure( (RotatedTextItem) item );
-		}
-		catch ( ExtendedElementException e )
-		{
-			e.printStackTrace( );
+	public IFigure createFigure(ExtendedItemHandle handle) {
+		try {
+			IReportItem item = handle.getReportItem();
+			if (item instanceof RotatedTextItem)
+				return new RotatedTextFigure((RotatedTextItem) item);
+		} catch (ExtendedElementException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
 
-	public void updateFigure( ExtendedItemHandle handle, IFigure figure )
-	{
-		try
-		{
-			IReportItem item = handle.getReportItem( );
-			if ( item instanceof RotatedTextItem )
-			{
+	public void updateFigure(ExtendedItemHandle handle, IFigure figure) {
+		try {
+			IReportItem item = handle.getReportItem();
+			if (item instanceof RotatedTextItem) {
 				RotatedTextFigure fig = (RotatedTextFigure) figure;
-				fig.setRotatedTextItem( (RotatedTextItem) item );
+				fig.setRotatedTextItem((RotatedTextItem) item);
 			}
-		}
-		catch ( ExtendedElementException e )
-		{
-			e.printStackTrace( );
+		} catch (ExtendedElementException e) {
+			e.printStackTrace();
 		}
 	}
 
-	public void disposeFigure( ExtendedItemHandle handle, IFigure figure )
-	{
-		( (RotatedTextFigure) figure ).dispose( );
+	public void disposeFigure(ExtendedItemHandle handle, IFigure figure) {
+		((RotatedTextFigure) figure).dispose();
 	}
 
 }

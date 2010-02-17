@@ -23,19 +23,14 @@ import blackboard.birt.extensions.rotatedtext.RotatedTextItem;
 /**
  * RotatedTextLabelUI
  */
-public class RotatedTextLabelUI implements IReportItemLabelProvider
-{
-	public String getLabel( ExtendedItemHandle handle )
-	{
-		try
-		{
-			IReportItem item = handle.getReportItem( );
-			if ( item instanceof RotatedTextItem )
-              return ( (RotatedTextItem) item ).getText( );
-		}
-		catch ( ExtendedElementException e )
-		{
-			e.printStackTrace( );
+public class RotatedTextLabelUI implements IReportItemLabelProvider {
+	public String getLabel(ExtendedItemHandle handle) {
+		try {
+			IReportItem item = handle.getReportItem();
+			if (item instanceof RotatedTextItem)
+				return ((RotatedTextItem) item).getText();
+		} catch (ExtendedElementException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

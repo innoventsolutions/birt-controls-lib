@@ -28,58 +28,51 @@ import blackboard.birt.extensions.dotbar.DotbarItem;
  * 
  * @author Steve Schafer / Innovent Solutions
  */
-public class DotbarFigure extends Figure
-{
-  private DotbarData lastConfig = null;
-  private Image cachedImage;
-  private DotbarItem dotbarItem;
+public class DotbarFigure extends Figure {
+	private DotbarData lastConfig = null;
+	private Image cachedImage;
+	private DotbarItem dotbarItem;
 
-  DotbarFigure( DotbarItem dotbarItem )
-  {
-    super();
-    this.dotbarItem = dotbarItem;
-  }
+	DotbarFigure(DotbarItem dotbarItem) {
+		super();
+		this.dotbarItem = dotbarItem;
+	}
 
-  @Override
-  protected void paintClientArea( Graphics graphics )
-  {
-    final Rectangle r = getClientArea().getCopy();
-    DotbarData config = dotbarItem.getConfiguration();
-    if ( ( lastConfig == null ? config != null : !lastConfig.equals( config ) ) || cachedImage == null || cachedImage.isDisposed() )
-    {
-      lastConfig = config;
-      if ( cachedImage != null && !cachedImage.isDisposed() )
-        cachedImage.dispose();
-      cachedImage = DotbarSwtUtil.createSwtImage( dotbarItem );
-    }
-    if ( cachedImage != null && !cachedImage.isDisposed() )
-      graphics.drawImage( cachedImage, r.x, r.y );
-  }
+	@Override
+	protected void paintClientArea(Graphics graphics) {
+		final Rectangle r = getClientArea().getCopy();
+		DotbarData config = dotbarItem.getConfiguration();
+		if ((lastConfig == null ? config != null : !lastConfig.equals(config))
+				|| cachedImage == null || cachedImage.isDisposed()) {
+			lastConfig = config;
+			if (cachedImage != null && !cachedImage.isDisposed())
+				cachedImage.dispose();
+			cachedImage = DotbarSwtUtil.createSwtImage(dotbarItem);
+		}
+		if (cachedImage != null && !cachedImage.isDisposed())
+			graphics.drawImage(cachedImage, r.x, r.y);
+	}
 
-  public void setDotbarItem( DotbarItem dotbarItem )
-  {
-    this.dotbarItem = dotbarItem;
-  }
+	public void setDotbarItem(DotbarItem dotbarItem) {
+		this.dotbarItem = dotbarItem;
+	}
 
-  public void dispose()
-  {
-    if ( cachedImage != null && !cachedImage.isDisposed() )
-      cachedImage.dispose();
-  }
+	public void dispose() {
+		if (cachedImage != null && !cachedImage.isDisposed())
+			cachedImage.dispose();
+	}
 
-  @Override
-  public Dimension getMinimumSize( int hint, int hint2 )
-  {
-    return getPreferredSize( hint, hint2 );
-  }
+	@Override
+	public Dimension getMinimumSize(int hint, int hint2) {
+		return getPreferredSize(hint, hint2);
+	}
 
-  @Override
-  public Dimension getPreferredSize( int hint, int hint2 )
-  {
-    DotbarData config = dotbarItem.getConfiguration();
-    DotbarData.Calculator calculator = config.new Calculator( 1, "in", 96 );
-    int width = calculator.computeBarWidth( config.displayValue );
-    int height = calculator.computeBarHeight( config.displayValue );
-    return new Dimension( width, height );
-  }
+	@Override
+	public Dimension getPreferredSize(int hint, int hint2) {
+		DotbarData config = dotbarItem.getConfiguration();
+		DotbarData.Calculator calculator = config.new Calculator(1, "in", 96);
+		int width = calculator.computeBarWidth(config.displayValue);
+		int height = calculator.computeBarHeight(config.displayValue);
+		return new Dimension(width, height);
+	}
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="birt.controls.lib.feature"
-      label="Bb Birt Controls"
-      version="1.0.2">
+      label="Birt Controls Library"
+      version="2.0.0"
+      provider-name="Blackboard Inc.">
 
    <description url="http://code.google.com/p/birt-controls-lib/">
       BIRT controls represents a best practice implementation of the BIRT Report Item extension point. Based on the initial RotatedTextItem example code, this project represents significant improvements to the control and the way the control was produced.

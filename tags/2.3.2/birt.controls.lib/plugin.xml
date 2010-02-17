@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.birt.report.model.reportItemModel">
+      <reportItem
+            class="blackboard.birt.extensions.dotbar.DotbarItemFactory"
+            extensionName="DotBar">
+         <property
+               defaultDisplayName="Expression"
+               name="valueExpression"
+               type="expression">
+         </property>
+         <property
+               defaultDisplayName="Display Value"
+               defaultValue="3"
+               name="displayValue"
+               type="integer">
+         </property>
+         <property
+               defaultDisplayName="Dot Height"
+               defaultValue="11pt"
+               name="dotHeight"
+               type="dimension">
+         </property>
+         <property
+               defaultDisplayName="Dot Width"
+               defaultValue="11pt"
+               name="dotWidth"
+               type="dimension">
+         </property>
+         <property
+               defaultDisplayName="Dot Spacing"
+               defaultValue="5pt"
+               name="dotSpacing"
+               type="dimension">
+         </property>
+         <property
+               defaultDisplayName="Vertical"
+               defaultValue="false"
+               name="vertical"
+               type="boolean">
+         </property>
+         <property
+               defaultDisplayName="Has Border"
+               defaultValue="true"
+               name="hasBorder"
+               type="boolean">
+         </property>
+         <property
+               defaultDisplayName="Has Fill"
+               defaultValue="true"
+               name="hasFill"
+               type="boolean">
+         </property>
+         <property
+               defaultDisplayName="Dot Border Color"
+               defaultValue="RGB(0,0,0)"
+               name="borderColor"
+               type="color">
+         </property>
+         <property
+               defaultDisplayName="Dot Fill Color"
+               defaultValue="RGB(0,0,0)"
+               name="fillColor"
+               type="color">
+         </property>
+         <property
+               defaultDisplayName="Dot Shape"
+               defaultValue="oval"
+               name="dotShape"
+               type="choice">
+            <choice
+                  defaultDisplayName="Oval"
+                  name="oval"
+                  value="blackboard.birtExtensions.dotbar.util.DotShape.OVAL">
+            </choice>
+            <choice
+                  defaultDisplayName="Rectangle"
+                  name="rectangle"
+                  value="blackboard.birtExtensions.dotbar.util.DotShape.RECTANGLE">
+            </choice>
+            <choice
+                  defaultDisplayName="Triangle"
+                  name="triangle"
+                  value="blackboard.birtExtensions.dotbar.util.DotShape.TRIANGLE">
+            </choice>
+         </property>
+         <property
+               defaultDisplayName="Number Position"
+               defaultValue="hidden"
+               name="numberPosition"
+               type="choice">
+            <choice
+                  defaultDisplayName="Hidden"
+                  name="hidden"
+                  value="blackboard.birtExtensions.dotbar.util.NumberPosition.HIDDEN">
+            </choice>
+            <choice
+                  defaultDisplayName="Before"
+                  name="before"
+                  value="blackboard.birtExtensions.dotbar.util.NumberPosition.BEFORE">
+            </choice>
+            <choice
+                  defaultDisplayName="After"
+                  name="after"
+                  value="blackboard.birtExtensions.dotbar.util.NumberPosition.AFTER">
+            </choice>
+         </property>
+         <property
+               defaultDisplayName="Number Width"
+               defaultValue="15pt"
+               name="numberWidth"
+               type="dimension">
+         </property>
+         <property
+               defaultDisplayName="Number Height"
+               defaultValue="11pt"
+               name="numberHeight"
+               type="dimension">
+         </property>
+         <property
+               defaultDisplayName="Wrap Point"
+               defaultValue="0"
+               name="wrapPoint"
+               type="integer">
+         </property>
+      </reportItem>
+   </extension>
+   <extension
+         point="org.eclipse.birt.report.engine.reportitemPresentation">
+      <reportItem
+            class="blackboard.birt.extensions.dotbar.DotbarPresentationImpl"
+            name="DotBar">
+      </reportItem>
+   </extension>
+   <extension
+         point="org.eclipse.birt.report.model.reportItemModel">
+      <reportItem
+            class="blackboard.birt.extensions.rotatedtext.RotatedTextItemFactory"
+            extensionName="RotatedText">
+         <property
+               defaultDisplayName="Rotation Angle"
+               defaultValue="0"
+               name="rotationAngle"
+               type="integer">
+         </property>
+         <property
+               defaultDisplayName="Text Content"
+               defaultValue="&quot;Rotated Text&quot;"
+               name="text"
+               type="expression">
+         </property>
+         <property
+               defaultDisplayName="Wrap Point"
+               defaultValue="0"
+               name="wrapPoint"
+               type="dimension">
+         </property>
+         <property
+               defaultDisplayName="Link URL"
+               name="linkURL"
+               type="expression">
+         </property>
+      </reportItem>
+   </extension>
+   <extension
+         point="org.eclipse.birt.report.engine.reportitemPresentation">
+      <reportItem
+            class="blackboard.birt.extensions.rotatedtext.RotatedTextPresentationImpl"
+            name="RotatedText">
+      </reportItem>
+   </extension>
+
+</plugin>

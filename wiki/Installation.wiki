@@ -2,29 +2,24 @@
 The easiest way to get this plugin is to use the Eclipse Update Manager.  
 
 This project shares an update manager with several other sites, but the update site allows
-you to pick and choose and only grab the plugins that you want.  To use the update manager:
+you to pick and choose and only grab the plugins that you want.  
 
-Go to Help - Software Updates - Available Software
+If you are familiar with using the Eclipse Update manager, then all you will need is the update URLs.
 
-Click on *Manage Sites* then *Add* 
-
-For BIRT 2.5.1 paste this URL in the text box that asks for site 
+For BIRT 2.5.1 the update URL is.  Full update instructions at [install_232 | Install 2.3.2]
 {{{
  http://innovent.googlecode.com/svn/trunk/innovent.update
 }}}
 
-For BIRT 2.3.2 paste this URL in the text box that asks for site 
+For BIRT 2.3.2 the update URL is.  Full update instructions at [install_251 | Install 2.5.1]
 {{{
  http://innovent.googlecode.com/svn/branches/2.3.2/innovent.update
 }}}
 
-You should now have the Innovent BIRT Plugins update site.  
+When deploying to a ReportEngine you need to be move the plugin jar files to the 
+plugins directory of your Report Engine.  
 
-If you only want this plugin, open the tree view and select only the *BIRT Controls* checkbox.  
-
-When deploying to a ReportEngine installation, the birt.controls.jar 
-file will need to be moved to the appropriate plugins directory.  If you are using a stand-alone 
-container, place the jar in:
+If you are using a stand-alone container, place the jar in:
 {{{
 	$BIRT_HOME/plugins
 }}}
@@ -33,3 +28,4 @@ If you are using a web based platform, the use the following directory:
 	$WEB-INF/platform/plugins
 }}}
 
+  

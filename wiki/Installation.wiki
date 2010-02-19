@@ -6,12 +6,12 @@ you to pick and choose and only grab the plugins that you want.
 
 If you are familiar with using the Eclipse Update manager, then all you will need is the update URLs.
 
-For BIRT 2.5.1 the update URL is.  Full update instructions at [install_251 Install 2.5.1]
+For BIRT 2.5.1 the update URL is.  Full update instructions at [http://code.google.com/p/innovent/wiki/install_251 Install 2.5.1]
 {{{
  http://innovent.googlecode.com/svn/trunk/innovent.update
 }}}
 
-For BIRT 2.3.2 the update URL is.  Full update instructions at [install_232 Install 2.3.2]
+For BIRT 2.3.2 the update URL is.  Full update instructions at [http://code.google.com/p/innovent/wiki/install_232 Install 2.3.2]
 {{{
  http://innovent.googlecode.com/svn/branches/2.3.2/innovent.update
 }}}

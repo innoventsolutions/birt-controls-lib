@@ -113,14 +113,14 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 	private String createImageMap(final String url, final String text,
 			final int width, final int height) {
 		final StringBuilder sb = new StringBuilder();
-		sb.append("<area\n");
-		sb.append("    id=\"RotatedTextImageMapArea" + index + "\"\n");
-		sb.append("    shape =\"rect\"\n");
-		sb.append("    coords=\"(0,0," + width + "," + height + ")\"\n");
+		sb.append("<area ");
+		sb.append("id=\"RotatedTextImageMapArea" + index + "\" ");
+		sb.append("shape =\"rect\" ");
+		sb.append("coords=\"(0,0," + width + "," + height + ")\" ");
 		if (url != null)
-			sb.append("    href =\"" + url + "\"\n");
-		sb.append("    target=\"_self\"\n");
-		sb.append("  >\n");
+			sb.append("href =\"" + url + "\" ");
+		sb.append("target=\"_self\"");
+		sb.append(">\n");
 		sb.append("</area>");
 		sb.append("<script>");
 		sb

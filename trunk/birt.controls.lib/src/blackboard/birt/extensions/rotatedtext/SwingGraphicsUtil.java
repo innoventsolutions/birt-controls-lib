@@ -41,7 +41,7 @@ public class SwingGraphicsUtil {
 			final String baseSizeUnits) {
 		Graphics2D g2d = null;
 		try {
-			if (text == null || text.trim().length() == 0)
+			if (text == null || text.length() == 0)
 				return null;
 			final Font font = getAwtFont(data, dpi);
 			final BufferedImage stringImage = new BufferedImage(1, 1,

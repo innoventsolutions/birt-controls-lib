@@ -31,7 +31,8 @@ import org.eclipse.birt.report.model.api.ExtendedItemHandle;
 import org.eclipse.birt.report.model.api.extension.ExtendedElementException;
 
 /**
- * Handles the rendering of the control during report generation. This class is specified in the org.eclipse.birt.report.engine.reportitemPresentation
+ * Handles the rendering of the control during report generation. This class is
+ * specified in the org.eclipse.birt.report.engine.reportitemPresentation
  * extension.
  * 
  * @author Steve Schafer / Innovent Solutions
@@ -57,7 +58,9 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 			return null;
 
 		final RotatedTextData data = new RotatedTextData(textItem);
-		final String text = evaluate(data.text, results);
+		String text = evaluate(data.text, results);
+		if (text == null || text.length() == 0)
+			text = " ";
 		final String url = evaluate(data.linkURL, results);
 
 		final BufferedImage rotatedImage = SwingGraphicsUtil
@@ -132,18 +135,21 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 				+ text.replace("\"", "'") + "\");");
 		sb.append("   areaNode.setAttribute(\"title\", \""
 				+ text.replace("\"", "'") + "\");");
-		//    sb.append( "  var mapNode = areaNode.parentNode;" );
-		//    sb.append( "  alert(\"map = \" + mapNode.nodeName);" );
-		//    sb.append( "  var imgNode = mapNode.nextSibling;" );
-		//    sb.append( "  while(imgNode != null && imgNode.nodeName.toLowerCase() != \"img\")" );
-		//    sb.append( "  {" );
-		//    sb.append( "   alert(\"'\" + imgNode.nodeName + \"'\");" );
-		//    sb.append( "   imgNode = imgNode.nextSibling;" );
-		//    sb.append( "  }" );
-		//    sb.append( "  if(imgNode != null)" );
-		//    sb.append( "   imgNode.setAttribute(\"alt\", \"" + text.replace( "\"", "'" ) + "\");" );
-		//    sb.append( "  else" );
-		//    sb.append( "   alert(\"IMG not found\");" );
+		// sb.append( "  var mapNode = areaNode.parentNode;" );
+		// sb.append( "  alert(\"map = \" + mapNode.nodeName);" );
+		// sb.append( "  var imgNode = mapNode.nextSibling;" );
+		// sb.append(
+		// "  while(imgNode != null && imgNode.nodeName.toLowerCase() != \"img\")"
+		// );
+		// sb.append( "  {" );
+		// sb.append( "   alert(\"'\" + imgNode.nodeName + \"'\");" );
+		// sb.append( "   imgNode = imgNode.nextSibling;" );
+		// sb.append( "  }" );
+		// sb.append( "  if(imgNode != null)" );
+		// sb.append( "   imgNode.setAttribute(\"alt\", \"" + text.replace(
+		// "\"", "'" ) + "\");" );
+		// sb.append( "  else" );
+		// sb.append( "   alert(\"IMG not found\");" );
 		sb.append(" }");
 		sb.append(" else");
 		sb.append("  alert(\"area not found\");");

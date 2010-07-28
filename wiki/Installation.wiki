@@ -8,7 +8,7 @@ If you are familiar with using the Eclipse Update manager, then all you will nee
 
 For BIRT 2.5.1 the update URL is.  Full update instructions at [http://code.google.com/p/innovent/wiki/install_251 Install 2.5.1]
 {{{
- http://innovent.googlecode.com/svn/trunk/innovent.update
+ http://svn.codespot.com/a/eclipselabs.org/birt-innovent-update/branches/2.5.2/birt.innovent.update/
 }}}
 
 For BIRT 2.3.2 the update URL is.  Full update instructions at [http://code.google.com/p/innovent/wiki/install_232 Install 2.3.2]

@@ -13,7 +13,7 @@ For BIRT 2.5.1 the update URL is.  Full update instructions at [http://code.goog
 
 For BIRT 2.3.2 the update URL is.  Full update instructions at [http://code.google.com/p/innovent/wiki/install_232 Install 2.3.2]
 {{{
- http://innovent.googlecode.com/svn/branches/2.3.2/innovent.update
+ http://svn.codespot.com/a/eclipselabs.org/birt-innovent-update/branches/2.3.2/birt.innovent.update
 }}}
 
 When deploying to a ReportEngine you need to be move the plugin jar files to the 

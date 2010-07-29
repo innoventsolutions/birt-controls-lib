@@ -16,7 +16,7 @@ The reason is that the UI portion of the plugin extension have dependencies on t
 <table>
 <tr>
 <td>
-  http://birt-controls-lib.googlecode.com/svn/wiki/usage.attach/dotbar.jpg
+  http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/usage.attach/dotbar.jpg
 </td>
 <td>
 == [DotBarUsage DotBar Usage] ==
@@ -24,7 +24,7 @@ The reason is that the UI portion of the plugin extension have dependencies on t
 </tr>
 <tr>
 <td>
-  http://birt-controls-lib.googlecode.com/svn/wiki/usage.attach/rotatedtext.jpg
+  http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/usage.attach/rotatedtext.jpg
 </td>
 <td>
 == [RotatedTextUsage RotatedText Usage] ==

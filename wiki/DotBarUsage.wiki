@@ -11,13 +11,13 @@
 	Are available in the $ECLIPSE_HOME/plugins directory of your application. 
 	</td>
 	<td>
-	http://birt-controls-lib.googlecode.com/svn/wiki/usage.attach/palette.png
+	http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/usage.attach/palette.png
 	</td>
 </tr>
 </table>
 
 To use the !DotBar drag it into a cell in any data powered container [List, Table, Grid, !CrossTab].  After dropping the !DotBar control into the cell, you will see the !DotBar editor.  You can get back to the !DotBar editor by either double clicking on the control, or by going to the General tab in the Property Editor.
-http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/editor.png
+http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/dotbar.attach/editor.png
 
 Controlling the !DotBar is fairly easy, there are just three basic sections.  The general section is first and controls the data and how it will be displayed.<p>
  * Expression is any expression that evaluates to an Integer.
@@ -26,7 +26,7 @@ Controlling the !DotBar is fairly easy, there are just three basic sections.  Th
   (Typically you will use either 5 or 10, numbers that make it easier to compare at a  glance.)
  * Designer Display Value only works at design time and controls how many dots show up in your layout view.    
  
-http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/general.png
+http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/dotbar.attach/general.png
 
 The shape, color, and size of the symbol can be controlled through the Dot section of the editor.<p>  
  * Spacing controls how much white space exists between each dot
@@ -34,7 +34,7 @@ The shape, color, and size of the symbol can be controlled through the Dot secti
  * Height & Width control the size of each dot
  * You can also control the fill color and the background color of the dots
  
-http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/dot.png
+http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/dotbar.attach/dot.png
 
 By default the !DotBar does not display the numeric value.  The number can be shown using the number section.<p>  
  * Position controls whether the number shows up and if it is before or after the dots.
@@ -45,4 +45,4 @@ You may say why do I have to control Width/Height and Size.  Height/Width are a 
 The size is how the number will be.  Future editions of the !DotBar may scan ahead through the list of all values to dynamically calculate the Height/Width,
 but they are not in this revision of the control.
 
-http://birt-controls-lib.googlecode.com/svn/wiki/dotbar.attach/number.png
+http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/dotbar.attach/number.png

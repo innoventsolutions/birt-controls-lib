@@ -11,7 +11,7 @@
 	Are available in the $ECLIPSE_HOME/plugins directory of your application. 
 	</td>
 	<td>
-	http://birt-controls-lib.googlecode.com/svn/wiki/usage.attach/palette.png
+	http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/usage.attach/palette.png
 	</td>
 </tr>
 </table>
@@ -22,5 +22,5 @@ To use the !RotatedText drag it into a cell in any data powered container [List,
  * Font, Size, Style, and Color apply to the text from the expression.
  * Wrap Point controls the point at which the text will wrap.  
  * Link URL allows you to create a hyper link for the control.
-http://birt-controls-lib.googlecode.com/svn/wiki/rotated.attach/editor.png
+http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/rotated.attach/editor.png
 

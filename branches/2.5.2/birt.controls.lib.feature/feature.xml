@@ -2,7 +2,7 @@
 <feature
       id="birt.controls.lib.feature"
       label="Birt Controls Library"
-      version="2.5.1.2"
+      version="2.5.2.1"
       provider-name="Blackboard Inc.">
 
    <description url="http://code.google.com/p/birt-controls-lib/">

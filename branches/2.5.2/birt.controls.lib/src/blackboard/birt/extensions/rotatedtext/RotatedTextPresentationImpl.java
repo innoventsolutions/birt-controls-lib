@@ -71,6 +71,8 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 			ImageIO.setUseCache(false);
 			final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			final ImageOutputStream ios = ImageIO.createImageOutputStream(baos);
+			System.out.println(rotatedImage);
+			System.out.println(ios);
 			ImageIO.write(rotatedImage, "png", ios); //$NON-NLS-1$
 			ios.flush();
 			ios.close();

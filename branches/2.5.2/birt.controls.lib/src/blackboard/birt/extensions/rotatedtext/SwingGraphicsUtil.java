@@ -41,8 +41,8 @@ public class SwingGraphicsUtil {
 			final String baseSizeUnits) {
 		Graphics2D g2d = null;
 		try {
-			if (text == null || text.length() == 0)
-				return null;
+			if (text == null || text.trim().length() == 0)
+				return create1pxImage();
 			final Font font = getAwtFont(data, dpi);
 			final BufferedImage stringImage = new BufferedImage(1, 1,
 					BufferedImage.TYPE_INT_ARGB);
@@ -50,34 +50,44 @@ public class SwingGraphicsUtil {
 			g2d.setFont(font);
 			final LineInfo[] lines;
 			{
-				double inches = DimensionUtil.convertTo(data.wrapPoint, "in",
-						"in", baseSize, baseSizeUnits, dpi);
-				double pixels = inches * dpi;
+				final double inches = DimensionUtil.convertTo(data.wrapPoint,
+						"in", "in", baseSize, baseSizeUnits, dpi);
+				final double pixels = inches * dpi;
 				lines = wrapText(g2d, text, (int) pixels);
 			}
 			final FontRenderContext frc = g2d.getFontRenderContext();
 			int width = 0;
 			int height = 0;
-			for (LineInfo lineInfo : lines) {
-				int lineWidth = (int) Math.ceil(lineInfo.bounds.getWidth());
+			for (final LineInfo lineInfo : lines) {
+				final int lineWidth = (int) Math.ceil(lineInfo.bounds
+						.getWidth());
 				if (width < lineWidth)
 					width = lineWidth;
 				height += (int) Math.ceil(lineInfo.bounds.getHeight());
-				lineInfo.textLayout = new TextLayout(lineInfo.line, font, frc);
+				// note: TextLayout doesn't like a zero-length string
+				lineInfo.textLayout = lineInfo.line.length() == 0 ? null
+						: new TextLayout(lineInfo.line, font, frc);
 			}
 			// height += 6; // fudge
 			g2d.dispose();
 			g2d = null;
 			return createRotatedImage(lines, width, height, data.angle,
 					data.fontColor.getAwtColor());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 
 			if (g2d != null)
 				g2d.dispose();
 		}
 
-		return null;
+		return create1pxImage();
+	}
+
+	private static BufferedImage create1pxImage() {
+		// note: can't create a 0x0 image
+		final BufferedImage bufferedImage = new BufferedImage(1, 1,
+				BufferedImage.TYPE_INT_ARGB);
+		return bufferedImage;
 	}
 
 	private static BufferedImage createRotatedImage(final LineInfo[] lines,
@@ -103,12 +113,12 @@ public class SwingGraphicsUtil {
 					-height, color);
 
 		if (angle > 0 && angle < 90) {
-			double angleInRadians = ((-angle * Math.PI) / 180.0);
-			double cosTheta = Math.abs(Math.cos(angleInRadians));
-			double sineTheta = Math.abs(Math.sin(angleInRadians));
+			final double angleInRadians = ((-angle * Math.PI) / 180.0);
+			final double cosTheta = Math.abs(Math.cos(angleInRadians));
+			final double sineTheta = Math.abs(Math.sin(angleInRadians));
 
-			int dW = (int) (width * cosTheta + height * sineTheta);
-			int dH = (int) (width * sineTheta + height * cosTheta);
+			final int dW = (int) (width * cosTheta + height * sineTheta);
+			final int dH = (int) (width * sineTheta + height * cosTheta);
 
 			return renderRotatedObject(lines, angleInRadians, dW, dH, -width
 					* sineTheta * sineTheta, width * sineTheta * cosTheta,
@@ -116,12 +126,12 @@ public class SwingGraphicsUtil {
 		}
 
 		if (angle > 90 && angle < 180) {
-			double angleInRadians = ((-angle * Math.PI) / 180.0);
-			double cosTheta = Math.abs(Math.cos(angleInRadians));
-			double sineTheta = Math.abs(Math.sin(angleInRadians));
+			final double angleInRadians = ((-angle * Math.PI) / 180.0);
+			final double cosTheta = Math.abs(Math.cos(angleInRadians));
+			final double sineTheta = Math.abs(Math.sin(angleInRadians));
 
-			int dW = (int) (width * cosTheta + height * sineTheta);
-			int dH = (int) (width * sineTheta + height * cosTheta);
+			final int dW = (int) (width * cosTheta + height * sineTheta);
+			final int dH = (int) (width * sineTheta + height * cosTheta);
 
 			return renderRotatedObject(lines, angleInRadians, dW, dH,
 					-(width + height * sineTheta * cosTheta), -height / 2,
@@ -129,12 +139,12 @@ public class SwingGraphicsUtil {
 		}
 
 		if (angle > 180 && angle < 270) {
-			double angleInRadians = ((-angle * Math.PI) / 180.0);
-			double cosTheta = Math.abs(Math.cos(angleInRadians));
-			double sineTheta = Math.abs(Math.sin(angleInRadians));
+			final double angleInRadians = ((-angle * Math.PI) / 180.0);
+			final double cosTheta = Math.abs(Math.cos(angleInRadians));
+			final double sineTheta = Math.abs(Math.sin(angleInRadians));
 
-			int dW = (int) (width * cosTheta + height * sineTheta);
-			int dH = (int) (width * sineTheta + height * cosTheta);
+			final int dW = (int) (width * cosTheta + height * sineTheta);
+			final int dH = (int) (width * sineTheta + height * cosTheta);
 
 			return renderRotatedObject(lines, angleInRadians, dW, dH, -(width
 					* cosTheta * cosTheta), -(height + width * cosTheta
@@ -142,12 +152,12 @@ public class SwingGraphicsUtil {
 		}
 
 		if (angle > 270 && angle < 360) {
-			double angleInRadians = ((-angle * Math.PI) / 180.0);
-			double cosTheta = Math.abs(Math.cos(angleInRadians));
-			double sineTheta = Math.abs(Math.sin(angleInRadians));
+			final double angleInRadians = ((-angle * Math.PI) / 180.0);
+			final double cosTheta = Math.abs(Math.cos(angleInRadians));
+			final double sineTheta = Math.abs(Math.sin(angleInRadians));
 
-			int dW = (int) (width * cosTheta + height * sineTheta);
-			int dH = (int) (width * sineTheta + height * cosTheta);
+			final int dW = (int) (width * cosTheta + height * sineTheta);
+			final int dH = (int) (width * sineTheta + height * cosTheta);
 
 			return renderRotatedObject(lines, angleInRadians, dW, dH, (height
 					* cosTheta * sineTheta), -(height * sineTheta * sineTheta),
@@ -160,26 +170,27 @@ public class SwingGraphicsUtil {
 	private static BufferedImage renderRotatedObject(final LineInfo[] lines,
 			final double angle, final int width, final int height,
 			final double tx, final double ty, final Color color) {
-		BufferedImage bufferedImage = new BufferedImage(width, height,
+		final BufferedImage bufferedImage = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_ARGB);
 
-		Graphics2D g2d = (Graphics2D) bufferedImage.getGraphics();
+		final Graphics2D g2d = (Graphics2D) bufferedImage.getGraphics();
 		g2d.setColor(Color.black);
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
 				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 
-		AffineTransform at = AffineTransform.getRotateInstance(angle);
+		final AffineTransform at = AffineTransform.getRotateInstance(angle);
 		at.translate(tx, ty);
 		g2d.setTransform(at);
 		g2d.setColor(color);
 
 		float y = 0;
 		for (final LineInfo lineInfo : lines) {
-			lineInfo.textLayout.draw(g2d, 0, y
-					+ (int) Math.ceil(lineInfo.textLayout.getLeading()
-							+ lineInfo.textLayout.getAscent()));
+			if (lineInfo.textLayout != null)
+				lineInfo.textLayout.draw(g2d, 0, y
+						+ (int) Math.ceil(lineInfo.textLayout.getLeading()
+								+ lineInfo.textLayout.getAscent()));
 			y += lineInfo.bounds.getHeight();
 		}
 		g2d.dispose();
@@ -191,19 +202,23 @@ public class SwingGraphicsUtil {
 		final Rectangle2D bounds;
 		TextLayout textLayout = null;
 
-		public LineInfo(String line, Rectangle2D bounds) {
+		public LineInfo(final String line, final Rectangle2D bounds) {
+			if (line == null)
+				throw new NullPointerException("line");
 			this.line = line;
+			if (bounds == null)
+				throw new NullPointerException("bounds");
 			this.bounds = bounds;
 		}
 	}
 
 	public static LineInfo[] wrapText(final Graphics2D g2d, final String text,
 			final int wrapPoint) {
-		List<LineInfo> lines = new ArrayList<LineInfo>();
-		String[] hardLines = text.split("\\n");
+		final List<LineInfo> lines = new ArrayList<LineInfo>();
+		final String[] hardLines = text.split("\\n");
 		for (String hardLine : hardLines) {
 			boolean hasMore = true;
-			while (hasMore) {
+			while (hasMore && hardLine.length() > 0) {
 				final WrapInfo wrapInfo = getWrapInfo(g2d, hardLine, wrapPoint);
 				lines.add(new LineInfo(wrapInfo.segment, wrapInfo.bounds));
 				hardLine = wrapInfo.remainder;
@@ -219,10 +234,16 @@ public class SwingGraphicsUtil {
 		final Rectangle2D bounds;
 		final boolean hasMore;
 
-		public WrapInfo(String segment, String remainder, Rectangle2D bounds,
-				boolean hasMore) {
+		public WrapInfo(final String segment, final String remainder,
+				final Rectangle2D bounds, final boolean hasMore) {
+			if (segment == null)
+				throw new NullPointerException("segment");
 			this.segment = segment;
+			if (remainder == null)
+				throw new NullPointerException("remainder");
 			this.remainder = remainder;
+			if (bounds == null)
+				throw new NullPointerException("bounds");
 			this.bounds = bounds;
 			this.hasMore = hasMore;
 		}
@@ -235,12 +256,12 @@ public class SwingGraphicsUtil {
 		String segment = line;
 		String remainder = "";
 		boolean hasMore = false;
-		FontMetrics fm = g2d.getFontMetrics();
+		final FontMetrics fm = g2d.getFontMetrics();
 		Rectangle2D bounds = fm.getStringBounds(segment, g2d);
-		if (wrapPoint > 0)
+		if (wrapPoint > 0) {
 			while (position > 1 && bounds.getWidth() > wrapPoint) {
 				if (spacesRemain) {
-					int newPosition = segment.lastIndexOf(" ");
+					final int newPosition = findPotentialWrapPoint(segment);
 					if (newPosition >= 0) {
 						position = newPosition;
 						segment = line.substring(0, position);
@@ -259,10 +280,42 @@ public class SwingGraphicsUtil {
 				bounds = fm.getStringBounds(segment, g2d);
 				hasMore = true;
 			}
-		return new WrapInfo(segment, remainder, bounds, hasMore);
+		}
+		return new WrapInfo(trimTrailingWhitespace(segment),
+				trimLeadingWhitespace(remainder), bounds, hasMore);
 	}
 
-	private static Font getAwtFont(final RotatedTextData data, int dpi) {
+	private static String trimLeadingWhitespace(final String string) {
+		int pos = 0;
+		while (pos < string.length()
+				&& Character.isWhitespace(string.charAt(pos)))
+			pos++;
+		if (pos == 0)
+			return string;
+		return string.substring(pos);
+	}
+
+	private static String trimTrailingWhitespace(final String string) {
+		int len = string.length();
+		while (len > 0 && Character.isWhitespace(string.charAt(len - 1)))
+			len--;
+		if (len == string.length())
+			return string;
+		return string.substring(0, len);
+	}
+
+	private static int findPotentialWrapPoint(final String segment) {
+		int len = segment.length();
+		while (len > 0) {
+			len--;
+			final char c = segment.charAt(len);
+			if (Character.isWhitespace(c))
+				return len;
+		}
+		return -1;
+	}
+
+	private static Font getAwtFont(final RotatedTextData data, final int dpi) {
 		// Font foundFont = findFont( data.fontFamily );
 		int style = 0;
 		if (data.fontBold)
@@ -270,16 +323,16 @@ public class SwingGraphicsUtil {
 		if (data.fontItalic)
 			style |= Font.ITALIC;
 		// font = font.deriveFont( style );
-		int size = Util.getFontPointSize(data.fontSize, dpi);
+		final int size = Util.getFontPointSize(data.fontSize, dpi);
 		// font = font.deriveFont( (float) size );
-		Font font = new Font(data.fontFamily, style, size);
+		final Font font = new Font(data.fontFamily, style, size);
 		return font;
 	}
 
-	public static Font findFont(String fontFamily) {
-		GraphicsEnvironment ge = GraphicsEnvironment
+	public static Font findFont(final String fontFamily) {
+		final GraphicsEnvironment ge = GraphicsEnvironment
 				.getLocalGraphicsEnvironment();
-		for (Font font : ge.getAllFonts()) {
+		for (final Font font : ge.getAllFonts()) {
 			final String family = font.getFamily();
 			if (family.equals(fontFamily))
 				return font;

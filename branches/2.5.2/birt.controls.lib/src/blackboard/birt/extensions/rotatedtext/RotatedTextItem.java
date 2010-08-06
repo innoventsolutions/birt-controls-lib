@@ -25,7 +25,8 @@ import blackboard.birt.extensions.util.ColorSpec;
 import blackboard.birt.extensions.util.Util;
 
 /**
- * Provides an interface allowing all control properties to be loaded from and saved to the report model.
+ * Provides an interface allowing all control properties to be loaded from and
+ * saved to the report model.
  * 
  * @author Steve Schafer / Innovent Solutions
  */
@@ -41,9 +42,9 @@ public class RotatedTextItem extends ReportItem {
 	public static final String FONT_COLOR_PROP = IStyleModel.COLOR_PROP;
 	public static final String LINK_URL_PROP = "linkURL"; //$NON-NLS-1$
 
-	private ExtendedItemHandle modelHandle;
+	private final ExtendedItemHandle modelHandle;
 
-	RotatedTextItem(ExtendedItemHandle modelHandle) {
+	RotatedTextItem(final ExtendedItemHandle modelHandle) {
 		this.modelHandle = modelHandle;
 	}
 
@@ -55,7 +56,7 @@ public class RotatedTextItem extends ReportItem {
 		return modelHandle.getStringProperty(TEXT_PROP);
 	}
 
-	public void setText(String value) throws SemanticException {
+	public void setText(final String value) throws SemanticException {
 		modelHandle.setProperty(TEXT_PROP, value);
 	}
 
@@ -63,7 +64,7 @@ public class RotatedTextItem extends ReportItem {
 		return modelHandle.getIntProperty(ROTATION_ANGLE_PROP);
 	}
 
-	public void setRotationAngle(int value) throws SemanticException {
+	public void setRotationAngle(final int value) throws SemanticException {
 		modelHandle.setProperty(ROTATION_ANGLE_PROP, value);
 	}
 
@@ -87,7 +88,7 @@ public class RotatedTextItem extends ReportItem {
 		return fontFamily;
 	}
 
-	public void setFontFamily(String fontFamily) throws SemanticException {
+	public void setFontFamily(final String fontFamily) throws SemanticException {
 		modelHandle
 				.setProperty(FONT_FAMILY_PROP, Util.removeQuotes(fontFamily));
 	}
@@ -96,7 +97,7 @@ public class RotatedTextItem extends ReportItem {
 		return modelHandle.getStringProperty(FONT_SIZE_PROP);
 	}
 
-	public void setFontSize(String fontSize) throws SemanticException {
+	public void setFontSize(final String fontSize) throws SemanticException {
 		modelHandle.setProperty(FONT_SIZE_PROP, fontSize);
 	}
 
@@ -105,7 +106,7 @@ public class RotatedTextItem extends ReportItem {
 				.getStringProperty(FONT_STYLE_PROP));
 	}
 
-	public void setFontItalic(boolean italic) throws SemanticException {
+	public void setFontItalic(final boolean italic) throws SemanticException {
 		modelHandle.setProperty(FONT_STYLE_PROP, italic ? "italic" : "normal");
 	}
 
@@ -114,7 +115,7 @@ public class RotatedTextItem extends ReportItem {
 				.getStringProperty(FONT_WEIGHT_PROP));
 	}
 
-	public void setFontBold(boolean bold) throws SemanticException {
+	public void setFontBold(final boolean bold) throws SemanticException {
 		modelHandle.setProperty(FONT_WEIGHT_PROP, bold ? "bold" : "normal");
 	}
 
@@ -123,7 +124,8 @@ public class RotatedTextItem extends ReportItem {
 				.getStringProperty(FONT_COLOR_PROP));
 	}
 
-	public void setFontColor(ColorSpec fontColor) throws SemanticException {
+	public void setFontColor(final ColorSpec fontColor)
+			throws SemanticException {
 		modelHandle.setProperty(FONT_COLOR_PROP, fontColor.toRgbString());
 	}
 
@@ -131,7 +133,7 @@ public class RotatedTextItem extends ReportItem {
 		return modelHandle.getStringProperty(LINK_URL_PROP);
 	}
 
-	public void setLinkURL(String linkURL) throws SemanticException {
+	public void setLinkURL(final String linkURL) throws SemanticException {
 		modelHandle.setProperty(LINK_URL_PROP, linkURL);
 	}
 }

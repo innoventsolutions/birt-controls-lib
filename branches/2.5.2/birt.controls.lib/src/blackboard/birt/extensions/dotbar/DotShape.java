@@ -22,7 +22,7 @@ package blackboard.birt.extensions.dotbar;
 public class DotShape {
 	public final int index;
 
-	private DotShape(int index) {
+	private DotShape(final int index) {
 		this.index = index;
 	}
 
@@ -64,8 +64,9 @@ public class DotShape {
 	 * @param borderColor
 	 * @param fillColor
 	 */
-	public void render(java.awt.Graphics2D g2d, int x, int y, int width,
-			int height, java.awt.Color borderColor, java.awt.Color fillColor) {
+	public void render(final java.awt.Graphics2D g2d, final int x, final int y,
+			final int width, final int height,
+			final java.awt.Color borderColor, final java.awt.Color fillColor) {
 		switch (index) {
 		case INDEX_OVAL:
 			if (borderColor != null) {
@@ -88,15 +89,15 @@ public class DotShape {
 			}
 			break;
 		case INDEX_TRIANGLE:
-			int x1 = x + width / 2;
-			int y1 = y;
-			int x2 = x + width;
-			int y2 = y + height;
-			int x3 = x;
-			int y3 = y + height;
-			int[] xPoints = { x1, x2, x3 };
-			int[] yPoints = { y1, y2, y3 };
-			int nPoints = 3;
+			final int x1 = x + width / 2;
+			final int y1 = y;
+			final int x2 = x + width;
+			final int y2 = y + height;
+			final int x3 = x;
+			final int y3 = y + height;
+			final int[] xPoints = { x1, x2, x3 };
+			final int[] yPoints = { y1, y2, y3 };
+			final int nPoints = 3;
 			if (borderColor != null) {
 				g2d.setColor(borderColor);
 				g2d.drawPolygon(xPoints, yPoints, nPoints);
@@ -115,7 +116,7 @@ public class DotShape {
 	 * @param string
 	 * @return
 	 */
-	public static DotShape create(String string) {
+	public static DotShape create(final String string) {
 		for (int i = 0; i < names.length; i++)
 			if (names[i].equalsIgnoreCase(string))
 				return objects[i];
@@ -144,11 +145,11 @@ public class DotShape {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (!(obj instanceof DotShape))
 			return false;
-		DotShape that = (DotShape) obj;
-		return this.index == that.index;
+		final DotShape that = (DotShape) obj;
+		return index == that.index;
 	}
 
 	@Override

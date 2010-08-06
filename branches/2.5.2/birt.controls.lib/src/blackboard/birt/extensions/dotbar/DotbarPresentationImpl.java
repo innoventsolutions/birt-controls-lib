@@ -32,7 +32,8 @@ import org.eclipse.birt.report.model.api.ExtendedItemHandle;
 import org.eclipse.birt.report.model.api.extension.ExtendedElementException;
 
 /**
- * Handles the rendering of the control during report generation. This class is specified in the org.eclipse.birt.report.engine.reportitemPresentation
+ * Handles the rendering of the control during report generation. This class is
+ * specified in the org.eclipse.birt.report.engine.reportitemPresentation
  * extension.
  * 
  * @author Steve Schafer / Innovent Solutions
@@ -41,10 +42,10 @@ public class DotbarPresentationImpl extends ReportItemPresentationBase {
 	private DotbarItem dotbarItem;
 
 	@Override
-	public void setModelObject(ExtendedItemHandle modelHandle) {
+	public void setModelObject(final ExtendedItemHandle modelHandle) {
 		try {
 			dotbarItem = (DotbarItem) modelHandle.getReportItem();
-		} catch (ExtendedElementException e) {
+		} catch (final ExtendedElementException e) {
 			e.printStackTrace();
 		}
 	}
@@ -54,50 +55,55 @@ public class DotbarPresentationImpl extends ReportItemPresentationBase {
 		return OUTPUT_AS_IMAGE;
 	}
 
-	public Object onRowSets(IBaseResultSet[] results) throws BirtException {
+	@Override
+	public Object onRowSets(final IBaseResultSet[] results)
+			throws BirtException {
 		if (dotbarItem == null)
 			return null;
 
-		DotbarData config = dotbarItem.getConfiguration();
+		final DotbarData config = dotbarItem.getConfiguration();
 		int value = 0;
 		if (results != null && results.length > 0) {
-			IBaseResultSet baseResultSet = results[0];
+			final IBaseResultSet baseResultSet = results[0];
 			if (baseResultSet instanceof IQueryResultSet) {
-				IQueryResultSet queryResultSet = (IQueryResultSet) baseResultSet;
+				final IQueryResultSet queryResultSet = (IQueryResultSet) baseResultSet;
 				if (queryResultSet.isBeforeFirst())
 					queryResultSet.next();
-				Object object = queryResultSet.evaluate(config.valueExpression);
+				final Object object = queryResultSet
+						.evaluate(config.valueExpression);
 				value = translateObject(object);
 			} else if (baseResultSet instanceof ICubeResultSet) {
-				ICubeResultSet cubeResultSet = (ICubeResultSet) baseResultSet;
-				Object object = cubeResultSet.evaluate(config.valueExpression);
+				final ICubeResultSet cubeResultSet = (ICubeResultSet) baseResultSet;
+				final Object object = cubeResultSet
+						.evaluate(config.valueExpression);
 				value = translateObject(object);
 			}
 		} else {
-			Object object = context.evaluate(config.valueExpression);
+			final Object object = context.evaluate(config.valueExpression);
 			value = translateObject(object);
 		}
 
-		DotbarData.Calculator calculator = config.new Calculator(1, "in", dpi);
-		BufferedImage bufferedImage = calculator.createSwingImage(value,
+		final DotbarData.Calculator calculator = config.new Calculator(1, "in",
+				dpi);
+		final BufferedImage bufferedImage = calculator.createSwingImage(value,
 				dotbarItem.getModelHandle());
 		ByteArrayInputStream bis = null;
 		try {
 			ImageIO.setUseCache(false);
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageOutputStream ios = ImageIO.createImageOutputStream(baos);
+			final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			final ImageOutputStream ios = ImageIO.createImageOutputStream(baos);
 			ImageIO.write(bufferedImage, "png", ios); //$NON-NLS-1$
 			ios.flush();
 			ios.close();
 			bis = new ByteArrayInputStream(baos.toByteArray());
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 
 		return bis;
 	}
 
-	private int translateObject(Object object) {
+	private int translateObject(final Object object) {
 		if (object instanceof Integer)
 			return ((Integer) object).intValue();
 		if (object instanceof Long)
@@ -109,7 +115,7 @@ public class DotbarPresentationImpl extends ReportItemPresentationBase {
 		if (object instanceof String)
 			try {
 				return Integer.parseInt((String) object);
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				return 0;
 			}
 		return 0;

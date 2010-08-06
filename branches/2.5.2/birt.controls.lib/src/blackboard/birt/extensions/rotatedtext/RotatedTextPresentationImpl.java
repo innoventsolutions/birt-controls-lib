@@ -41,27 +41,31 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 	private RotatedTextItem textItem;
 	private static int index = 0;
 
-	public void setModelObject(ExtendedItemHandle modelHandle) {
+	@Override
+	public void setModelObject(final ExtendedItemHandle modelHandle) {
 		try {
-			textItem = (RotatedTextItem) modelHandle.getReportItem();
-		} catch (ExtendedElementException e) {
+			this.textItem = (RotatedTextItem) modelHandle.getReportItem();
+		} catch (final ExtendedElementException e) {
 			e.printStackTrace();
 		}
 	}
 
+	@Override
 	public int getOutputType() {
 		return OUTPUT_AS_IMAGE_WITH_MAP;
 	}
 
-	public Object onRowSets(IBaseResultSet[] results) throws BirtException {
-		if (textItem == null)
+	@Override
+	public Object onRowSets(final IBaseResultSet[] results)
+			throws BirtException {
+		if (this.textItem == null)
 			return null;
 
-		final RotatedTextData data = new RotatedTextData(textItem);
-		String text = evaluate(data.text, results);
+		final RotatedTextData data = new RotatedTextData(this.textItem);
+		String text = this.evaluate(data.text, results);
 		if (text == null || text.length() == 0)
 			text = " ";
-		final String url = evaluate(data.linkURL, results);
+		final String url = this.evaluate(data.linkURL, results);
 
 		final BufferedImage rotatedImage = SwingGraphicsUtil
 				.createRotatedTextImage(text, data, this.dpi, 1, "in");
@@ -71,20 +75,22 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 			ImageIO.setUseCache(false);
 			final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			final ImageOutputStream ios = ImageIO.createImageOutputStream(baos);
-			System.out.println(rotatedImage);
-			System.out.println(ios);
-			ImageIO.write(rotatedImage, "png", ios); //$NON-NLS-1$
+			// System.out.println(rotatedImage);
+			// System.out.println(ios);
+			if (rotatedImage != null)
+				ImageIO.write(rotatedImage, "png", ios); //$NON-NLS-1$
 			ios.flush();
 			ios.close();
 			bis = new ByteArrayInputStream(baos.toByteArray());
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 
 		return new Object[] {
 				bis,
-				createImageMap(url, text, rotatedImage.getWidth(), rotatedImage
-						.getHeight()) };
+				this.createImageMap(url, text, rotatedImage == null ? 0
+						: rotatedImage.getWidth(), rotatedImage == null ? 0
+						: rotatedImage.getHeight()) };
 	}
 
 	private String evaluate(final String expression,
@@ -109,7 +115,7 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 			else
 				text = expression;
 		} else {
-			final Object object = context.evaluate(expression);
+			final Object object = this.context.evaluate(expression);
 			text = String.valueOf(object);
 		}
 		return text;
@@ -118,6 +124,15 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 	private String createImageMap(final String url, final String text,
 			final int width, final int height) {
 		final StringBuilder sb = new StringBuilder();
+
+		// There is a bug in BIRT 2.5.2 that results in extra white-space
+		// between attribute definitions
+		// becoming part of the key. For example given
+		// "<area    id='id-val'...", a bad regular expression
+		// in the engine will end up creating a Map entry with key="   id"; this
+		// causes errors later when
+		// the engine tries to locate "id" in this Map.
+		//
 		sb.append("<area ");
 		sb.append("id=\"RotatedTextImageMapArea" + index + "\" ");
 		sb.append("shape =\"rect\" ");
@@ -125,8 +140,9 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 		if (url != null)
 			sb.append("href =\"" + url + "\" ");
 		sb.append("target=\"_self\"");
-		sb.append(">\n");
-		sb.append("</area>");
+		sb.append("/>");
+		// sb.append(">\n");
+		// sb.append("</area>");
 		sb.append("<script>");
 		sb
 				.append(" var areaNode = document.getElementById(\"RotatedTextImageMapArea"
@@ -137,21 +153,6 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 				+ text.replace("\"", "'") + "\");");
 		sb.append("   areaNode.setAttribute(\"title\", \""
 				+ text.replace("\"", "'") + "\");");
-		// sb.append( "  var mapNode = areaNode.parentNode;" );
-		// sb.append( "  alert(\"map = \" + mapNode.nodeName);" );
-		// sb.append( "  var imgNode = mapNode.nextSibling;" );
-		// sb.append(
-		// "  while(imgNode != null && imgNode.nodeName.toLowerCase() != \"img\")"
-		// );
-		// sb.append( "  {" );
-		// sb.append( "   alert(\"'\" + imgNode.nodeName + \"'\");" );
-		// sb.append( "   imgNode = imgNode.nextSibling;" );
-		// sb.append( "  }" );
-		// sb.append( "  if(imgNode != null)" );
-		// sb.append( "   imgNode.setAttribute(\"alt\", \"" + text.replace(
-		// "\"", "'" ) + "\");" );
-		// sb.append( "  else" );
-		// sb.append( "   alert(\"IMG not found\");" );
 		sb.append(" }");
 		sb.append(" else");
 		sb.append("  alert(\"area not found\");");

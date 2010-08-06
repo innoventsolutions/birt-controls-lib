@@ -21,14 +21,15 @@ import org.eclipse.birt.report.model.api.extension.IReportItem;
 import org.eclipse.birt.report.model.api.extension.ReportItemFactory;
 
 /**
- * A ReportItemFactory to instantiate the rotated text report item.  
- * This class is specified in the org.eclipse.birt.report.model.reportItemModel extension.
+ * A ReportItemFactory to instantiate the rotated text report item. This class
+ * is specified in the org.eclipse.birt.report.model.reportItemModel extension.
  * 
  * @author Steve Schafer / Innovent Solutions
  */
 public class RotatedTextItemFactory extends ReportItemFactory {
 
-	public IReportItem newReportItem(DesignElementHandle modelHanlde) {
+	@Override
+	public IReportItem newReportItem(final DesignElementHandle modelHanlde) {
 		if (modelHanlde instanceof ExtendedItemHandle
 				&& RotatedTextItem.EXTENSION_NAME
 						.equals(((ExtendedItemHandle) modelHanlde)
@@ -38,6 +39,7 @@ public class RotatedTextItemFactory extends ReportItemFactory {
 		return null;
 	}
 
+	@Override
 	public IMessages getMessages() {
 		return null;
 	}

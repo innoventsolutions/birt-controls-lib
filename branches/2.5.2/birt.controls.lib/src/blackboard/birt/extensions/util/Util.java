@@ -50,14 +50,14 @@ public class Util {
 			try {
 				return Integer.parseInt(string
 						.substring(0, string.length() - 2));
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				return MEDIUM;
 			}
 		if (string.endsWith("in"))
 			try {
 				return (int) (Double.parseDouble(string.substring(0, string
 						.length() - 2)) * 72.0);
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				return MEDIUM;
 			}
 		if (string.endsWith("px"))
@@ -65,7 +65,7 @@ public class Util {
 				return (int) (Double.parseDouble(string.substring(0, string
 						.length() - 2))
 						/ resolution * 72.0);
-			} catch (NumberFormatException e) {
+			} catch (final NumberFormatException e) {
 				return MEDIUM;
 			}
 		return MEDIUM;
@@ -77,7 +77,7 @@ public class Util {
 	 * @param string
 	 * @return
 	 */
-	public static String removeQuotes(String string) {
+	public static String removeQuotes(final String string) {
 		if (string != null && string.length() >= 2 && string.startsWith("\"") //$NON-NLS-1$
 				&& string.endsWith("\"")) //$NON-NLS-1$
 		{

@@ -21,16 +21,17 @@ import org.eclipse.birt.report.model.api.extension.IReportItem;
 import org.eclipse.birt.report.model.api.extension.ReportItemFactory;
 
 /**
- * A ReportItemFactory to instantiate the Dotbar report item.  
- * This class is specified in the org.eclipse.birt.report.model.reportItemModel extension.
+ * A ReportItemFactory to instantiate the Dotbar report item. This class is
+ * specified in the org.eclipse.birt.report.model.reportItemModel extension.
  * 
  * @author Steve Schafer / Innovent Solutions
  */
 public class DotbarItemFactory extends ReportItemFactory {
 	@Override
-	public IReportItem newReportItem(DesignElementHandle designElementHandle) {
+	public IReportItem newReportItem(
+			final DesignElementHandle designElementHandle) {
 		if (designElementHandle instanceof ExtendedItemHandle) {
-			ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) designElementHandle;
+			final ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) designElementHandle;
 			if (DotbarItem.EXTENSION_NAME.equals(extendedItemHandle
 					.getExtensionName()))
 				return new DotbarItem(extendedItemHandle);

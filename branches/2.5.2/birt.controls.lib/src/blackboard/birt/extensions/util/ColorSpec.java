@@ -18,7 +18,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * This class represents a color. Similar to org.eclipse.swt.graphics.RGB except that it's immutable and can be constructed from a string.
+ * This class represents a color. Similar to org.eclipse.swt.graphics.RGB except
+ * that it's immutable and can be constructed from a string.
  * 
  * @author Steve Schafer / Innovent Solutions
  */
@@ -45,14 +46,15 @@ public final class ColorSpec {
 	 * @param g
 	 * @param b
 	 */
-	public ColorSpec(int r, int g, int b) {
+	public ColorSpec(final int r, final int g, final int b) {
 		this.r = r;
 		this.g = g;
 		this.b = b;
 	}
 
 	/**
-	 * Parses a string in one of the following forms: #XXXXXX, #XXX, RGB(n, n, n), where X is a hex digit and n is a decimal digit.
+	 * Parses a string in one of the following forms: #XXXXXX, #XXX, RGB(n, n,
+	 * n), where X is a hex digit and n is a decimal digit.
 	 * 
 	 * @param string
 	 * @return
@@ -61,59 +63,61 @@ public final class ColorSpec {
 		if (string == null)
 			return new ColorSpec(0, 0, 0);
 		{
-			Matcher matcher = shortHexPattern.matcher(string);
+			final Matcher matcher = shortHexPattern.matcher(string);
 			if (matcher.matches()) {
-				String rString = matcher.group(1);
-				String gString = matcher.group(2);
-				String bString = matcher.group(3);
-				int r = Integer.parseInt(rString, 16) * 16;
-				int g = Integer.parseInt(gString, 16) * 16;
-				int b = Integer.parseInt(bString, 16) * 16;
+				final String rString = matcher.group(1);
+				final String gString = matcher.group(2);
+				final String bString = matcher.group(3);
+				final int r = Integer.parseInt(rString, 16) * 16;
+				final int g = Integer.parseInt(gString, 16) * 16;
+				final int b = Integer.parseInt(bString, 16) * 16;
 				return new ColorSpec(r, g, b);
 			}
 		}
 		{
-			Matcher matcher = longHexPattern.matcher(string);
+			final Matcher matcher = longHexPattern.matcher(string);
 			if (matcher.matches()) {
-				String rString = matcher.group(1);
-				String gString = matcher.group(2);
-				String bString = matcher.group(3);
-				int r = Integer.parseInt(rString, 16);
-				int g = Integer.parseInt(gString, 16);
-				int b = Integer.parseInt(bString, 16);
+				final String rString = matcher.group(1);
+				final String gString = matcher.group(2);
+				final String bString = matcher.group(3);
+				final int r = Integer.parseInt(rString, 16);
+				final int g = Integer.parseInt(gString, 16);
+				final int b = Integer.parseInt(bString, 16);
 				return new ColorSpec(r, g, b);
 			}
 		}
 		{
-			Matcher matcher = rgbPattern.matcher(string);
+			final Matcher matcher = rgbPattern.matcher(string);
 			if (matcher.matches()) {
-				String rString = matcher.group(1);
-				String gString = matcher.group(2);
-				String bString = matcher.group(3);
-				int r = Integer.parseInt(rString);
-				int g = Integer.parseInt(gString);
-				int b = Integer.parseInt(bString);
+				final String rString = matcher.group(1);
+				final String gString = matcher.group(2);
+				final String bString = matcher.group(3);
+				final int r = Integer.parseInt(rString);
+				final int g = Integer.parseInt(gString);
+				final int b = Integer.parseInt(bString);
 				return new ColorSpec(r, g, b);
 			}
 		}
 		// Note: colors are not saved using names so this code is unnecessary
-		//    final ColorPropertyType type = (ColorPropertyType) MetaDataDictionary.getInstance().getPropertyType( PropertyType.COLOR_TYPE );
-		//    final IChoiceSet choiceSet = type.getChoices();
-		//    final IChoice[] choiceArray = choiceSet.getChoices();
-		//    for ( IChoice choice : choiceArray )
-		//    {
-		//      final String colorName = choice.getName();
-		//      if ( colorName.equalsIgnoreCase( string ) )
-		//      {
-		//        int rgb = ColorUtil.parsePredefinedColor( colorName );
-		//        final int b = rgb & 0xFF;
-		//        rgb >>= 8;
-		//        final int g = rgb & 0xFF;
-		//        rgb >>= 8;
-		//        final int r = rgb & 0xFF;
-		//        return new ColorSpec(r, g, b);
-		//      }
-		//    }
+		// final ColorPropertyType type = (ColorPropertyType)
+		// MetaDataDictionary.getInstance().getPropertyType(
+		// PropertyType.COLOR_TYPE );
+		// final IChoiceSet choiceSet = type.getChoices();
+		// final IChoice[] choiceArray = choiceSet.getChoices();
+		// for ( IChoice choice : choiceArray )
+		// {
+		// final String colorName = choice.getName();
+		// if ( colorName.equalsIgnoreCase( string ) )
+		// {
+		// int rgb = ColorUtil.parsePredefinedColor( colorName );
+		// final int b = rgb & 0xFF;
+		// rgb >>= 8;
+		// final int g = rgb & 0xFF;
+		// rgb >>= 8;
+		// final int r = rgb & 0xFF;
+		// return new ColorSpec(r, g, b);
+		// }
+		// }
 		return new ColorSpec(0, 0, 0);
 	}
 
@@ -132,7 +136,7 @@ public final class ColorSpec {
 	 * @return
 	 */
 	public String toRgbString() {
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append("RGB(");
 		sb.append(r);
 		sb.append(",");
@@ -149,7 +153,7 @@ public final class ColorSpec {
 	 * @return
 	 */
 	public String toHexString() {
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append("#");
 		sb.append(toHexString(r));
 		sb.append(toHexString(g));
@@ -157,7 +161,7 @@ public final class ColorSpec {
 		return sb.toString();
 	}
 
-	private static String toHexString(int i) {
+	private static String toHexString(final int i) {
 		String string = Integer.toHexString(i);
 		while (string.length() < 2)
 			string = "0" + string;
@@ -165,11 +169,11 @@ public final class ColorSpec {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (!(obj instanceof ColorSpec))
 			return false;
-		ColorSpec that = (ColorSpec) obj;
-		return this.r == that.r && this.g == that.g && this.b == that.b;
+		final ColorSpec that = (ColorSpec) obj;
+		return r == that.r && g == that.g && b == that.b;
 	}
 
 	@Override

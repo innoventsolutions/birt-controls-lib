@@ -35,43 +35,42 @@ public class RotatedTextData {
 	public final String linkURL;
 
 	public RotatedTextData(final RotatedTextItem textItem) {
-		this.text = textItem.getText();
-		this.angle = textItem.getRotationAngle();
-		this.wrapPoint = textItem.getWrapPoint();
-		this.fontFamily = textItem.getFontFamily();
-		this.fontSize = textItem.getFontSize();
-		this.fontBold = textItem.isFontBold();
-		this.fontItalic = textItem.isFontItalic();
-		this.fontColor = textItem.getFontColor();
-		this.linkURL = textItem.getLinkURL();
+		text = textItem.getText();
+		angle = textItem.getRotationAngle();
+		wrapPoint = textItem.getWrapPoint();
+		fontFamily = textItem.getFontFamily();
+		fontSize = textItem.getFontSize();
+		fontBold = textItem.isFontBold();
+		fontItalic = textItem.isFontItalic();
+		fontColor = textItem.getFontColor();
+		linkURL = textItem.getLinkURL();
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (!(obj instanceof RotatedTextData))
 			return false;
-		RotatedTextData that = (RotatedTextData) obj;
-		if (this.text == null ? that.text != null : !this.text
-				.equals(that.text))
+		final RotatedTextData that = (RotatedTextData) obj;
+		if (text == null ? that.text != null : !text.equals(that.text))
 			return false;
-		if (this.angle != that.angle)
+		if (angle != that.angle)
 			return false;
-		if (this.wrapPoint != that.wrapPoint)
+		if (wrapPoint != that.wrapPoint)
 			return false;
-		if (this.fontFamily == null ? that.fontFamily != null
-				: !this.fontFamily.equalsIgnoreCase(that.fontFamily))
+		if (fontFamily == null ? that.fontFamily != null : !fontFamily
+				.equalsIgnoreCase(that.fontFamily))
 			return false;
-		if (this.fontSize == null ? that.fontSize != null : !this.fontSize
+		if (fontSize == null ? that.fontSize != null : !fontSize
 				.equalsIgnoreCase(that.fontSize))
 			return false;
-		if (this.fontBold != that.fontBold)
+		if (fontBold != that.fontBold)
 			return false;
-		if (this.fontItalic != that.fontItalic)
+		if (fontItalic != that.fontItalic)
 			return false;
-		if (this.fontColor == null ? that.fontColor != null : !this.fontColor
+		if (fontColor == null ? that.fontColor != null : !fontColor
 				.equals(that.fontColor))
 			return false;
-		if (this.linkURL == null ? that.linkURL != null : !this.linkURL
+		if (linkURL == null ? that.linkURL != null : !linkURL
 				.equals(that.linkURL))
 			return false;
 		return true;

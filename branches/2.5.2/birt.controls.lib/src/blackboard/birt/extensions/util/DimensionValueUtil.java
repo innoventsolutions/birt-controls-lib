@@ -28,23 +28,25 @@ import org.eclipse.birt.report.model.i18n.ThreadResources;
 import com.ibm.icu.util.ULocale;
 
 /**
- * Utility class for DimensionValue.  Copied from a class in eclipse which is inaccessible.
+ * Utility class for DimensionValue. Copied from a class in eclipse which is
+ * inaccessible.
  */
 public class DimensionValueUtil {
 	/**
-	 * Validates whether the input dimension value just contains digital numbers. Exception will be thrown out when the letter occurred in the input
-	 * value is not "." or ",".
+	 * Validates whether the input dimension value just contains digital
+	 * numbers. Exception will be thrown out when the letter occurred in the
+	 * input value is not "." or ",".
 	 * 
 	 * @param value
-	 *          dimension value
+	 *            dimension value
 	 * @throws PropertyValueException
-	 *           if the value input is not valid.
+	 *             if the value input is not valid.
 	 */
-	public static void validateDecimalValue(String value)
+	public static void validateDecimalValue(final String value)
 			throws PropertyValueException {
 		assert value != null;
-		char separator = new DecimalFormatSymbols(ThreadResources.getLocale()
-				.toLocale()).getDecimalSeparator();
+		final char separator = new DecimalFormatSymbols(ThreadResources
+				.getLocale().toLocale()).getDecimalSeparator();
 
 		if (separator == '.') {
 			if (!DimensionValue.dotSeparatorPattern.matcher(value).matches())
@@ -67,21 +69,22 @@ public class DimensionValueUtil {
 	 * Validates the a dimension string. And return the the unit string of it.
 	 * 
 	 * @param value
-	 *          the value to be validated.
-	 * @return Unit name of the dimension. <CODE>null</CODE> if no unit specified.
+	 *            the value to be validated.
+	 * @return Unit name of the dimension. <CODE>null</CODE> if no unit
+	 *         specified.
 	 * @throws PropertyValueException
-	 *           if the unit is not in the list.
+	 *             if the unit is not in the list.
 	 */
-	public static String validateUnit(String value)
+	public static String validateUnit(final String value)
 			throws PropertyValueException {
 		assert value != null;
-		int indexOfFirstLetter = DimensionValue.indexOfUnitLetter(value);
+		final int indexOfFirstLetter = DimensionValue.indexOfUnitLetter(value);
 		if (indexOfFirstLetter == -1) {
 			// No unit.
 			return DimensionValue.DEFAULT_UNIT;
 		}
 
-		String suffix = value.substring(indexOfFirstLetter).trim();
+		final String suffix = value.substring(indexOfFirstLetter).trim();
 
 		if (suffix.equalsIgnoreCase(DesignChoiceConstants.UNITS_IN))
 			return DesignChoiceConstants.UNITS_IN;
@@ -112,16 +115,18 @@ public class DimensionValueUtil {
 	 * Parses a dimension string.
 	 * 
 	 * @param value
-	 *          the dimension string to parse
+	 *            the dimension string to parse
 	 * @param localeDependent
-	 *          <code>true</code> means that the string needs to be parsed in locale-dependent way.
+	 *            <code>true</code> means that the string needs to be parsed in
+	 *            locale-dependent way.
 	 * @return a dimension object representing the dimension string.
 	 * @throws PropertyValueException
-	 *           if the string is not valid
+	 *             if the string is not valid
 	 */
 
-	public static DimensionValue doParse(String value, boolean localeDependent,
-			ULocale locale) throws PropertyValueException {
+	public static DimensionValue doParse(String value,
+			final boolean localeDependent, ULocale locale)
+			throws PropertyValueException {
 		value = StringUtil.trimString(value);
 		if (value == null)
 			return null;
@@ -129,9 +134,9 @@ public class DimensionValueUtil {
 		if (locale == null)
 			locale = ThreadResources.getLocale();
 
-		String units = validateUnit(value);
+		final String units = validateUnit(value);
 
-		int indexOfFirstLetter = DimensionValue.indexOfUnitLetter(value);
+		final int indexOfFirstLetter = DimensionValue.indexOfUnitLetter(value);
 		if (indexOfFirstLetter != -1) {
 			value = StringUtil.trimString(value
 					.substring(0, indexOfFirstLetter));
@@ -147,18 +152,18 @@ public class DimensionValueUtil {
 
 				validateDecimalValue(value);
 
-				Number number = NumberFormat.getNumberInstance(
+				final Number number = NumberFormat.getNumberInstance(
 						locale.toLocale()).parse(value);
 				measure = number.doubleValue();
 
 			} else {
 				measure = Double.parseDouble(value);
 			}
-		} catch (ParseException e) {
+		} catch (final ParseException e) {
 			throw new PropertyValueException(value,
 					PropertyValueException.DESIGN_EXCEPTION_INVALID_VALUE,
 					IPropertyType.DIMENSION_TYPE);
-		} catch (NumberFormatException e) {
+		} catch (final NumberFormatException e) {
 			throw new PropertyValueException(value,
 					PropertyValueException.DESIGN_EXCEPTION_INVALID_VALUE,
 					IPropertyType.DIMENSION_TYPE);
@@ -171,11 +176,12 @@ public class DimensionValueUtil {
 	 * Returns whether the given unit is valid.
 	 * 
 	 * @param unit
-	 *          the unit to check
-	 * @return <code>true</code> if the unit is valid; return <code>false</code> otherwise.
+	 *            the unit to check
+	 * @return <code>true</code> if the unit is valid; return <code>false</code>
+	 *         otherwise.
 	 */
 
-	public static boolean isValidUnit(String unit) {
+	public static boolean isValidUnit(final String unit) {
 		if (DesignChoiceConstants.UNITS_IN.equalsIgnoreCase(unit)
 				|| DesignChoiceConstants.UNITS_CM.equalsIgnoreCase(unit)
 				|| DesignChoiceConstants.UNITS_MM.equalsIgnoreCase(unit)

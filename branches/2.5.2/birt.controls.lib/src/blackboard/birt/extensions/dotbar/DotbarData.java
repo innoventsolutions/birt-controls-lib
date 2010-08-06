@@ -29,8 +29,8 @@ import org.eclipse.birt.report.model.api.metadata.DimensionValue;
 import org.eclipse.birt.report.model.api.metadata.PropertyValueException;
 import org.eclipse.birt.report.model.api.util.DimensionUtil;
 
-import blackboard.birt.extensions.util.DimensionValueUtil;
 import blackboard.birt.extensions.util.ColorSpec;
+import blackboard.birt.extensions.util.DimensionValueUtil;
 
 /**
  * Encapsulates all control properties in one object.
@@ -59,27 +59,27 @@ public class DotbarData {
 	public final boolean fontBold;
 	public final ColorSpec fontColor;
 
-	public DotbarData(Editor editor) {
-		this.valueExpression = editor.valueExpression;
-		this.displayValue = editor.displayValue;
-		this.dotWidth = editor.dotWidth;
-		this.dotHeight = editor.dotHeight;
-		this.dotSpacing = editor.dotSpacing;
-		this.vertical = editor.vertical;
-		this.hasBorder = editor.hasBorder;
-		this.borderColor = editor.borderColor;
-		this.hasFill = editor.hasFill;
-		this.fillColor = editor.fillColor;
-		this.dotShape = editor.dotShape;
-		this.numberPosition = editor.numberPosition;
-		this.numberWidth = editor.numberWidth;
-		this.numberHeight = editor.numberHeight;
-		this.wrapPoint = editor.wrapPoint;
-		this.fontSize = editor.fontSize;
-		this.fontFamily = editor.fontFamily;
-		this.fontItalic = editor.fontItalic;
-		this.fontBold = editor.fontBold;
-		this.fontColor = editor.fontColor;
+	public DotbarData(final Editor editor) {
+		valueExpression = editor.valueExpression;
+		displayValue = editor.displayValue;
+		dotWidth = editor.dotWidth;
+		dotHeight = editor.dotHeight;
+		dotSpacing = editor.dotSpacing;
+		vertical = editor.vertical;
+		hasBorder = editor.hasBorder;
+		borderColor = editor.borderColor;
+		hasFill = editor.hasFill;
+		fillColor = editor.fillColor;
+		dotShape = editor.dotShape;
+		numberPosition = editor.numberPosition;
+		numberWidth = editor.numberWidth;
+		numberHeight = editor.numberHeight;
+		wrapPoint = editor.wrapPoint;
+		fontSize = editor.fontSize;
+		fontFamily = editor.fontFamily;
+		fontItalic = editor.fontItalic;
+		fontBold = editor.fontBold;
+		fontColor = editor.fontColor;
 	}
 
 	/**
@@ -131,34 +131,36 @@ public class DotbarData {
 			this.dpi = dpi;
 		}
 
-		public int convertToPixels(DimensionValue value) {
-			double doubleValue = DimensionUtil.convertTo(value, "in", "in",
-					baseSize, baseSizeUnits, dpi)
+		public int convertToPixels(final DimensionValue value) {
+			final double doubleValue = DimensionUtil.convertTo(value, "in",
+					"in", baseSize, baseSizeUnits, dpi)
 					* dpi;
 			return (int) doubleValue;
 		}
 
 		/**
-		 * Calculates the width in pixels of the area within which the textual representation of the number is displayed.
+		 * Calculates the width in pixels of the area within which the textual
+		 * representation of the number is displayed.
 		 * 
 		 * @return
 		 */
 		public int getNumberCellWidth() {
 			int size = getNumberWidth();
-			int dotWidthPixels = getDotWidth();
+			final int dotWidthPixels = getDotWidth();
 			if (vertical && size < dotWidthPixels)
 				size = dotWidthPixels;
 			return size;
 		}
 
 		/**
-		 * Calculates the height in pixels of the area within which the textual representation of the number is displayed.
+		 * Calculates the height in pixels of the area within which the textual
+		 * representation of the number is displayed.
 		 * 
 		 * @return
 		 */
 		public int getNumberCellHeight() {
 			int size = getNumberHeight();
-			int dotHeightPixels = getDotHeight();
+			final int dotHeightPixels = getDotHeight();
 			if (!vertical && size < dotHeightPixels)
 				size = dotHeightPixels;
 			return size;
@@ -171,7 +173,7 @@ public class DotbarData {
 		 */
 		public int getDotCellWidth() {
 			int size = getDotWidth();
-			int numberWidthPixels = getNumberWidth();
+			final int numberWidthPixels = getNumberWidth();
 			if (vertical && size < numberWidthPixels)
 				size = numberWidthPixels;
 			return size;
@@ -184,22 +186,23 @@ public class DotbarData {
 		 */
 		public int getDotCellHeight() {
 			int size = getDotHeight();
-			int numberHeightPixels = getNumberHeight();
+			final int numberHeightPixels = getNumberHeight();
 			if (!vertical && size < numberHeightPixels)
 				size = numberHeightPixels;
 			return size;
 		}
 
 		/**
-		 * Calculates the width in pixels of the entire control based on the given value.
+		 * Calculates the width in pixels of the entire control based on the
+		 * given value.
 		 * 
 		 * @param value
 		 * @return
 		 */
-		public int computeBarWidth(int value) {
-			int numberWidthPixels = getNumberWidth();
-			int dotWidthPixels = getDotWidth();
-			int dotSpacingPixels = getDotSpacing();
+		public int computeBarWidth(final int value) {
+			final int numberWidthPixels = getNumberWidth();
+			final int dotWidthPixels = getDotWidth();
+			final int dotSpacingPixels = getDotSpacing();
 			int size = 0;
 			if (!vertical) {
 				if (!NumberPosition.HIDDEN.equals(numberPosition))
@@ -225,15 +228,16 @@ public class DotbarData {
 		}
 
 		/**
-		 * Calculates the height in pixels of the entire control based on the given value.
+		 * Calculates the height in pixels of the entire control based on the
+		 * given value.
 		 * 
 		 * @param value
 		 * @return
 		 */
-		public int computeBarHeight(int value) {
-			int numberHeightPixels = getNumberHeight();
-			int dotHeightPixels = getDotHeight();
-			int dotSpacingPixels = getDotSpacing();
+		public int computeBarHeight(final int value) {
+			final int numberHeightPixels = getNumberHeight();
+			final int dotHeightPixels = getDotHeight();
+			final int dotSpacingPixels = getDotSpacing();
 			int size = 0;
 			if (vertical) {
 				if (numberPosition.index != NumberPosition.INDEX_HIDDEN)
@@ -259,16 +263,17 @@ public class DotbarData {
 		}
 
 		/**
-		 * Renders an image using awt/swing.  The swing image is displayed in the report
+		 * Renders an image using awt/swing. The swing image is displayed in the
+		 * report
 		 * 
 		 * @param value
 		 * @return
 		 */
 		public BufferedImage createSwingImage(final int value,
-				ExtendedItemHandle modelHandle) {
-			int dotWidthPixels = getDotWidth();
-			int dotHeightPixels = getDotHeight();
-			int dotSpacingPixels = getDotSpacing();
+				final ExtendedItemHandle modelHandle) {
+			final int dotWidthPixels = getDotWidth();
+			final int dotHeightPixels = getDotHeight();
+			final int dotSpacingPixels = getDotSpacing();
 			// TODO padding
 			java.awt.Graphics2D g2d = null;
 			final int barWidth = computeBarWidth(value);
@@ -278,38 +283,40 @@ public class DotbarData {
 			final int dotCellWidth = getDotCellWidth();
 			final int dotCellHeight = getDotCellHeight();
 			try {
-				BufferedImage bufferedImage = new BufferedImage(barWidth,
+				final BufferedImage bufferedImage = new BufferedImage(barWidth,
 						barHeight, BufferedImage.TYPE_INT_ARGB);
-				Font font = getAwtFont();
+				final Font font = getAwtFont();
 				g2d = (Graphics2D) bufferedImage.getGraphics();
 				g2d.setFont(font);
 				final FontMetrics fontMetrics = g2d.getFontMetrics();
 				final String text = String.valueOf(value);
 				final Rectangle2D bounds = fontMetrics.getStringBounds(text,
 						g2d);
-				double textHeight = bounds.getHeight();
-				double textWidth = bounds.getWidth();
+				final double textHeight = bounds.getHeight();
+				final double textWidth = bounds.getWidth();
 				int x = 0;
 				int y = 0;
 				if (NumberPosition.BEFORE.equals(numberPosition)) {
 					g2d.setColor(fontColor.getAwtColor());
-					double textX = (double) x + (double) numberCellWidth / 2.0
-							- textWidth / 2.0;
-					double textY = (double) y + (double) numberCellHeight / 2.0
+					final double textX = x + numberCellWidth / 2.0 - textWidth
+							/ 2.0;
+					final double textY = y + numberCellHeight / 2.0
 							+ textHeight / 2.0;
 					g2d.drawString(text, (int) textX, (int) textY);
 					// debug:
 					// g2d.setColor( new java.awt.Color( 255, 0, 0 ) );
-					// g2d.drawRect( position.x, position.y, numberWidth, numberHeight );
+					// g2d.drawRect( position.x, position.y, numberWidth,
+					// numberHeight );
 					// g2d.setColor( new java.awt.Color( 0, 255, 0 ) );
-					// g2d.drawRect( (int) textX, (int) textY - (int) textHeight, (int) textWidth, (int) textHeight );
+					// g2d.drawRect( (int) textX, (int) textY - (int)
+					// textHeight, (int) textWidth, (int) textHeight );
 					if (vertical)
 						y += numberCellHeight;
 					else
 						x += numberCellWidth;
 				}
-				int startX = x;
-				int startY = y;
+				final int startX = x;
+				final int startY = y;
 				if (fillColor != null)
 					g2d.setBackground(fillColor.getAwtColor());
 				if (borderColor != null)
@@ -322,19 +329,23 @@ public class DotbarData {
 					rowCount += value / wrapPoint;
 				int remainingDots = value;
 				for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
-					int dotLimit = remainingDots < dotCount ? remainingDots
+					final int dotLimit = remainingDots < dotCount ? remainingDots
 							: dotCount;
 					remainingDots -= dotCount;
 					for (int dotIndex = 0; dotIndex < dotLimit; dotIndex++) {
 						// center the dots
-						int dotX = x + dotCellWidth / 2 - dotWidthPixels / 2;
-						int dotY = y + dotCellHeight / 2 - dotHeightPixels / 2;
+						final int dotX = x + dotCellWidth / 2 - dotWidthPixels
+								/ 2;
+						final int dotY = y + dotCellHeight / 2
+								- dotHeightPixels / 2;
 						// debug:
 						// g2d.setColor( new java.awt.Color( 255, 0, 0 ) );
-						// g2d.drawRect( position.x, position.y, dotAreaWidth, dotAreaHeight );
-						java.awt.Color awtBorderColor = hasBorder ? borderColor
-								.getAwtColor() : null;
-						java.awt.Color awtFillColor = hasFill ? fillColor
+						// g2d.drawRect( position.x, position.y, dotAreaWidth,
+						// dotAreaHeight );
+						final java.awt.Color awtBorderColor = hasBorder ? borderColor
+								.getAwtColor()
+								: null;
+						final java.awt.Color awtFillColor = hasFill ? fillColor
 								.getAwtColor() : null;
 						dotShape.render(g2d, dotX, dotY, dotWidthPixels,
 								dotHeightPixels, awtBorderColor, awtFillColor);
@@ -357,9 +368,9 @@ public class DotbarData {
 					else
 						y = 0;
 					g2d.setColor(fontColor.getAwtColor());
-					double textX = (double) x + (double) numberCellWidth / 2.0
-							- textWidth / 2.0;
-					double textY = (double) y + (double) numberCellHeight / 2.0
+					final double textX = x + numberCellWidth / 2.0 - textWidth
+							/ 2.0;
+					final double textY = y + numberCellHeight / 2.0
 							+ textHeight / 2.0;
 					g2d.drawString(text, (int) textX, (int) textY);
 					if (vertical)
@@ -368,7 +379,7 @@ public class DotbarData {
 						x += numberCellWidth;
 				}
 				return bufferedImage;
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				e.printStackTrace();
 			} finally {
 				if (g2d != null)
@@ -410,57 +421,57 @@ public class DotbarData {
 	}
 
 	@Override
-	public boolean equals(Object object) {
+	public boolean equals(final Object object) {
 		if (!(object instanceof DotbarData))
 			return false;
-		DotbarData that = (DotbarData) object;
-		if (this.valueExpression == null ? that.valueExpression != null
-				: !this.valueExpression.equals(that.valueExpression))
+		final DotbarData that = (DotbarData) object;
+		if (valueExpression == null ? that.valueExpression != null
+				: !valueExpression.equals(that.valueExpression))
 			return false;
-		if (this.displayValue != that.displayValue)
+		if (displayValue != that.displayValue)
 			return false;
-		if (this.dotWidth == null ? that.dotWidth != null : !this.dotWidth
+		if (dotWidth == null ? that.dotWidth != null : !dotWidth
 				.equals(that.dotWidth))
 			return false;
-		if (this.dotHeight == null ? that.dotHeight != null : !this.dotHeight
+		if (dotHeight == null ? that.dotHeight != null : !dotHeight
 				.equals(that.dotHeight))
 			return false;
-		if (this.dotSpacing == null ? that.dotSpacing != null
-				: !this.dotSpacing.equals(that.dotSpacing))
+		if (dotSpacing == null ? that.dotSpacing != null : !dotSpacing
+				.equals(that.dotSpacing))
 			return false;
-		if (this.vertical != that.vertical)
+		if (vertical != that.vertical)
 			return false;
-		if (this.hasBorder != that.hasBorder)
+		if (hasBorder != that.hasBorder)
 			return false;
-		if (!this.borderColor.equals(that.borderColor))
+		if (!borderColor.equals(that.borderColor))
 			return false;
-		if (this.hasFill != that.hasFill)
+		if (hasFill != that.hasFill)
 			return false;
-		if (!this.fillColor.equals(that.fillColor))
+		if (!fillColor.equals(that.fillColor))
 			return false;
-		if (!this.dotShape.equals(that.dotShape))
+		if (!dotShape.equals(that.dotShape))
 			return false;
-		if (!this.numberPosition.equals(that.numberPosition))
+		if (!numberPosition.equals(that.numberPosition))
 			return false;
-		if (this.numberWidth == null ? that.numberWidth != null
-				: !this.numberWidth.equals(that.numberWidth))
+		if (numberWidth == null ? that.numberWidth != null : !numberWidth
+				.equals(that.numberWidth))
 			return false;
-		if (this.numberHeight == null ? that.numberHeight != null
-				: !this.numberHeight.equals(that.numberHeight))
+		if (numberHeight == null ? that.numberHeight != null : !numberHeight
+				.equals(that.numberHeight))
 			return false;
-		if (this.wrapPoint != that.wrapPoint)
+		if (wrapPoint != that.wrapPoint)
 			return false;
-		if (this.fontSize == null ? that.fontSize != null : !this.fontSize
+		if (fontSize == null ? that.fontSize != null : !fontSize
 				.equals(that.fontSize))
 			return false;
-		if (this.fontFamily == null ? that.fontFamily != null
-				: !this.fontFamily.equals(that.fontFamily))
+		if (fontFamily == null ? that.fontFamily != null : !fontFamily
+				.equals(that.fontFamily))
 			return false;
-		if (this.fontItalic != that.fontItalic)
+		if (fontItalic != that.fontItalic)
 			return false;
-		if (this.fontBold != that.fontBold)
+		if (fontBold != that.fontBold)
 			return false;
-		if (this.fontColor == null ? that.fontColor != null : !this.fontColor
+		if (fontColor == null ? that.fontColor != null : !fontColor
 				.equals(that.fontColor))
 			return false;
 		return true;
@@ -504,7 +515,7 @@ public class DotbarData {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append("valueExpression=");
 		sb.append(valueExpression);
 		sb.append(", displayValue=");
@@ -571,13 +582,13 @@ public class DotbarData {
 
 	public static int getFontPointSize(String string, final double pixelsPerInch) {
 		string = string.trim().toLowerCase();
-		Integer fontSize = fontSizes.get(string);
+		final Integer fontSize = fontSizes.get(string);
 		if (fontSize != null)
 			return fontSize.intValue();
 		DimensionValue dv;
 		try {
 			dv = DimensionValueUtil.doParse(string, true, null);
-		} catch (PropertyValueException e) {
+		} catch (final PropertyValueException e) {
 			dv = new DimensionValue(12, DesignChoiceConstants.UNITS_PX);
 			e.printStackTrace();
 		}
@@ -585,8 +596,8 @@ public class DotbarData {
 			dv = DimensionUtil.convertTo(dv, DesignChoiceConstants.UNITS_PT,
 					DesignChoiceConstants.UNITS_PT);
 		else {
-			String units = dv.getUnits();
-			double measure = dv.getMeasure();
+			final String units = dv.getUnits();
+			final double measure = dv.getMeasure();
 			if (DesignChoiceConstants.UNITS_PX.equals(units))
 				dv = DimensionUtil.convertTo(measure / pixelsPerInch,
 						DesignChoiceConstants.UNITS_IN,

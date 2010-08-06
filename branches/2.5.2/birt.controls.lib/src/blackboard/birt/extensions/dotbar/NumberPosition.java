@@ -15,14 +15,15 @@
 package blackboard.birt.extensions.dotbar;
 
 /**
- * An immutable enumeration of positions for the textual representation of the number.
+ * An immutable enumeration of positions for the textual representation of the
+ * number.
  * 
  * @author Steve Schafer / Innovent Solutions
  */
 public class NumberPosition {
 	public final int index;
 
-	private NumberPosition(int index) {
+	private NumberPosition(final int index) {
 		this.index = index;
 	}
 
@@ -41,7 +42,7 @@ public class NumberPosition {
 	 * @param string
 	 * @return
 	 */
-	public static NumberPosition create(String string) {
+	public static NumberPosition create(final String string) {
 		for (int i = 0; i < names.length; i++)
 			if (names[i].equalsIgnoreCase(string))
 				return objects[i];
@@ -65,11 +66,11 @@ public class NumberPosition {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (!(obj instanceof NumberPosition))
 			return false;
-		NumberPosition that = (NumberPosition) obj;
-		return this.index == that.index;
+		final NumberPosition that = (NumberPosition) obj;
+		return index == that.index;
 	}
 
 	@Override

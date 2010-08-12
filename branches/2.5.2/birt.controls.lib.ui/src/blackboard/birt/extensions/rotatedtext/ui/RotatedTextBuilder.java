@@ -34,16 +34,17 @@ import blackboard.birt.extensions.rotatedtext.RotatedTextItem;
  * RotatedTextBuilder
  */
 public class RotatedTextBuilder extends ReportItemBuilderUI {
-	public int open(ExtendedItemHandle handle) {
+	@Override
+	public int open(final ExtendedItemHandle handle) {
 		try {
-			IReportItem item = handle.getReportItem();
+			final IReportItem item = handle.getReportItem();
 
 			if (item instanceof RotatedTextItem) {
-				RotatedTextEditor editor = new RotatedTextEditor(Display
+				final RotatedTextEditor editor = new RotatedTextEditor(Display
 						.getCurrent().getActiveShell(), (RotatedTextItem) item);
 				return editor.open();
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 		return Window.CANCEL;
@@ -57,47 +58,55 @@ class RotatedTextEditor extends TrayDialog {
 	protected RotatedTextItem textItem;
 	protected ControlGroup controlGroup = new ControlGroup();
 
-	protected RotatedTextEditor(Shell shell, RotatedTextItem textItem) {
+	protected RotatedTextEditor(final Shell shell,
+			final RotatedTextItem textItem) {
 		super(shell);
 		this.textItem = textItem;
 	}
 
-	protected void configureShell(Shell newShell) {
+	@Override
+	protected void configureShell(final Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setText("Rotated Text Builder"); //$NON-NLS-1$
 	}
 
-	protected Control createDialogArea(Composite parent) {
-		Composite composite = new Composite(parent, SWT.NONE);
-		GridLayout layout = controlGroup.getGridLayout();
-		layout.marginHeight = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_MARGIN);
-		layout.marginWidth = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_MARGIN);
-		layout.verticalSpacing = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_SPACING);
-		layout.horizontalSpacing = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_SPACING);
+	@Override
+	protected Control createDialogArea(final Composite parent) {
+		final Composite composite = new Composite(parent, SWT.NONE);
+		final GridLayout layout = this.controlGroup.getGridLayout();
+		layout.marginHeight = this
+				.convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_MARGIN);
+		layout.marginWidth = this
+				.convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_MARGIN);
+		layout.verticalSpacing = this
+				.convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_SPACING);
+		layout.horizontalSpacing = this
+				.convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_SPACING);
 		composite.setLayout(layout);
 		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
-		controlGroup.build(composite,
+		this.controlGroup.build(composite,
 				new blackboard.birt.controls.ControlEventHandler() {
-					public void updateModel(String propName) {
+					public void updateModel(final String propName) {
 					}
 
 					public ExtendedItemHandle getModelHandle() {
-						return textItem.getModelHandle();
+						return RotatedTextEditor.this.textItem.getModelHandle();
 					}
 				}, parent.getBackground());
 		applyDialogFont(composite);
-		initValues();
+		this.initValues();
 		return composite;
 	}
 
 	private void initValues() {
-		controlGroup.load(new RotatedTextData(textItem));
+		this.controlGroup.load(new RotatedTextData(this.textItem));
 	}
 
+	@Override
 	protected void okPressed() {
 		try {
-			controlGroup.save(textItem);
-		} catch (Exception ex) {
+			this.controlGroup.save(this.textItem);
+		} catch (final Exception ex) {
 			ex.printStackTrace();
 		}
 

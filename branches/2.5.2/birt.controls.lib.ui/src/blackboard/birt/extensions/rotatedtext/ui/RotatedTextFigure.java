@@ -38,18 +38,20 @@ public class RotatedTextFigure extends Figure {
 	private Image cachedImage;
 	private RotatedTextItem textItem;
 
-	RotatedTextFigure(RotatedTextItem textItem) {
+	RotatedTextFigure(final RotatedTextItem textItem) {
 		super();
 		this.textItem = textItem;
 
-		addMouseListener(new MouseListener.Stub() {
-			public void mousePressed(MouseEvent me) {
+		this.addMouseListener(new MouseListener.Stub() {
+			@Override
+			public void mousePressed(final MouseEvent me) {
 				if (me.button == 2) {
 					try {
 						RotatedTextFigure.this.textItem
-								.setRotationAngle(normalize(RotatedTextFigure.this.textItem
-										.getRotationAngle() + 45));
-					} catch (SemanticException e) {
+								.setRotationAngle(RotatedTextFigure.this
+										.normalize(RotatedTextFigure.this.textItem
+												.getRotationAngle() + 45));
+					} catch (final SemanticException e) {
 						e.printStackTrace();
 					}
 				}
@@ -66,27 +68,29 @@ public class RotatedTextFigure extends Figure {
 		return angle;
 	}
 
-	public Dimension getMinimumSize(int hint, int hint2) {
-		return getPreferredSize(hint, hint2);
+	@Override
+	public Dimension getMinimumSize(final int hint, final int hint2) {
+		return this.getPreferredSize(hint, hint2);
 	}
 
-	public Dimension getPreferredSize(int hint, int hint2) {
-		Display display = Display.getCurrent();
+	@Override
+	public Dimension getPreferredSize(final int hint, final int hint2) {
+		final Display display = Display.getCurrent();
 		GC gc = null;
 
 		try {
-			final String text = truncateText(textItem.getText());
-			final int angle = textItem.getRotationAngle();
+			final String text = this.truncateText(this.textItem.getText());
+			final int angle = this.textItem.getRotationAngle();
 			gc = new GC(display);
 			final Font font = RotatedTextSwtUtil.getSwtFont(display,
-					new RotatedTextData(textItem));
+					new RotatedTextData(this.textItem));
 			gc.setFont(font);
 			final Point pt = gc.textExtent(text);
-			double[] info = RotatedTextSwtUtil.computedRotatedInfo(pt.x, pt.y,
-					angle);
+			final double[] info = RotatedTextSwtUtil.computedRotatedInfo(pt.x,
+					pt.y, angle);
 
-			if (getBorder() != null) {
-				Insets bdInsets = getBorder().getInsets(this);
+			if (this.getBorder() != null) {
+				final Insets bdInsets = this.getBorder().getInsets(this);
 				return new Dimension((int) info[0] + bdInsets.getWidth(),
 						(int) info[1] + bdInsets.getHeight());
 			}
@@ -97,7 +101,7 @@ public class RotatedTextFigure extends Figure {
 		}
 	}
 
-	private String truncateText(String text) {
+	private String truncateText(final String text) {
 		if (text == null)
 			return "";
 		if (text.length() > 28)
@@ -105,31 +109,32 @@ public class RotatedTextFigure extends Figure {
 		return text;
 	}
 
-	protected void paintClientArea(Graphics graphics) {
-		final Rectangle r = getClientArea().getCopy();
-		RotatedTextData data = new RotatedTextData(textItem);
+	@Override
+	protected void paintClientArea(final Graphics graphics) {
+		final Rectangle r = this.getClientArea().getCopy();
+		final RotatedTextData data = new RotatedTextData(this.textItem);
 
-		if (!data.equals(lastData) || cachedImage == null
-				|| cachedImage.isDisposed()) {
-			lastData = data;
+		if (!data.equals(this.lastData) || this.cachedImage == null
+				|| this.cachedImage.isDisposed()) {
+			this.lastData = data;
 
-			if (cachedImage != null && !cachedImage.isDisposed())
-				cachedImage.dispose();
+			if (this.cachedImage != null && !this.cachedImage.isDisposed())
+				this.cachedImage.dispose();
 
-			cachedImage = RotatedTextSwtUtil.createRotatedTextImage(data);
+			this.cachedImage = RotatedTextSwtUtil.createRotatedTextImage(data);
 		}
 
-		if (cachedImage != null && !cachedImage.isDisposed())
-			graphics.drawImage(cachedImage, r.x, r.y);
+		if (this.cachedImage != null && !this.cachedImage.isDisposed())
+			graphics.drawImage(this.cachedImage, r.x, r.y);
 	}
 
-	void setRotatedTextItem(RotatedTextItem item) {
+	void setRotatedTextItem(final RotatedTextItem item) {
 		this.textItem = item;
 	}
 
 	void dispose() {
-		if (cachedImage != null && !cachedImage.isDisposed()) {
-			cachedImage.dispose();
+		if (this.cachedImage != null && !this.cachedImage.isDisposed()) {
+			this.cachedImage.dispose();
 		}
 	}
 }

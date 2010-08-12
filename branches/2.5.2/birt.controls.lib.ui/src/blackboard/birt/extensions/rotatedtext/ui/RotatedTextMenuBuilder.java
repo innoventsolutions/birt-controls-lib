@@ -30,10 +30,10 @@ import blackboard.birt.extensions.rotatedtext.RotatedTextItem;
  */
 public class RotatedTextMenuBuilder implements IMenuBuilder {
 	@SuppressWarnings("unchecked")
-	public void buildMenu(IMenuManager menu, List selectedList) {
+	public void buildMenu(final IMenuManager menu, final List selectedList) {
 		if (selectedList != null && selectedList.size() == 1
 				&& selectedList.get(0) instanceof ExtendedItemHandle) {
-			ExtendedItemHandle handle = (ExtendedItemHandle) selectedList
+			final ExtendedItemHandle handle = (ExtendedItemHandle) selectedList
 					.get(0);
 
 			if (!RotatedTextItem.EXTENSION_NAME.equals(handle
@@ -43,14 +43,14 @@ public class RotatedTextMenuBuilder implements IMenuBuilder {
 			RotatedTextItem item = null;
 			try {
 				item = (RotatedTextItem) handle.getReportItem();
-			} catch (ExtendedElementException e) {
+			} catch (final ExtendedElementException e) {
 				e.printStackTrace();
 			}
 
 			if (item == null)
 				return;
 
-			Separator separator = new Separator("group.rotatedtext"); //$NON-NLS-1$
+			final Separator separator = new Separator("group.rotatedtext"); //$NON-NLS-1$
 			if (menu.getItems().length > 0)
 				menu.insertBefore(menu.getItems()[0].getId(), separator);
 			else
@@ -67,19 +67,20 @@ public class RotatedTextMenuBuilder implements IMenuBuilder {
 	 * RotateAtction
 	 */
 	static class RotateAction extends Action {
-		private RotatedTextItem item;
-		private int angle;
+		private final RotatedTextItem item;
+		private final int angle;
 
-		RotateAction(RotatedTextItem item, int angle) {
+		RotateAction(final RotatedTextItem item, final int angle) {
 			this.item = item;
 			this.angle = angle;
-			setText("Rotate as " + angle + "\u00BA"); //$NON-NLS-1$ //$NON-NLS-2$
+			this.setText("Rotate as " + angle + "\u00BA"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
+		@Override
 		public void run() {
 			try {
-				item.setRotationAngle(angle);
-			} catch (SemanticException e) {
+				this.item.setRotationAngle(this.angle);
+			} catch (final SemanticException e) {
 				e.printStackTrace();
 			}
 		}

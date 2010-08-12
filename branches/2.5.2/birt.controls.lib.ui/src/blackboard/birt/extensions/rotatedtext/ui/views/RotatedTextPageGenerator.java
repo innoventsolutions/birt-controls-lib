@@ -33,72 +33,75 @@ public class RotatedTextPageGenerator extends AbstractPageGenerator {
 	private static final String CUSTOM_PAGE_TITLE = "Custom"; //$NON-NLS-1$
 	private IPropertyTabUI generalPage;
 
-	protected void buildItemContent(CTabItem item) {
-		if (itemMap.containsKey(item) && itemMap.get(item) == null) {
-			String title = tabFolder.getSelection().getText();
+	protected void buildItemContent(final CTabItem item) {
+		if (this.itemMap.containsKey(item) && this.itemMap.get(item) == null) {
+			final String title = this.tabFolder.getSelection().getText();
 
 			if (CUSTOM_PAGE_TITLE.equals(title)) {
-				TabPage page = new RotatedTextCustomPage().getPage();
+				final TabPage page = new RotatedTextCustomPage().getPage();
 
 				if (page != null) {
-					setPageInput(page);
-					refresh(tabFolder, page, true);
+					this.setPageInput(page);
+					this.refresh(this.tabFolder, page, true);
 					item.setControl(page.getControl());
-					itemMap.put(item, page);
+					this.itemMap.put(item, page);
 				}
 			}
-		} else if (itemMap.get(item) != null) {
-			setPageInput(itemMap.get(item));
-			refresh(tabFolder, itemMap.get(item), false);
+		} else if (this.itemMap.get(item) != null) {
+			this.setPageInput(this.itemMap.get(item));
+			this.refresh(this.tabFolder, this.itemMap.get(item), false);
 		}
 	}
 
+	@Override
 	public void refresh() {
-		createTabItems(input);
+		this.createTabItems(this.input);
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
-	public void createTabItems(List input) {
-		RotatedTextItem rotatedTextItem = RotatedTextGeneralPage
+	public void createTabItems(final List input) {
+		final RotatedTextItem rotatedTextItem = RotatedTextGeneralPage
 				.getItemFromInput(input);
 		if (rotatedTextItem != null) {
-			if (generalPage == null || generalPage.getControl().isDisposed()) {
-				tabFolder.setLayout(new FillLayout());
-				String[] categories = { null, AttributesUtil.BORDER,
+			if (this.generalPage == null
+					|| this.generalPage.getControl().isDisposed()) {
+				this.tabFolder.setLayout(new FillLayout());
+				final String[] categories = { null, AttributesUtil.BORDER,
 						AttributesUtil.MARGIN, AttributesUtil.SECTION,
 						AttributesUtil.VISIBILITY, AttributesUtil.TOC,
 						AttributesUtil.BOOKMARK, AttributesUtil.USERPROPERTIES,
 						AttributesUtil.NAMEDEXPRESSIONS,
 						AttributesUtil.ADVANCEPROPERTY };
-				String[] customKeys = { "General" };
-				String[] customCategories = { "General" };
-				AttributesUtil.PageWrapper[] customPageWrappers = { new RotatedTextGeneralPage() };
-				generalPage = AttributesUtil.buildGeneralPage(tabFolder,
-						categories, customKeys, customCategories,
-						customPageWrappers, input);
-				CTabItem tabItem = new CTabItem(tabFolder, SWT.NONE);
+				final String[] customKeys = { "General" };
+				final String[] customCategories = { "General" };
+				final AttributesUtil.PageWrapper[] customPageWrappers = { new RotatedTextGeneralPage() };
+				this.generalPage = AttributesUtil.buildGeneralPage(
+						this.tabFolder, categories, customKeys,
+						customCategories, customPageWrappers, input);
+				final CTabItem tabItem = new CTabItem(this.tabFolder, SWT.NONE);
 				tabItem.setText(ATTRIBUTESTITLE);
-				tabItem.setControl(generalPage.getControl());
+				tabItem.setControl(this.generalPage.getControl());
 			}
 
 			this.input = input;
-			generalPage.setInput(input);
-			addSelectionListener(this);
-			((TabPage) generalPage).refresh();
+			this.generalPage.setInput(input);
+			this.addSelectionListener(this);
+			((TabPage) this.generalPage).refresh();
 
-			//      createTabItem( CUSTOM_PAGE_TITLE, ATTRIBUTESTITLE );
-			//      if ( tabFolder.getSelection() != null )
-			//      {
-			//        buildItemContent( tabFolder.getSelection() );
-			//      }
+			// createTabItem( CUSTOM_PAGE_TITLE, ATTRIBUTESTITLE );
+			// if ( tabFolder.getSelection() != null )
+			// {
+			// buildItemContent( tabFolder.getSelection() );
+			// }
 		} else
 			System.out.println("Wrong input: " + input);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void createControl(Composite parent, Object input) {
-		RotatedTextItem rotatedTextItem = RotatedTextGeneralPage
+	public void createControl(final Composite parent, final Object input) {
+		final RotatedTextItem rotatedTextItem = RotatedTextGeneralPage
 				.getItemFromInput(input);
 		if (rotatedTextItem != null) {
 			super.createControl(parent, input);

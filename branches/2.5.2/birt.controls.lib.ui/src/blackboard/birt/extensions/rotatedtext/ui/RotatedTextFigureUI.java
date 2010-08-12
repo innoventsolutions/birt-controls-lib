@@ -26,30 +26,35 @@ import blackboard.birt.extensions.rotatedtext.RotatedTextItem;
  */
 public class RotatedTextFigureUI extends ReportItemFigureProvider {
 
-	public IFigure createFigure(ExtendedItemHandle handle) {
+	@Override
+	public IFigure createFigure(final ExtendedItemHandle handle) {
 		try {
-			IReportItem item = handle.getReportItem();
+			final IReportItem item = handle.getReportItem();
 			if (item instanceof RotatedTextItem)
 				return new RotatedTextFigure((RotatedTextItem) item);
-		} catch (ExtendedElementException e) {
+		} catch (final ExtendedElementException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	public void updateFigure(ExtendedItemHandle handle, IFigure figure) {
+	@Override
+	public void updateFigure(final ExtendedItemHandle handle,
+			final IFigure figure) {
 		try {
-			IReportItem item = handle.getReportItem();
+			final IReportItem item = handle.getReportItem();
 			if (item instanceof RotatedTextItem) {
-				RotatedTextFigure fig = (RotatedTextFigure) figure;
+				final RotatedTextFigure fig = (RotatedTextFigure) figure;
 				fig.setRotatedTextItem((RotatedTextItem) item);
 			}
-		} catch (ExtendedElementException e) {
+		} catch (final ExtendedElementException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void disposeFigure(ExtendedItemHandle handle, IFigure figure) {
+	@Override
+	public void disposeFigure(final ExtendedItemHandle handle,
+			final IFigure figure) {
 		((RotatedTextFigure) figure).dispose();
 	}
 

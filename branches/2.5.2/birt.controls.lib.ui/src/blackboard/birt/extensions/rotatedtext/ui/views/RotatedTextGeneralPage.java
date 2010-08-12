@@ -40,15 +40,16 @@ public class RotatedTextGeneralPage extends AttributesUtil.PageWrapper {
 	protected FormToolkit toolkit;
 	protected RotatedTextItem rotatedTextItem;
 	protected Composite contentpane;
-	private ControlGroup controlGroup = new ControlGroup();
+	private final ControlGroup controlGroup = new ControlGroup();
 
-	public void buildUI(Composite parent) {
+	@Override
+	public void buildUI(final Composite parent) {
 		if (toolkit == null) {
 			toolkit = new FormToolkit(Display.getCurrent());
 			toolkit.setBorderStyle(SWT.NULL);
 		}
 
-		Control[] children = parent.getChildren();
+		final Control[] children = parent.getChildren();
 		if (children != null && children.length > 0) {
 			contentpane = (Composite) children[children.length - 1];
 			{
@@ -57,13 +58,13 @@ public class RotatedTextGeneralPage extends AttributesUtil.PageWrapper {
 				gridLayout.verticalSpacing = 4;
 				contentpane.setLayout(gridLayout);
 			}
-			Color backgroundColor = new Color(contentpane.getDisplay(), 0xFF,
-					0xFF, 0xFF);
+			final Color backgroundColor = new Color(contentpane.getDisplay(),
+					0xFF, 0xFF, 0xFF);
 			controlGroup.build(contentpane, new ControlEventHandler() {
-				public void updateModel(String propName) {
+				public void updateModel(final String propName) {
 					try {
 						RotatedTextGeneralPage.this.updateModel(propName);
-					} catch (SemanticException e) {
+					} catch (final SemanticException e) {
 						e.printStackTrace();
 					}
 				}
@@ -75,26 +76,27 @@ public class RotatedTextGeneralPage extends AttributesUtil.PageWrapper {
 		}
 	}
 
-	public void setInput(Object input) {
-		RotatedTextItem item = getItemFromInput(input);
+	@Override
+	public void setInput(final Object input) {
+		final RotatedTextItem item = getItemFromInput(input);
 		if (item != null)
-			this.rotatedTextItem = item;
+			rotatedTextItem = item;
 	}
 
 	@SuppressWarnings("unchecked")
-	public static RotatedTextItem getItemFromInput(Object input) {
+	public static RotatedTextItem getItemFromInput(final Object input) {
 		if (input instanceof List) {
-			List list = (List) input;
-			for (Object object : list) {
+			final List list = (List) input;
+			for (final Object object : list) {
 				if (object instanceof ExtendedItemHandle) {
-					ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) object;
+					final ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) object;
 					try {
-						IReportItem reportItem = extendedItemHandle
+						final IReportItem reportItem = extendedItemHandle
 								.getReportItem();
 						if (reportItem instanceof RotatedTextItem) {
 							return (RotatedTextItem) reportItem;
 						}
-					} catch (ExtendedElementException e) {
+					} catch (final ExtendedElementException e) {
 						e.printStackTrace();
 					}
 				}
@@ -103,17 +105,18 @@ public class RotatedTextGeneralPage extends AttributesUtil.PageWrapper {
 		return null;
 	}
 
+	@Override
 	public void dispose() {
 		if (toolkit != null) {
 			toolkit.dispose();
 		}
 	}
 
-	private void adaptFormStyle(Composite comp) {
-		Control[] children = comp.getChildren();
-		for (int i = 0; i < children.length; i++) {
-			if (children[i] instanceof Composite) {
-				adaptFormStyle((Composite) children[i]);
+	private void adaptFormStyle(final Composite comp) {
+		final Control[] children = comp.getChildren();
+		for (final Control element : children) {
+			if (element instanceof Composite) {
+				adaptFormStyle((Composite) element);
 			}
 		}
 
@@ -121,6 +124,7 @@ public class RotatedTextGeneralPage extends AttributesUtil.PageWrapper {
 		toolkit.adapt(comp);
 	}
 
+	@Override
 	public void refresh() {
 		if (contentpane != null && !contentpane.isDisposed()) {
 			if (toolkit == null) {
@@ -134,20 +138,21 @@ public class RotatedTextGeneralPage extends AttributesUtil.PageWrapper {
 		}
 	}
 
+	@Override
 	public void postElementEvent() {
 		if (contentpane != null && !contentpane.isDisposed()) {
 			updateUI();
 		}
 	}
 
-	private void updateModel(String propName) throws SemanticException {
+	private void updateModel(final String propName) throws SemanticException {
 		if (rotatedTextItem != null)
 			controlGroup.updateModel(rotatedTextItem, propName);
 	}
 
 	protected void updateUI() {
 		if (rotatedTextItem != null) {
-			RotatedTextData data = new RotatedTextData(rotatedTextItem);
+			final RotatedTextData data = new RotatedTextData(rotatedTextItem);
 			controlGroup.load(data);
 		}
 	}

@@ -28,18 +28,19 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 public class RotatedTextCustomPage extends RotatedTextGeneralPage {
 	private Label lbText, lbAngle;
 
-	public void buildUI(Composite parent) {
+	@Override
+	public void buildUI(final Composite parent) {
 		if (toolkit == null) {
 			toolkit = new FormToolkit(Display.getCurrent());
 			toolkit.setBorderStyle(SWT.NULL);
 		}
 
-		Control[] children = parent.getChildren();
+		final Control[] children = parent.getChildren();
 
 		if (children != null && children.length > 0) {
 			contentpane = (Composite) children[children.length - 1];
 
-			GridLayout layout = new GridLayout(2, false);
+			final GridLayout layout = new GridLayout(2, false);
 			layout.marginTop = 8;
 			layout.marginLeft = 8;
 			layout.verticalSpacing = 12;
@@ -60,6 +61,7 @@ public class RotatedTextCustomPage extends RotatedTextGeneralPage {
 		}
 	}
 
+	@Override
 	protected void updateUI() {
 		if (rotatedTextItem != null) {
 			final String text = rotatedTextItem.getText();

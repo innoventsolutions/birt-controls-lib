@@ -33,13 +33,14 @@ import blackboard.birt.extensions.util.Util;
  * SwtGraphicsUtil
  */
 public class RotatedTextSwtUtil {
-	public static Color getSwtFontColor(Device device, RotatedTextData data) {
+	public static Color getSwtFontColor(final Device device,
+			final RotatedTextData data) {
 		return SwtUtil.getSwtColor(device, data.fontColor);
 	}
 
 	public static Font getSwtFont(final Device device,
 			final RotatedTextData data) {
-		FontData fontData = new FontData();
+		final FontData fontData = new FontData();
 		fontData.setHeight(Util.getFontPointSize(data.fontSize, 96));
 		fontData.setName(data.fontFamily);
 		int style = SWT.NORMAL;
@@ -48,7 +49,7 @@ public class RotatedTextSwtUtil {
 		if (data.fontItalic)
 			style |= SWT.ITALIC;
 		fontData.setStyle(style);
-		Font font = new Font(device, fontData);
+		final Font font = new Font(device, fontData);
 		return font;
 	}
 
@@ -59,30 +60,30 @@ public class RotatedTextSwtUtil {
 				return null;
 
 			final String text = data.text;
-			//      String text;
-			//      {
-			//        StringBuilder sb = new StringBuilder();
-			//        sb.append("\u4e2a\u4e13\u4e2a\u4e13");
-			//        sb.append(data.text);
-			//        text = sb.toString();
-			//      }
-			Display display = Display.getCurrent();
+			// String text;
+			// {
+			// StringBuilder sb = new StringBuilder();
+			// sb.append("\u4e2a\u4e13\u4e2a\u4e13");
+			// sb.append(data.text);
+			// text = sb.toString();
+			// }
+			final Display display = Display.getCurrent();
 
-			Font font = RotatedTextSwtUtil.getSwtFont(display, data);
+			final Font font = RotatedTextSwtUtil.getSwtFont(display, data);
 			gc = new GC(display);
 			gc.setFont(font);
 
-			Point pt = gc.textExtent(text);
+			final Point pt = gc.textExtent(text);
 			gc.dispose();
 
-			TextLayout tl = new TextLayout(display);
+			final TextLayout tl = new TextLayout(display);
 			if (font != null)
 				tl.setFont(font);
 			tl.setText(text);
 
 			return createRotatedImage(tl, pt.x, pt.y, data.angle,
 					getSwtFontColor(display, data));
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 
 			if (gc != null && !gc.isDisposed())
@@ -95,7 +96,8 @@ public class RotatedTextSwtUtil {
 	/**
 	 * @return Returns as [rotatedWidth, rotatedHeight, xOffset, yOffset]
 	 */
-	public static double[] computedRotatedInfo(int width, int height, int angle) {
+	public static double[] computedRotatedInfo(final int width,
+			final int height, int angle) {
 		angle = angle % 360;
 
 		if (angle < 0)
@@ -114,48 +116,48 @@ public class RotatedTextSwtUtil {
 			return new double[] { height, width, 0, -height };
 
 		if (angle > 0 && angle < 90) {
-			double angleInRadians = ((-angle * Math.PI) / 180.0);
-			double cosTheta = Math.abs(Math.cos(angleInRadians));
-			double sineTheta = Math.abs(Math.sin(angleInRadians));
+			final double angleInRadians = ((-angle * Math.PI) / 180.0);
+			final double cosTheta = Math.abs(Math.cos(angleInRadians));
+			final double sineTheta = Math.abs(Math.sin(angleInRadians));
 
-			int dW = (int) (width * cosTheta + height * sineTheta);
-			int dH = (int) (width * sineTheta + height * cosTheta);
+			final int dW = (int) (width * cosTheta + height * sineTheta);
+			final int dH = (int) (width * sineTheta + height * cosTheta);
 
 			return new double[] { dW, dH, -width * sineTheta * sineTheta,
 					width * sineTheta * cosTheta };
 		}
 
 		if (angle > 90 && angle < 180) {
-			double angleInRadians = ((-angle * Math.PI) / 180.0);
-			double cosTheta = Math.abs(Math.cos(angleInRadians));
-			double sineTheta = Math.abs(Math.sin(angleInRadians));
+			final double angleInRadians = ((-angle * Math.PI) / 180.0);
+			final double cosTheta = Math.abs(Math.cos(angleInRadians));
+			final double sineTheta = Math.abs(Math.sin(angleInRadians));
 
-			int dW = (int) (width * cosTheta + height * sineTheta);
-			int dH = (int) (width * sineTheta + height * cosTheta);
+			final int dW = (int) (width * cosTheta + height * sineTheta);
+			final int dH = (int) (width * sineTheta + height * cosTheta);
 
 			return new double[] { dW, dH,
 					-(width + height * sineTheta * cosTheta), -height / 2 };
 		}
 
 		if (angle > 180 && angle < 270) {
-			double angleInRadians = ((-angle * Math.PI) / 180.0);
-			double cosTheta = Math.abs(Math.cos(angleInRadians));
-			double sineTheta = Math.abs(Math.sin(angleInRadians));
+			final double angleInRadians = ((-angle * Math.PI) / 180.0);
+			final double cosTheta = Math.abs(Math.cos(angleInRadians));
+			final double sineTheta = Math.abs(Math.sin(angleInRadians));
 
-			int dW = (int) (width * cosTheta + height * sineTheta);
-			int dH = (int) (width * sineTheta + height * cosTheta);
+			final int dW = (int) (width * cosTheta + height * sineTheta);
+			final int dH = (int) (width * sineTheta + height * cosTheta);
 
 			return new double[] { dW, dH, -(width * cosTheta * cosTheta),
 					-(height + width * cosTheta * sineTheta) };
 		}
 
 		if (angle > 270 && angle < 360) {
-			double angleInRadians = ((-angle * Math.PI) / 180.0);
-			double cosTheta = Math.abs(Math.cos(angleInRadians));
-			double sineTheta = Math.abs(Math.sin(angleInRadians));
+			final double angleInRadians = ((-angle * Math.PI) / 180.0);
+			final double cosTheta = Math.abs(Math.cos(angleInRadians));
+			final double sineTheta = Math.abs(Math.sin(angleInRadians));
 
-			int dW = (int) (width * cosTheta + height * sineTheta);
-			int dH = (int) (width * sineTheta + height * cosTheta);
+			final int dW = (int) (width * cosTheta + height * sineTheta);
+			final int dH = (int) (width * sineTheta + height * cosTheta);
 
 			return new double[] { dW, dH, (height * cosTheta * sineTheta),
 					-(height * sineTheta * sineTheta) };
@@ -164,21 +166,22 @@ public class RotatedTextSwtUtil {
 		return new double[] { width, height, 0, 0 };
 	}
 
-	private static Image createRotatedImage(Object src, int width, int height,
-			int angle, Color fontColor) {
+	private static Image createRotatedImage(final Object src, final int width,
+			final int height, int angle, final Color fontColor) {
 		angle = angle % 360;
 
 		if (angle < 0)
 			angle += 360;
 
-		double[] info = computedRotatedInfo(width, height, angle);
+		final double[] info = computedRotatedInfo(width, height, angle);
 		return renderRotatedObject(src, -angle, (int) info[0], (int) info[1],
 				info[2], info[3], fontColor);
 	}
 
-	private static Image renderRotatedObject(Object src, double angle,
-			int width, int height, double tx, double ty, Color fontColor) {
-		Display display = Display.getCurrent();
+	private static Image renderRotatedObject(final Object src,
+			final double angle, final int width, final int height,
+			final double tx, final double ty, final Color fontColor) {
+		final Display display = Display.getCurrent();
 
 		Image dest = null;
 		GC gc = null;
@@ -200,12 +203,12 @@ public class RotatedTextSwtUtil {
 			gc.setTransform(tf);
 
 			if (src instanceof TextLayout) {
-				TextLayout tl = (TextLayout) src;
+				final TextLayout tl = (TextLayout) src;
 				tl.draw(gc, 0, 0);
 			} else if (src instanceof Image) {
 				gc.drawImage((Image) src, 0, 0);
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (gc != null && !gc.isDisposed()) {

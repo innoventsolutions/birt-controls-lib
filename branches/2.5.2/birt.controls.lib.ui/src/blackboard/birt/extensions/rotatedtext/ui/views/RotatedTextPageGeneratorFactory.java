@@ -23,10 +23,11 @@ import org.eclipse.core.runtime.IAdapterFactory;
 public class RotatedTextPageGeneratorFactory implements IAdapterFactory {
 
 	@SuppressWarnings("unchecked")
-	public Object getAdapter(Object adaptableObject, Class adapterType) {
+	public Object getAdapter(final Object adaptableObject,
+			final Class adapterType) {
 		if (adaptableObject instanceof ExtendedItemHandle) {
-			ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) adaptableObject;
-			String extensionName = extendedItemHandle.getExtensionName();
+			final ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) adaptableObject;
+			final String extensionName = extendedItemHandle.getExtensionName();
 			if ("RotatedText".equals(extensionName))
 				return new RotatedTextPageGenerator();
 		}

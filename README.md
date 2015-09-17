@@ -2,7 +2,7 @@ The Business Intelligence and Reporting Tools (BIRT) is a top level Eclipse proj
 
 As an Eclipse project, BIRT is built for extensibility.  Developers can customize BIRT to support custom controls and behavior through BIRT extension points.  The ReportItem allows developers to add new controls to the standard BIRT palette.  These controls can then be easily included to reports using standard drag and drop techniques.
 
-This project consists of two new BIRT controls.
+This project consists of two new BIRT controls. So this is another change that should show up as a Pull Request.
 
 <table>
 <tr>

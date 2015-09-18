@@ -41,7 +41,7 @@ The software in this project has been donated back to the BIRT community by Blac
 <br>
 We welcome you to use, critique, and contribute to this component library.<br>
 <br>
-To get started see the <a href='/birt-controls-lib/wiki/UsageGuide'>Usage Guide</a>
+To get started see the <a href='https://github.com/innoventsolutions/birt-controls-lib/wiki/UsageGuide'>Usage Guide</a>
 
 <table width='60%'>
 <tr>

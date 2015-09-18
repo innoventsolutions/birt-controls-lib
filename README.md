@@ -12,7 +12,7 @@ When building reports, it is very easy to overload report users with numbers.  T
 The control supports multiple shapes (dots, triangles, and squares), colors, and fonts to improve user accessibility.<br>
 </td>
 <td width='50%'>
-<blockquote><img src='http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/home.attach/dotbar.png' />
+<blockquote><img src='http://innoventsolutions.github.io/images/birt-controls-lib/dotbar.png' />
 </td>
 </tr>
 <tr>
@@ -22,7 +22,7 @@ Rotating text within a report is useful when trying to conserve space on the pag
 Based on example code from the BIRT repository, the Rotated Text control provides a production ready implementation that you can use in your project.  This implementation includes support for font, color, line wrapping and hyper-links.<br>
 </td>
 <td width='50%'>
-<blockquote><img src='http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/home.attach/rotated_text.png' />
+<blockquote><img src='http://innoventsolutions.github.io/images/birt-controls-lib/rotated_text.png' />
 </td>
 </tr>
 </table></blockquote>
@@ -45,7 +45,7 @@ To get started see the <a href='UsageGuide.md'>Usage Guide</a>
 
 <table width='60%'>
 <tr>
-<td><a href='http://www.blackboard.com'>http://svn.codespot.com/a/eclipselabs.org/birt-controls-lib/wiki/home.attach/Powered_Bb_090.png </a></td>
+<td><a href='http://www.blackboard.com'><img src="http://innoventsolutions.github.io/images/birt-controls-lib/Powered_Bb_090.png"/></a></td>
 <td align='right'><a href='http://www.innoventsolutions.com/birt-consulting.html'><img src='http://www.innoventsolutions.com/pics/logo_innovent.gif' /></a> </td>
 </tr>
 </table>

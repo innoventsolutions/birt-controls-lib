@@ -1,16 +1,16 @@
 /*
- * (C) Copyright Blackboard Inc. 1998-2009 - All Rights Reserved
- *
- * Permission to use, copy, modify, and distribute this software without prior explicit written approval is
- * strictly  prohibited. Please refer to the file "copyright.html" for further important copyright and licensing information.
- *
- * BLACKBOARD MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE,
- * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
- * BLACKBOARD SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING,
- * MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
- *
- * authors: Scott Rosenbaum / Steve Schafer, Innovent Solutions, Inc.
+ * Copyright (c) 2008-2015  Innovent Solutions, Inc.
+ * 
+ * All rights reserved. 
+ * 
+ * This program and the accompanying materials are made available under the terms 
+ * of the Eclipse Public License v1.0 which accompanies this distribution, 
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors: 
+ * 	Scott Rosenbaum - Innovent Solutions
+ *  Steve Schafer - Innovent Solutions
+ * 				 
  */
 package blackboard.birt.extensions.rotatedtext;
 

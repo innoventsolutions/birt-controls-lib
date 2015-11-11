@@ -17,7 +17,7 @@ The control supports multiple shapes (dots, triangles, and squares), colors, and
 </tr>
 <tr>
 <td width='50%'>
-Rotating text within a report is useful when trying to conserve space on the page.  The standard BIRT palette does not support rotated text.</blockquote>
+Rotating text within a report is useful when trying to conserve space on the page.  The standard BIRT Palette does not support rotated text.</blockquote>
 
 Based on example code from the BIRT repository, the <b>RotatedText</b> control provides a production ready implementation that you can use in your project.  This implementation includes support for font, color, line wrapping and hyper-links.<br>
 </td>
@@ -27,7 +27,7 @@ Based on example code from the BIRT repository, the <b>RotatedText</b> control p
 </tr>
 </table></blockquote>
 
-This project will provide production ready controls that give your report developers new items to effectively communicate through their reports.  In addition, this project provides best practice implementations that can be used to create your own BIRT ReportItem  extensions.
+This project will provide production ready controls that give your report developers new items to effectively communicate through their reports.  In addition, this project provides best practice implementations that can be used to create your own BIRT ReportItem  extensions.  These features have been validated to be compatible with the latest BIRT version 4.5.0.
 <br>
 VERSION RULES
 <ul><li>If you are using BIRT 2.3.2, then use version 2.3.2.X.</li></ul>

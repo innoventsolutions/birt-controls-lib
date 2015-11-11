@@ -29,12 +29,12 @@ import org.eclipse.birt.report.model.api.extension.ReportItemFactory;
 public class RotatedTextItemFactory extends ReportItemFactory {
 
 	@Override
-	public IReportItem newReportItem(final DesignElementHandle modelHanlde) {
-		if (modelHanlde instanceof ExtendedItemHandle
+	public IReportItem newReportItem(final DesignElementHandle modelHandle) {
+		if (modelHandle instanceof ExtendedItemHandle
 				&& RotatedTextItem.EXTENSION_NAME
-						.equals(((ExtendedItemHandle) modelHanlde)
+						.equals(((ExtendedItemHandle) modelHandle)
 								.getExtensionName())) {
-			return new RotatedTextItem((ExtendedItemHandle) modelHanlde);
+			return new RotatedTextItem((ExtendedItemHandle) modelHandle);
 		}
 		return null;
 	}

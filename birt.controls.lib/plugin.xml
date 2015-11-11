@@ -171,5 +171,12 @@
             name="RotatedText">
       </reportItem>
    </extension>
+   <extension
+         point="org.eclipse.birt.report.engine.reportEventHandler">
+      <reportEventHandler
+            class="blackboard.birt.extensions.dotbar.script.DotbarEventHandler"
+            name="DotBar">
+      </reportEventHandler>
+   </extension>
 
 </plugin>

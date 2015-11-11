@@ -14,18 +14,25 @@
  */
 package blackboard.birt.extensions.dotbar;
 
+import java.lang.reflect.Method;
+
 import org.eclipse.birt.report.model.api.DimensionHandle;
 import org.eclipse.birt.report.model.api.ExtendedItemHandle;
 import org.eclipse.birt.report.model.api.activity.SemanticException;
 import org.eclipse.birt.report.model.api.extension.ReportItem;
 import org.eclipse.birt.report.model.api.metadata.DimensionValue;
+import org.eclipse.birt.report.model.api.metadata.IMethodInfo;
+import org.eclipse.birt.report.model.api.scripts.ClassInfo;
+import org.eclipse.birt.report.model.api.scripts.MethodInfo;
 import org.eclipse.birt.report.model.elements.interfaces.IStyleModel;
 
+import blackboard.birt.extensions.dotbar.script.IDotbarEventHandler;
 import blackboard.birt.extensions.util.ColorSpec;
 import blackboard.birt.extensions.util.Util;
 
 /**
- * Provides an interface allowing all control properties to be loaded from and saved to the report model.
+ * Provides an interface allowing all control properties to be loaded from and
+ * saved to the report model.
  * 
  * @author Steve Schafer / Innovent Solutions
  */
@@ -96,20 +103,17 @@ public class DotbarItem extends ReportItem {
 	}
 
 	private DimensionValue getDotWidth() {
-		DimensionHandle handle = modelHandle
-				.getDimensionProperty(DOT_WIDTH_PROP);
+		DimensionHandle handle = modelHandle.getDimensionProperty(DOT_WIDTH_PROP);
 		return handle == null ? null : (DimensionValue) handle.getValue();
 	}
 
 	private DimensionValue getDotHeight() {
-		DimensionHandle handle = modelHandle
-				.getDimensionProperty(DOT_HEIGHT_PROP);
+		DimensionHandle handle = modelHandle.getDimensionProperty(DOT_HEIGHT_PROP);
 		return handle == null ? null : (DimensionValue) handle.getValue();
 	}
 
 	private DimensionValue getDotSpacing() {
-		DimensionHandle handle = modelHandle
-				.getDimensionProperty(DOT_SPACING_PROP);
+		DimensionHandle handle = modelHandle.getDimensionProperty(DOT_SPACING_PROP);
 		return handle == null ? null : (DimensionValue) handle.getValue();
 	}
 
@@ -126,8 +130,7 @@ public class DotbarItem extends ReportItem {
 	}
 
 	private ColorSpec getBorderColor() {
-		return ColorSpec.getColor(modelHandle
-				.getStringProperty(BORDER_COLOR_PROP));
+		return ColorSpec.getColor(modelHandle.getStringProperty(BORDER_COLOR_PROP));
 	}
 
 	private boolean hasFill() {
@@ -135,24 +138,20 @@ public class DotbarItem extends ReportItem {
 	}
 
 	private ColorSpec getFillColor() {
-		return ColorSpec.getColor(modelHandle
-				.getStringProperty(FILL_COLOR_PROP));
+		return ColorSpec.getColor(modelHandle.getStringProperty(FILL_COLOR_PROP));
 	}
 
 	private NumberPosition getNumberPosition() {
-		return NumberPosition.create(modelHandle
-				.getStringProperty(NUMBER_POSITION_PROP));
+		return NumberPosition.create(modelHandle.getStringProperty(NUMBER_POSITION_PROP));
 	}
 
 	private DimensionValue getNumberWidth() {
-		DimensionHandle handle = modelHandle
-				.getDimensionProperty(NUMBER_WIDTH_PROP);
+		DimensionHandle handle = modelHandle.getDimensionProperty(NUMBER_WIDTH_PROP);
 		return handle == null ? null : (DimensionValue) handle.getValue();
 	}
 
 	private DimensionValue getNumberHeight() {
-		DimensionHandle handle = modelHandle
-				.getDimensionProperty(NUMBER_HEIGHT_PROP);
+		DimensionHandle handle = modelHandle.getDimensionProperty(NUMBER_HEIGHT_PROP);
 		return handle == null ? null : (DimensionValue) handle.getValue();
 	}
 
@@ -165,23 +164,19 @@ public class DotbarItem extends ReportItem {
 	}
 
 	private String getFontFamily() {
-		return Util.removeQuotes(modelHandle
-				.getStringProperty(FONT_FAMILY_PROP));
+		return Util.removeQuotes(modelHandle.getStringProperty(FONT_FAMILY_PROP));
 	}
 
 	private boolean isFontItalic() {
-		return "italic".equalsIgnoreCase(modelHandle
-				.getStringProperty(FONT_STYLE_PROP));
+		return "italic".equalsIgnoreCase(modelHandle.getStringProperty(FONT_STYLE_PROP));
 	}
 
 	private boolean isFontBold() {
-		return "bold".equalsIgnoreCase(modelHandle
-				.getStringProperty(FONT_WEIGHT_PROP));
+		return "bold".equalsIgnoreCase(modelHandle.getStringProperty(FONT_WEIGHT_PROP));
 	}
 
 	private ColorSpec getFontColor() {
-		return ColorSpec.getColor(modelHandle
-				.getStringProperty(FONT_COLOR_PROP));
+		return ColorSpec.getColor(modelHandle.getStringProperty(FONT_COLOR_PROP));
 	}
 
 	public void setConfiguration(DotbarData config) throws SemanticException {
@@ -226,8 +221,7 @@ public class DotbarItem extends ReportItem {
 		return value;
 	}
 
-	public void setValueExpression(String valueExpression)
-			throws SemanticException {
+	public void setValueExpression(String valueExpression) throws SemanticException {
 		modelHandle.setProperty(VALUE_EXPRESSION_PROP, valueExpression);
 	}
 
@@ -243,8 +237,7 @@ public class DotbarItem extends ReportItem {
 		modelHandle.setProperty(DOT_HEIGHT_PROP, dotHeight);
 	}
 
-	public void setDotSpacing(DimensionValue dotSpacing)
-			throws SemanticException {
+	public void setDotSpacing(DimensionValue dotSpacing) throws SemanticException {
 		modelHandle.setProperty(DOT_SPACING_PROP, dotSpacing);
 	}
 
@@ -272,18 +265,15 @@ public class DotbarItem extends ReportItem {
 		modelHandle.setProperty(BORDER_COLOR_PROP, borderColor.toRgbString());
 	}
 
-	public void setNumberPosition(NumberPosition numberPosition)
-			throws SemanticException {
+	public void setNumberPosition(NumberPosition numberPosition) throws SemanticException {
 		modelHandle.setProperty(NUMBER_POSITION_PROP, numberPosition.getName());
 	}
 
-	public void setNumberWidth(DimensionValue numberWidth)
-			throws SemanticException {
+	public void setNumberWidth(DimensionValue numberWidth) throws SemanticException {
 		modelHandle.setProperty(NUMBER_WIDTH_PROP, numberWidth);
 	}
 
-	public void setNumberHeight(DimensionValue numberHeight)
-			throws SemanticException {
+	public void setNumberHeight(DimensionValue numberHeight) throws SemanticException {
 		modelHandle.setProperty(NUMBER_HEIGHT_PROP, numberHeight);
 	}
 
@@ -309,5 +299,35 @@ public class DotbarItem extends ReportItem {
 
 	public void setFontColor(ColorSpec fontColor) throws SemanticException {
 		modelHandle.setProperty(FONT_COLOR_PROP, fontColor.toRgbString());
+	}
+
+	@Override
+	public IMethodInfo[] getMethods(final String methodName) {
+		if (methodName == null)
+			return super.getMethods(methodName);
+		ScriptClassInfo scriptClassInfo = new ScriptClassInfo(IDotbarEventHandler.class);
+		IMethodInfo methodInfo = scriptClassInfo.getMethod(methodName);
+		if (methodInfo != null) {
+			return new IMethodInfo[] { methodInfo };
+		}
+		return new IMethodInfo[0];
+	}
+
+	public static class ScriptClassInfo extends ClassInfo {
+
+		public ScriptClassInfo(Class<?> clazz) {
+			super(clazz);
+		}
+
+		protected IMethodInfo createMethodInfo(Method classMethod) {
+			return new ScriptMethodInfo(classMethod);
+		}
+	}
+
+	public static class ScriptMethodInfo extends MethodInfo {
+
+		protected ScriptMethodInfo(Method method) {
+			super(method);
+		}
 	}
 }

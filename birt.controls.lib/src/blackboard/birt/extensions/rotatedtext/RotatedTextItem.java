@@ -69,28 +69,25 @@ public class RotatedTextItem extends ReportItem {
 	}
 
 	public DimensionValue getWrapPoint() {
-		final DimensionHandle dimensionHandle = modelHandle
-				.getDimensionProperty(WRAP_POINT_PROP);
-		final Object value = dimensionHandle.getValue();
+		final DimensionHandle dimensionHandle = modelHandle.getDimensionProperty(WRAP_POINT_PROP);
+		final Object value = dimensionHandle == null ? null : dimensionHandle.getValue();
 		return (DimensionValue) value;
 	}
 
-	public void setWrapPoint(final DimensionValue value)
-			throws SemanticException {
+	public void setWrapPoint(final DimensionValue value) throws SemanticException {
 		modelHandle.setProperty(WRAP_POINT_PROP, value);
 	}
 
 	public String getFontFamily() {
 		String fontFamily = modelHandle.getStringProperty(FONT_FAMILY_PROP);
 		fontFamily = Util.removeQuotes(fontFamily);
-		if (fontFamily.startsWith("@"))
+		if (fontFamily != null && fontFamily.startsWith("@"))
 			fontFamily = fontFamily.substring(1);
 		return fontFamily;
 	}
 
 	public void setFontFamily(final String fontFamily) throws SemanticException {
-		modelHandle
-				.setProperty(FONT_FAMILY_PROP, Util.removeQuotes(fontFamily));
+		modelHandle.setProperty(FONT_FAMILY_PROP, Util.removeQuotes(fontFamily));
 	}
 
 	public String getFontSize() {
@@ -102,8 +99,7 @@ public class RotatedTextItem extends ReportItem {
 	}
 
 	public boolean isFontItalic() {
-		return "italic".equalsIgnoreCase(modelHandle
-				.getStringProperty(FONT_STYLE_PROP));
+		return "italic".equalsIgnoreCase(modelHandle.getStringProperty(FONT_STYLE_PROP));
 	}
 
 	public void setFontItalic(final boolean italic) throws SemanticException {
@@ -111,8 +107,7 @@ public class RotatedTextItem extends ReportItem {
 	}
 
 	public boolean isFontBold() {
-		return "bold".equalsIgnoreCase(modelHandle
-				.getStringProperty(FONT_WEIGHT_PROP));
+		return "bold".equalsIgnoreCase(modelHandle.getStringProperty(FONT_WEIGHT_PROP));
 	}
 
 	public void setFontBold(final boolean bold) throws SemanticException {
@@ -120,12 +115,10 @@ public class RotatedTextItem extends ReportItem {
 	}
 
 	public ColorSpec getFontColor() {
-		return ColorSpec.getColor(modelHandle
-				.getStringProperty(FONT_COLOR_PROP));
+		return ColorSpec.getColor(modelHandle.getStringProperty(FONT_COLOR_PROP));
 	}
 
-	public void setFontColor(final ColorSpec fontColor)
-			throws SemanticException {
+	public void setFontColor(final ColorSpec fontColor) throws SemanticException {
 		modelHandle.setProperty(FONT_COLOR_PROP, fontColor.toRgbString());
 	}
 

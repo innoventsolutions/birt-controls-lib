@@ -58,11 +58,11 @@ public class Util {
 	public static final String DB_FILL_COLOR = "#ddd";
 	public static final String DB_NUMBER_POSITION = "Hidden";
 	public static final Double DB_NUMBER_WIDTH_MEASURE = 4.56;
-	public static final String DB_NUMBER_WIDTH_UNITS = "PX";
+	public static final String DB_NUMBER_WIDTH_UNITS = "CM";
 	public static final Double DB_NUMBER_HEIGHT_MEASURE = 5.67;
 	public static final String DB_NUMBER_HEIGHT_UNITS = "em";
 	public static final int DB_WRAP_POINT = 678;
-	public static final String DB_FONT_SIZE = "db_font_size";
+	public static final String DB_FONT_SIZE = "11pt";
 	public static final String DB_FONT_FAMILY = "helvarial";
 	public static final String DB_FONT_STYLE = "ITALIC";
 	public static final String DB_FONT_WEIGHT = "bold";

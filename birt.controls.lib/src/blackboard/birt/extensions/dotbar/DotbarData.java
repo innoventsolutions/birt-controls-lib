@@ -131,10 +131,15 @@ public class DotbarData {
 		}
 
 		public int convertToPixels(final DimensionValue value) {
-			final double doubleValue = DimensionUtil.convertTo(value, "in",
-					"in", baseSize, baseSizeUnits, dpi)
-					* dpi;
-			return (int) doubleValue;
+			try {
+				final double doubleValue = DimensionUtil.convertTo(value, "in",
+						"in", baseSize, baseSizeUnits, dpi) * dpi;
+				return (int) doubleValue;
+			}
+			catch (IllegalArgumentException e) {
+				e.printStackTrace();
+				return 0;
+			}
 		}
 
 		/**
@@ -213,7 +218,8 @@ public class DotbarData {
 					size += (dotWidthPixels + dotSpacingPixels)
 							* effectiveValue;
 				}
-			} else {
+			}
+			else {
 				size += getDotCellWidth();
 				if (value > 0 && wrapPoint > 0) {
 					int layers = value / wrapPoint;
@@ -248,7 +254,8 @@ public class DotbarData {
 					size += (dotHeightPixels + dotSpacingPixels)
 							* effectiveValue;
 				}
-			} else {
+			}
+			else {
 				size += getDotCellHeight();
 				if (value > 0 && wrapPoint > 0) {
 					int layers = value / wrapPoint;
@@ -297,8 +304,8 @@ public class DotbarData {
 				int y = 0;
 				if (NumberPosition.BEFORE.equals(numberPosition)) {
 					g2d.setColor(fontColor.getAwtColor());
-					final double textX = x + numberCellWidth / 2.0 - textWidth
-							/ 2.0;
+					final double textX = x + numberCellWidth / 2.0
+							- textWidth / 2.0;
 					final double textY = y + numberCellHeight / 2.0
 							+ textHeight / 2.0;
 					g2d.drawString(text, (int) textX, (int) textY);
@@ -328,24 +335,23 @@ public class DotbarData {
 					rowCount += value / wrapPoint;
 				int remainingDots = value;
 				for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
-					final int dotLimit = remainingDots < dotCount ? remainingDots
-							: dotCount;
+					final int dotLimit = remainingDots < dotCount
+							? remainingDots : dotCount;
 					remainingDots -= dotCount;
 					for (int dotIndex = 0; dotIndex < dotLimit; dotIndex++) {
 						// center the dots
-						final int dotX = x + dotCellWidth / 2 - dotWidthPixels
-								/ 2;
+						final int dotX = x + dotCellWidth / 2
+								- dotWidthPixels / 2;
 						final int dotY = y + dotCellHeight / 2
 								- dotHeightPixels / 2;
 						// debug:
 						// g2d.setColor( new java.awt.Color( 255, 0, 0 ) );
 						// g2d.drawRect( position.x, position.y, dotAreaWidth,
 						// dotAreaHeight );
-						final java.awt.Color awtBorderColor = hasBorder ? borderColor
-								.getAwtColor()
-								: null;
-						final java.awt.Color awtFillColor = hasFill ? fillColor
-								.getAwtColor() : null;
+						final java.awt.Color awtBorderColor = hasBorder
+								? borderColor.getAwtColor() : null;
+						final java.awt.Color awtFillColor = hasFill
+								? fillColor.getAwtColor() : null;
 						dotShape.render(g2d, dotX, dotY, dotWidthPixels,
 								dotHeightPixels, awtBorderColor, awtFillColor);
 						if (vertical)
@@ -356,7 +362,8 @@ public class DotbarData {
 					if (vertical) {
 						y = startY;
 						x += dotWidthPixels + dotSpacingPixels;
-					} else {
+					}
+					else {
 						x = startX;
 						y += dotHeightPixels + dotSpacingPixels;
 					}
@@ -367,8 +374,8 @@ public class DotbarData {
 					else
 						y = 0;
 					g2d.setColor(fontColor.getAwtColor());
-					final double textX = x + numberCellWidth / 2.0 - textWidth
-							/ 2.0;
+					final double textX = x + numberCellWidth / 2.0
+							- textWidth / 2.0;
 					final double textY = y + numberCellHeight / 2.0
 							+ textHeight / 2.0;
 					g2d.drawString(text, (int) textX, (int) textY);
@@ -378,9 +385,11 @@ public class DotbarData {
 						x += numberCellWidth;
 				}
 				return bufferedImage;
-			} catch (final Exception e) {
+			}
+			catch (final Exception e) {
 				e.printStackTrace();
-			} finally {
+			}
+			finally {
 				if (g2d != null)
 					g2d.dispose();
 			}
@@ -429,14 +438,14 @@ public class DotbarData {
 			return false;
 		if (displayValue != that.displayValue)
 			return false;
-		if (dotWidth == null ? that.dotWidth != null : !dotWidth
-				.equals(that.dotWidth))
+		if (dotWidth == null ? that.dotWidth != null
+				: !dotWidth.equals(that.dotWidth))
 			return false;
-		if (dotHeight == null ? that.dotHeight != null : !dotHeight
-				.equals(that.dotHeight))
+		if (dotHeight == null ? that.dotHeight != null
+				: !dotHeight.equals(that.dotHeight))
 			return false;
-		if (dotSpacing == null ? that.dotSpacing != null : !dotSpacing
-				.equals(that.dotSpacing))
+		if (dotSpacing == null ? that.dotSpacing != null
+				: !dotSpacing.equals(that.dotSpacing))
 			return false;
 		if (vertical != that.vertical)
 			return false;
@@ -452,26 +461,26 @@ public class DotbarData {
 			return false;
 		if (!numberPosition.equals(that.numberPosition))
 			return false;
-		if (numberWidth == null ? that.numberWidth != null : !numberWidth
-				.equals(that.numberWidth))
+		if (numberWidth == null ? that.numberWidth != null
+				: !numberWidth.equals(that.numberWidth))
 			return false;
-		if (numberHeight == null ? that.numberHeight != null : !numberHeight
-				.equals(that.numberHeight))
+		if (numberHeight == null ? that.numberHeight != null
+				: !numberHeight.equals(that.numberHeight))
 			return false;
 		if (wrapPoint != that.wrapPoint)
 			return false;
-		if (fontSize == null ? that.fontSize != null : !fontSize
-				.equals(that.fontSize))
+		if (fontSize == null ? that.fontSize != null
+				: !fontSize.equals(that.fontSize))
 			return false;
-		if (fontFamily == null ? that.fontFamily != null : !fontFamily
-				.equals(that.fontFamily))
+		if (fontFamily == null ? that.fontFamily != null
+				: !fontFamily.equals(that.fontFamily))
 			return false;
 		if (fontItalic != that.fontItalic)
 			return false;
 		if (fontBold != that.fontBold)
 			return false;
-		if (fontColor == null ? that.fontColor != null : !fontColor
-				.equals(that.fontColor))
+		if (fontColor == null ? that.fontColor != null
+				: !fontColor.equals(that.fontColor))
 			return false;
 		return true;
 	}
@@ -557,29 +566,31 @@ public class DotbarData {
 	}
 
 	public static final Map<String, Integer> fontSizes;
+
 	static {
 		fontSizes = new HashMap<String, Integer>();
-		fontSizes.put(DesignChoiceConstants.FONT_SIZE_XX_SMALL, Integer
-				.valueOf(7));
-		fontSizes.put(DesignChoiceConstants.FONT_SIZE_X_SMALL, Integer
-				.valueOf(8));
-		fontSizes
-				.put(DesignChoiceConstants.FONT_SIZE_SMALL, Integer.valueOf(9));
-		fontSizes.put(DesignChoiceConstants.FONT_SIZE_MEDIUM, Integer
-				.valueOf(10));
-		fontSizes.put(DesignChoiceConstants.FONT_SIZE_LARGE, Integer
-				.valueOf(11));
-		fontSizes.put(DesignChoiceConstants.FONT_SIZE_X_LARGE, Integer
-				.valueOf(12));
-		fontSizes.put(DesignChoiceConstants.FONT_SIZE_XX_LARGE, Integer
-				.valueOf(13));
-		fontSizes.put(DesignChoiceConstants.FONT_SIZE_SMALLER, Integer
-				.valueOf(9));
-		fontSizes.put(DesignChoiceConstants.FONT_SIZE_LARGER, Integer
-				.valueOf(11));
+		fontSizes.put(DesignChoiceConstants.FONT_SIZE_XX_SMALL,
+				Integer.valueOf(7));
+		fontSizes.put(DesignChoiceConstants.FONT_SIZE_X_SMALL,
+				Integer.valueOf(8));
+		fontSizes.put(DesignChoiceConstants.FONT_SIZE_SMALL,
+				Integer.valueOf(9));
+		fontSizes.put(DesignChoiceConstants.FONT_SIZE_MEDIUM,
+				Integer.valueOf(10));
+		fontSizes.put(DesignChoiceConstants.FONT_SIZE_LARGE,
+				Integer.valueOf(11));
+		fontSizes.put(DesignChoiceConstants.FONT_SIZE_X_LARGE,
+				Integer.valueOf(12));
+		fontSizes.put(DesignChoiceConstants.FONT_SIZE_XX_LARGE,
+				Integer.valueOf(13));
+		fontSizes.put(DesignChoiceConstants.FONT_SIZE_SMALLER,
+				Integer.valueOf(9));
+		fontSizes.put(DesignChoiceConstants.FONT_SIZE_LARGER,
+				Integer.valueOf(11));
 	}
 
-	public static int getFontPointSize(String string, final double pixelsPerInch) {
+	public static int getFontPointSize(String string,
+			final double pixelsPerInch) {
 		string = string.trim().toLowerCase();
 		final Integer fontSize = fontSizes.get(string);
 		if (fontSize != null)
@@ -587,7 +598,8 @@ public class DotbarData {
 		DimensionValue dv;
 		try {
 			dv = DimensionValueUtil.doParse(string, true, null);
-		} catch (final PropertyValueException e) {
+		}
+		catch (final PropertyValueException e) {
 			dv = new DimensionValue(12, DesignChoiceConstants.UNITS_PX);
 			e.printStackTrace();
 		}

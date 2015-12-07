@@ -1,0 +1,22 @@
+.series-1 {
+    background-color: rgb(153,179,204);
+    background-image: url("blackboard.common/resources/image/series-1.gif");
+    font-size: 8px;
+    font-style: italic;
+    font-style: oblique;
+    font-family: cursive;
+    color: rgb(70,70,140);
+}
+.series-2 {
+    background-color: rgb(167,204,149);
+    font-weight: bolder;
+    background-image: url("blackboard.common/resources/image/series-2.gif");
+}
+.series-3 {
+    background-color: rgb(242,191,36);
+    background-image: url("blackboard.common/resources/image/series-3.gif");
+}
+.series-4 {
+    background-color: rgb(209,208,205);
+    background-image: url("blackboard.common/resources/image/series-4.gif");
+}

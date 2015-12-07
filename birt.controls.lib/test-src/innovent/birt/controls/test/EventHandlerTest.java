@@ -37,7 +37,7 @@ import org.junit.Test;
  * @author steve
  *
  */
-public class DotbarEventHandlerTest {
+public class EventHandlerTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testExecute() throws UnsupportedEncodingException {

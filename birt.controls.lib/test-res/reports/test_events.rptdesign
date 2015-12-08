@@ -198,6 +198,11 @@ out.println("RotatedText.onPrepare");
 
 ]]></method>
                             <method name="onCreate"><![CDATA[// CustomFunctions.BirtLogger("RotatedText.onCreate");
+this.helpText = "foobar";
+var r = Math.floor(row.value * 256);
+var g = Math.floor(row.value * 256 * 256) &amp; 255;
+var b = Math.floor(row.value * 256 * 256 * 256) &amp; 255;
+this.setFontColor(r, g, b);
 out.println("RotatedText.onCreate");]]></method>
                             <method name="onRender"><![CDATA[// CustomFunctions.BirtLogger("RotatedText.onRender");
 out.println("RotatedText.onRender");]]></method>
@@ -249,7 +254,7 @@ var r = Math.floor(row.value * 256);
 var g = Math.floor(row.value * 256 * 256) &amp; 255;
 var b = Math.floor(row.value * 256 * 256 * 256) &amp; 255;
 this.setFillColor(r, g, b);
-out.println("DotBar.onCreate");
+out.println("DotBar.onCreate " + this.getClass().getName());
 ]]></method>
                             <method name="onRender"><![CDATA[// CustomFunctions.BirtLogger
 // Packages.java.lang.System.out.println("DotBar.onRender");

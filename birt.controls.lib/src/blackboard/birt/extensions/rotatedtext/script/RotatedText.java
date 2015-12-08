@@ -65,7 +65,8 @@ public class RotatedText extends ReportItem implements IRotatedText {
 	 * blackboard.birt.extensions.rotatedtext.script.IRotatedText2#checkProperty
 	 * (java.lang.String, java.lang.Object)
 	 */
-	public void checkProperty(String propName, Object value) throws ExtendedElementException {
+	public void checkProperty(String propName, Object value)
+			throws ExtendedElementException {
 		rotatedtextItem.checkProperty(propName, value);
 	}
 
@@ -85,7 +86,8 @@ public class RotatedText extends ReportItem implements IRotatedText {
 	 * blackboard.birt.extensions.rotatedtext.script.IRotatedText2#deserialize(
 	 * java.lang.String, java.io.ByteArrayInputStream)
 	 */
-	public void deserialize(String propName, ByteArrayInputStream data) throws ExtendedElementException {
+	public void deserialize(String propName, ByteArrayInputStream data)
+			throws ExtendedElementException {
 		rotatedtextItem.deserialize(propName, data);
 	}
 
@@ -397,11 +399,12 @@ public class RotatedText extends ReportItem implements IRotatedText {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * blackboard.birt.extensions.rotatedtext.script.IRotatedText2#setWrapPoint(
-	 * org.eclipse.birt.report.model.api.metadata.DimensionValue)
+	 * blackboard.birt.extensions.rotatedtext.script.IRotatedText#setWrapPoint(
+	 * double, java.lang.String)
 	 */
-	public void setWrapPoint(DimensionValue value) throws SemanticException {
-		rotatedtextItem.setWrapPoint(value);
+	public void setWrapPoint(double theMeasure, String theUnits)
+			throws SemanticException {
+		rotatedtextItem.setWrapPoint(new DimensionValue(theMeasure, theUnits));
 	}
 
 	/*
@@ -433,8 +436,8 @@ public class RotatedText extends ReportItem implements IRotatedText {
 	 * blackboard.birt.extensions.rotatedtext.script.IRotatedText2#setFontColor(
 	 * blackboard.birt.extensions.util.ColorSpec)
 	 */
-	public void setFontColor(ColorSpec fontColor) throws SemanticException {
-		rotatedtextItem.setFontColor(fontColor);
+	public void setFontColor(int r, int g, int b) throws SemanticException {
+		rotatedtextItem.setFontColor(new ColorSpec(r, g, b));
 	}
 
 	/*
@@ -486,7 +489,8 @@ public class RotatedText extends ReportItem implements IRotatedText {
 	 * @see blackboard.birt.extensions.rotatedtext.script.IRotatedText2#
 	 * updateRowExpressions(java.util.Map)
 	 */
-	public void updateRowExpressions(@SuppressWarnings("rawtypes") Map newExpressions) {
+	public void updateRowExpressions(
+			@SuppressWarnings("rawtypes") Map newExpressions) {
 		rotatedtextItem.updateRowExpressions(newExpressions);
 	}
 

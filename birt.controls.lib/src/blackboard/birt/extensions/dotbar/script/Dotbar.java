@@ -24,6 +24,10 @@ import blackboard.birt.extensions.util.ColorSpec;
  * @author steve
  *
  */
+/**
+ * @author steve
+ *
+ */
 public class Dotbar extends ReportItem implements IDotbar {
 	private final DotbarItem dotbarItem;
 
@@ -32,15 +36,20 @@ public class Dotbar extends ReportItem implements IDotbar {
 		this.dotbarItem = dotbarItem;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see blackboard.birt.extensions.dotbar.script.IDotbar#canExport()
 	 */
 	public boolean canExport() {
 		return dotbarItem.canExport();
 	}
 
-	/* (non-Javadoc)
-	 * @see blackboard.birt.extensions.dotbar.script.IDotbar#checkCompatibility()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * blackboard.birt.extensions.dotbar.script.IDotbar#checkCompatibility()
 	 */
 	public CompatibilityStatus checkCompatibility() {
 		return dotbarItem.checkCompatibility();
@@ -53,7 +62,8 @@ public class Dotbar extends ReportItem implements IDotbar {
 	 * blackboard.birt.extensions.dotbar.script.IDotbar2#checkProperty(java.lang
 	 * .String, java.lang.Object)
 	 */
-	public void checkProperty(String propName, Object value) throws ExtendedElementException {
+	public void checkProperty(String propName, Object value)
+			throws ExtendedElementException {
 		dotbarItem.checkProperty(propName, value);
 	}
 
@@ -270,7 +280,8 @@ public class Dotbar extends ReportItem implements IDotbar {
 	 * blackboard.birt.extensions.dotbar.script.IDotbar2#setValueExpression(java
 	 * .lang.String)
 	 */
-	public void setValueExpression(String valueExpression) throws SemanticException {
+	public void setValueExpression(String valueExpression)
+			throws SemanticException {
 		dotbarItem.setValueExpression(valueExpression);
 	}
 
@@ -287,32 +298,36 @@ public class Dotbar extends ReportItem implements IDotbar {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see blackboard.birt.extensions.dotbar.script.IDotbar#setDotWidth(double,
+	 * java.lang.String)
+	 */
+	public void setDotWidth(double theMeasure, String theUnits)
+			throws SemanticException {
+		dotbarItem.setDotWidth(new DimensionValue(theMeasure, theUnits));
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see
-	 * blackboard.birt.extensions.dotbar.script.IDotbar2#setDotWidth(org.eclipse
-	 * .birt.report.model.api.metadata.DimensionValue)
+	 * blackboard.birt.extensions.dotbar.script.IDotbar#setDotHeight(double,
+	 * java.lang.String)
 	 */
-	public void setDotWidth(DimensionValue dotWidth) throws SemanticException {
-		dotbarItem.setDotWidth(dotWidth);
+	public void setDotHeight(double theMeasure, String theUnits)
+			throws SemanticException {
+		dotbarItem.setDotHeight(new DimensionValue(theMeasure, theUnits));
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see blackboard.birt.extensions.dotbar.script.IDotbar2#setDotHeight(org.
-	 * eclipse.birt.report.model.api.metadata.DimensionValue)
+	 * @see
+	 * blackboard.birt.extensions.dotbar.script.IDotbar#setDotSpacing(double,
+	 * java.lang.String)
 	 */
-	public void setDotHeight(DimensionValue dotHeight) throws SemanticException {
-		dotbarItem.setDotHeight(dotHeight);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see blackboard.birt.extensions.dotbar.script.IDotbar2#setDotSpacing(org.
-	 * eclipse.birt.report.model.api.metadata.DimensionValue)
-	 */
-	public void setDotSpacing(DimensionValue dotSpacing) throws SemanticException {
-		dotbarItem.setDotSpacing(dotSpacing);
+	public void setDotSpacing(double theMeasure, String theUnits)
+			throws SemanticException {
+		dotbarItem.setDotSpacing(new DimensionValue(theMeasure, theUnits));
 	}
 
 	/*
@@ -374,29 +389,33 @@ public class Dotbar extends ReportItem implements IDotbar {
 	 * blackboard.birt.extensions.dotbar.script.IDotbar#setNumberPosition(java.
 	 * lang.String)
 	 */
-	public void setNumberPosition(String numberPosition) throws SemanticException {
+	public void setNumberPosition(String numberPosition)
+			throws SemanticException {
 		dotbarItem.setNumberPosition(NumberPosition.create(numberPosition));
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see blackboard.birt.extensions.dotbar.script.IDotbar#setNumberWidth(org.
-	 * eclipse.birt.report.model.api.metadata.DimensionValue)
+	 * @see
+	 * blackboard.birt.extensions.dotbar.script.IDotbar#setNumberWidth(double,
+	 * java.lang.String)
 	 */
-	public void setNumberWidth(DimensionValue numberWidth) throws SemanticException {
-		dotbarItem.setNumberWidth(numberWidth);
+	public void setNumberWidth(double theMeasure, String theUnits)
+			throws SemanticException {
+		dotbarItem.setNumberWidth(new DimensionValue(theMeasure, theUnits));
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * blackboard.birt.extensions.dotbar.script.IDotbar#setNumberHeight(org.
-	 * eclipse.birt.report.model.api.metadata.DimensionValue)
+	 * blackboard.birt.extensions.dotbar.script.IDotbar#setNumberHeight(double,
+	 * java.lang.String)
 	 */
-	public void setNumberHeight(DimensionValue numberHeight) throws SemanticException {
-		dotbarItem.setNumberHeight(numberHeight);
+	public void setNumberHeight(double theMeasure, String theUnits)
+			throws SemanticException {
+		dotbarItem.setNumberHeight(new DimensionValue(theMeasure, theUnits));
 	}
 
 	/*

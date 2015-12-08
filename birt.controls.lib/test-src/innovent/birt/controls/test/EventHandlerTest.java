@@ -3,8 +3,6 @@ package innovent.birt.controls.test;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -32,8 +30,6 @@ import org.junit.Test;
  * classpath and also build this plugin into a jar and put it in the classpath
  * as well.
  * 
- * OR run an eclipse instance from within eclipse.
- * 
  * @author steve
  *
  */
@@ -43,16 +39,20 @@ public class EventHandlerTest {
 	public void testExecute() throws UnsupportedEncodingException {
 		try {
 			final IReportEngine reportEngine = ReportEngine.getReportEngine();
-			final InputStream is = this.getClass().getResourceAsStream("/reports/test_events.rptdesign");
+			final InputStream is = this.getClass()
+					.getResourceAsStream("/reports/test_events.rptdesign");
 			Assert.assertNotNull(is);
 			final IReportRunnable design = reportEngine.openReportDesign(is);
-			final IGetParameterDefinitionTask paramTask = reportEngine.createGetParameterDefinitionTask(design);
+			final IGetParameterDefinitionTask paramTask = reportEngine
+					.createGetParameterDefinitionTask(design);
 			List<EngineException> errors = null;
 			try {
-				final IRunAndRenderTask rrTask = reportEngine.createRunAndRenderTask(design);
+				final IRunAndRenderTask rrTask = reportEngine
+						.createRunAndRenderTask(design);
 				final Map<String, Object> appContext = rrTask.getAppContext();
 				final ClassLoader classLoader = getClass().getClassLoader();
-				appContext.put(EngineConstants.APPCONTEXT_CLASSLOADER_KEY, classLoader);
+				appContext.put(EngineConstants.APPCONTEXT_CLASSLOADER_KEY,
+						classLoader);
 				// rrTask.setAppContext(appContext);
 				try {
 					final ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -64,10 +64,12 @@ public class EventHandlerTest {
 					errors = rrTask.getErrors();
 					String output = os.toString("utf-8");
 					System.out.println(output);
-				} finally {
+				}
+				finally {
 					rrTask.close();
 				}
-			} finally {
+			}
+			finally {
 				paramTask.close();
 			}
 			if (errors != null) {
@@ -91,10 +93,12 @@ public class EventHandlerTest {
 						sb.append(buffer, 0, charsRead);
 						charsRead = isr.read(buffer);
 					}
-				} finally {
+				}
+				finally {
 					isr.close();
 				}
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				Assert.fail("Failed to read log file: " + e);
 			}
 			String logResults = sb.toString();
@@ -104,8 +108,8 @@ public class EventHandlerTest {
 			Assert.assertTrue(logResults.indexOf("RotatedText.onPrepare") >= 0);
 			Assert.assertTrue(logResults.indexOf("RotatedText.onCreate") >= 0);
 			Assert.assertTrue(logResults.indexOf("RotatedText.onRender") >= 0);
-
-		} catch (BirtException e) {
+		}
+		catch (BirtException e) {
 			e.printStackTrace();
 			Assert.fail(e.toString());
 		}

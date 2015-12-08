@@ -9,7 +9,6 @@ import org.eclipse.birt.report.model.api.activity.SemanticException;
 import org.eclipse.birt.report.model.api.extension.CompatibilityStatus;
 import org.eclipse.birt.report.model.api.extension.ExtendedElementException;
 import org.eclipse.birt.report.model.api.extension.IPropertyDefinition;
-import org.eclipse.birt.report.model.api.metadata.DimensionValue;
 import org.eclipse.birt.report.model.api.metadata.IMethodInfo;
 import org.eclipse.birt.report.model.api.simpleapi.IReportItem;
 
@@ -67,11 +66,11 @@ public interface IDotbar {
 
 	void setDisplayValue(int displayValue) throws SemanticException;
 
-	void setDotWidth(DimensionValue dotWidth) throws SemanticException;
+	void setDotWidth(double theMeasure, String theUnits) throws SemanticException;
 
-	void setDotHeight(DimensionValue dotHeight) throws SemanticException;
+	void setDotHeight(double theMeasure, String theUnits) throws SemanticException;
 
-	void setDotSpacing(DimensionValue dotSpacing) throws SemanticException;
+	void setDotSpacing(double theMeasure, String theUnits) throws SemanticException;
 
 	void setVertical(boolean vertical) throws SemanticException;
 
@@ -87,9 +86,9 @@ public interface IDotbar {
 
 	void setNumberPosition(String numberPosition) throws SemanticException;
 
-	void setNumberWidth(DimensionValue numberWidth) throws SemanticException;
+	void setNumberWidth(double theMeasure, String theUnits) throws SemanticException;
 
-	void setNumberHeight(DimensionValue numberHeight) throws SemanticException;
+	void setNumberHeight(double theMeasure, String theUnits) throws SemanticException;
 
 	void setWrapPoint(int wrapPoint) throws SemanticException;
 

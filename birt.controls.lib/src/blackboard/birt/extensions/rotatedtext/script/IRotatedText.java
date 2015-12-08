@@ -93,13 +93,13 @@ public interface IRotatedText {
 
 	void setRotationAngle(int value) throws SemanticException;
 
-	void setWrapPoint(DimensionValue value) throws SemanticException;
+	void setWrapPoint(double theMeasure, String theUnits) throws SemanticException;
 
 	void setFontItalic(boolean italic) throws SemanticException;
 
 	void setFontBold(boolean bold) throws SemanticException;
 
-	void setFontColor(ColorSpec fontColor) throws SemanticException;
+	void setFontColor(int r, int g, int b) throws SemanticException;
 
 	void setHandle(ExtendedItemHandle handle);
 

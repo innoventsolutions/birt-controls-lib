@@ -19,14 +19,19 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
-import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 
 import org.eclipse.birt.report.model.api.util.DimensionUtil;
 
@@ -36,13 +41,48 @@ import blackboard.birt.extensions.util.Util;
  * SwingGraphicsUtil
  */
 public class SwingGraphicsUtil {
-	public static BufferedImage createRotatedTextImage(final String text,
+  
+  static TextImage toTextImage(final BufferedImage bufferedImage) {
+    return new TextImage() {
+      
+      public int getWidth() {
+        return bufferedImage.getWidth();
+      }
+      
+      public InputStream getImage() {
+        return toStream(bufferedImage);
+      }
+      
+      public int getHeight() {
+        return bufferedImage.getHeight();
+      }
+    };
+  }
+  
+  static InputStream toStream(final BufferedImage bufferedImage) {
+    ByteArrayInputStream bis = null;
+    try {
+      ImageIO.setUseCache(false);
+      final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      final ImageOutputStream ios = ImageIO.createImageOutputStream(baos);
+      if (bufferedImage != null)
+        ImageIO.write(bufferedImage, "png", ios); //$NON-NLS-1$
+      ios.flush();
+      ios.close();
+      bis = new ByteArrayInputStream(baos.toByteArray());
+    } catch (final IOException e) {
+      e.printStackTrace();
+    }
+    return bis;
+  }
+  
+	public static TextImage createRotatedTextImage(final String text,
 			final RotatedTextData data, final int dpi, final double baseSize,
-			final String baseSizeUnits) {
+			final String baseSizeUnits, String imageType) {
 		Graphics2D g2d = null;
 		try {
 			if (text == null || text.trim().length() == 0)
-				return create1pxImage();
+				return toTextImage(create1pxImage());
 			final Font font = getAwtFont(data, dpi);
 			final BufferedImage stringImage = new BufferedImage(1, 1,
 					BufferedImage.TYPE_INT_ARGB);
@@ -53,7 +93,7 @@ public class SwingGraphicsUtil {
 				final double inches = DimensionUtil.convertTo(data.wrapPoint,
 						"in", "in", baseSize, baseSizeUnits, dpi);
 				final double pixels = inches * dpi;
-				lines = wrapText(g2d, text, (int) pixels);
+				lines = wrapText(g2d, text, (int) pixels, font);
 			}
 			final FontRenderContext frc = g2d.getFontRenderContext();
 			int width = 0;
@@ -72,7 +112,7 @@ public class SwingGraphicsUtil {
 			g2d.dispose();
 			g2d = null;
 			return createRotatedImage(lines, width, height, data.angle,
-					data.fontColor.getAwtColor());
+					data.fontColor.getAwtColor(), imageType);
 		} catch (final Exception e) {
 			e.printStackTrace();
 
@@ -80,7 +120,7 @@ public class SwingGraphicsUtil {
 				g2d.dispose();
 		}
 
-		return create1pxImage();
+		return toTextImage(create1pxImage());
 	}
 
 	private static BufferedImage create1pxImage() {
@@ -90,27 +130,27 @@ public class SwingGraphicsUtil {
 		return bufferedImage;
 	}
 
-	private static BufferedImage createRotatedImage(final LineInfo[] lines,
-			final int width, final int height, int angle, final Color color) {
+	private static TextImage createRotatedImage(final LineInfo[] lines,
+			final int width, final int height, int angle, final Color color, String imageType) {
 		angle = angle % 360;
 
 		if (angle < 0)
 			angle += 360;
 
 		if (angle == 0)
-			return renderRotatedObject(lines, 0, width, height, 0, 0, color);
+			return renderRotatedObject(lines, 0, width, height, 0, 0, color, imageType);
 
 		if (angle == 90)
 			return renderRotatedObject(lines, -Math.PI / 2, height, width,
-					-width, 0, color);
+					-width, 0, color, imageType);
 
 		if (angle == 180)
 			return renderRotatedObject(lines, Math.PI, width, height, -width,
-					-height, color);
+					-height, color, imageType);
 
 		if (angle == 270)
 			return renderRotatedObject(lines, Math.PI / 2, height, width, 0,
-					-height, color);
+					-height, color, imageType);
 
 		if (angle > 0 && angle < 90) {
 			final double angleInRadians = ((-angle * Math.PI) / 180.0);
@@ -122,7 +162,7 @@ public class SwingGraphicsUtil {
 
 			return renderRotatedObject(lines, angleInRadians, dW, dH, -width
 					* sineTheta * sineTheta, width * sineTheta * cosTheta,
-					color);
+					color, imageType);
 		}
 
 		if (angle > 90 && angle < 180) {
@@ -135,7 +175,7 @@ public class SwingGraphicsUtil {
 
 			return renderRotatedObject(lines, angleInRadians, dW, dH,
 					-(width + height * sineTheta * cosTheta), -height / 2,
-					color);
+					color, imageType);
 		}
 
 		if (angle > 180 && angle < 270) {
@@ -148,7 +188,7 @@ public class SwingGraphicsUtil {
 
 			return renderRotatedObject(lines, angleInRadians, dW, dH, -(width
 					* cosTheta * cosTheta), -(height + width * cosTheta
-					* sineTheta), color);
+					* sineTheta), color, imageType);
 		}
 
 		if (angle > 270 && angle < 360) {
@@ -161,66 +201,44 @@ public class SwingGraphicsUtil {
 
 			return renderRotatedObject(lines, angleInRadians, dW, dH, (height
 					* cosTheta * sineTheta), -(height * sineTheta * sineTheta),
-					color);
+					color, imageType);
 		}
 
-		return renderRotatedObject(lines, 0, width, height, 0, 0, color);
+		return renderRotatedObject(lines, 0, width, height, 0, 0, color, imageType);
 	}
 
-	private static BufferedImage renderRotatedObject(final LineInfo[] lines,
+	private static TextImage renderRotatedObject(final LineInfo[] lines,
 			final double angle, final int width, final int height,
-			final double tx, final double ty, final Color color) {
-		final BufferedImage bufferedImage = new BufferedImage(width, height,
-				BufferedImage.TYPE_INT_ARGB);
-
-		final Graphics2D g2d = (Graphics2D) bufferedImage.getGraphics();
-		g2d.setColor(Color.black);
-		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-
-		final AffineTransform at = AffineTransform.getRotateInstance(angle);
-		at.translate(tx, ty);
-		g2d.setTransform(at);
-		g2d.setColor(color);
-
-		float y = 0;
-		for (final LineInfo lineInfo : lines) {
-			if (lineInfo.textLayout != null)
-				lineInfo.textLayout.draw(g2d, 0, y
-						+ (int) Math.ceil(lineInfo.textLayout.getLeading()
-								+ lineInfo.textLayout.getAscent()));
-			y += lineInfo.bounds.getHeight();
-		}
-		g2d.dispose();
-		return bufferedImage;
+			final double tx, final double ty, final Color color, String imageType) {
+	  return TextImageFactory.getInstance().createTextImage(imageType, lines, angle, width, height, tx, ty, color);
 	}
 
 	public static final class LineInfo {
 		final String line;
 		final Rectangle2D bounds;
 		TextLayout textLayout = null;
+		Font font;
 
-		public LineInfo(final String line, final Rectangle2D bounds) {
+		public LineInfo(final String line, final Rectangle2D bounds, Font font) {
 			if (line == null)
 				throw new NullPointerException("line");
 			this.line = line;
 			if (bounds == null)
 				throw new NullPointerException("bounds");
 			this.bounds = bounds;
+			this.font = font;
 		}
 	}
 
 	public static LineInfo[] wrapText(final Graphics2D g2d, final String text,
-			final int wrapPoint) {
+			final int wrapPoint, Font font) {
 		final List<LineInfo> lines = new ArrayList<LineInfo>();
 		final String[] hardLines = text.split("\\n");
 		for (String hardLine : hardLines) {
 			boolean hasMore = true;
 			while (hasMore && hardLine.length() > 0) {
 				final WrapInfo wrapInfo = getWrapInfo(g2d, hardLine, wrapPoint);
-				lines.add(new LineInfo(wrapInfo.segment, wrapInfo.bounds));
+				lines.add(new LineInfo(wrapInfo.segment, wrapInfo.bounds, font));
 				hardLine = wrapInfo.remainder;
 				hasMore = wrapInfo.hasMore;
 			}

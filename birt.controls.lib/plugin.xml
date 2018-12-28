@@ -167,7 +167,7 @@
    <extension
          point="org.eclipse.birt.report.engine.reportitemPresentation">
       <reportItem
-            class="blackboard.birt.extensions.rotatedtext.RotatedTextPresentationImpl"
+            class="blackboard.birt.extensions.rotatedtext.RotatedTextSVGPresentationImpl"
             name="RotatedText">
       </reportItem>
    </extension>

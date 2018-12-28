@@ -5,3 +5,6 @@ Initial
 
 2.5.2.1
 Fix issue 5 where IllegalArgumentException is generated when null data provided to RotatedTextControl
+
+2.5.2.3
+Use SVG instead of raster image for better quality of rotated text in PDF

@@ -89,18 +89,18 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 				if (queryResultSet.isBeforeFirst())
 					queryResultSet.next();
 				final Object object = queryResultSet.evaluate(expression);
-				text = String.valueOf(object);
+				text = object == null ? null : String.valueOf(object);
 			} else if (baseResultSet instanceof ICubeResultSet) {
 				final ICubeResultSet cubeResultSet = (ICubeResultSet) baseResultSet;
 				final Object object = cubeResultSet.evaluate(expression);
-				text = String.valueOf(object);
+				text = object == null ? null : String.valueOf(object);
 			} else if (baseResultSet != null)
 				text = baseResultSet.getClass().getName() + " " + expression;
 			else
 				text = expression;
 		} else {
 			final Object object = this.context.evaluate(expression);
-			text = String.valueOf(object);
+			text = object == null ? null : String.valueOf(object);
 		}
 		return text;
 	}

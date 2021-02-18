@@ -14,19 +14,12 @@
  */
 package blackboard.birt.extensions.rotatedtext;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
-
 import org.eclipse.birt.core.exception.BirtException;
 import org.eclipse.birt.report.engine.extension.IBaseResultSet;
 import org.eclipse.birt.report.engine.extension.ICubeResultSet;
 import org.eclipse.birt.report.engine.extension.IQueryResultSet;
 import org.eclipse.birt.report.engine.extension.ReportItemPresentationBase;
+import org.eclipse.birt.report.engine.extension.Size;
 import org.eclipse.birt.report.model.api.ExtendedItemHandle;
 import org.eclipse.birt.report.model.api.extension.ExtendedElementException;
 
@@ -38,8 +31,10 @@ import org.eclipse.birt.report.model.api.extension.ExtendedElementException;
  * @author Steve Schafer / Innovent Solutions
  */
 public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
-	private RotatedTextItem textItem;
-	private static int index = 0;
+	protected RotatedTextItem textItem;
+	protected static int index = 0;
+	
+	protected Size size;
 
 	@Override
 	public void setModelObject(final ExtendedItemHandle modelHandle) {
@@ -54,6 +49,11 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 	public int getOutputType() {
 		return OUTPUT_AS_IMAGE_WITH_MAP;
 	}
+	
+	@Override
+	public Size getSize() {
+	  return size;
+	}
 
 	@Override
 	public Object onRowSets(final IBaseResultSet[] results)
@@ -67,33 +67,17 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 			text = " ";
 		final String url = this.evaluate(data.linkURL, results);
 
-		final BufferedImage rotatedImage = SwingGraphicsUtil
-				.createRotatedTextImage(text, data, this.dpi, 1, "in");
-		ByteArrayInputStream bis = null;
-
-		try {
-			ImageIO.setUseCache(false);
-			final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			final ImageOutputStream ios = ImageIO.createImageOutputStream(baos);
-			// System.out.println(rotatedImage);
-			// System.out.println(ios);
-			if (rotatedImage != null)
-				ImageIO.write(rotatedImage, "png", ios); //$NON-NLS-1$
-			ios.flush();
-			ios.close();
-			bis = new ByteArrayInputStream(baos.toByteArray());
-		} catch (final IOException e) {
-			e.printStackTrace();
-		}
-
+		TextImage image = SwingGraphicsUtil.createRotatedTextImage(text, data, this.dpi, 1, "in", getImageMIMEType());
+		size = new Size();
+		size.setWidth(image.getWidth());
+		size.setHeight(image.getHeight());
+		size.setUnit("px");
 		return new Object[] {
-				bis,
-				this.createImageMap(url, text, rotatedImage == null ? 0
-						: rotatedImage.getWidth(), rotatedImage == null ? 0
-						: rotatedImage.getHeight()) };
+		    image.getImage(),
+				this.createImageMap(url, text, image.getWidth(), image.getHeight()) };
 	}
 
-	private String evaluate(final String expression,
+	protected String evaluate(final String expression,
 			final IBaseResultSet[] results) throws BirtException {
 		String text = null;
 		if (expression == null || "null".equalsIgnoreCase(expression))
@@ -105,23 +89,23 @@ public class RotatedTextPresentationImpl extends ReportItemPresentationBase {
 				if (queryResultSet.isBeforeFirst())
 					queryResultSet.next();
 				final Object object = queryResultSet.evaluate(expression);
-				text = String.valueOf(object);
+				text = object == null ? null : String.valueOf(object);
 			} else if (baseResultSet instanceof ICubeResultSet) {
 				final ICubeResultSet cubeResultSet = (ICubeResultSet) baseResultSet;
 				final Object object = cubeResultSet.evaluate(expression);
-				text = String.valueOf(object);
+				text = object == null ? null : String.valueOf(object);
 			} else if (baseResultSet != null)
 				text = baseResultSet.getClass().getName() + " " + expression;
 			else
 				text = expression;
 		} else {
 			final Object object = this.context.evaluate(expression);
-			text = String.valueOf(object);
+			text = object == null ? null : String.valueOf(object);
 		}
 		return text;
 	}
 
-	private String createImageMap(final String url, final String text,
+	protected String createImageMap(final String url, final String text,
 			final int width, final int height) {
 		final StringBuilder sb = new StringBuilder();
 

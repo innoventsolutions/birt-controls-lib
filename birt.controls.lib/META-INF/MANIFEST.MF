@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: birt.controls.lib;singleton:=true
-Bundle-Version: 2.5.2.2
+Bundle-Version: 2.5.2.4
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor

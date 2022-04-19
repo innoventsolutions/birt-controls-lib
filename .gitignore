@@ -1,5 +1,6 @@
 birt.controls.lib.ui/bin/
 birt.controls.lib/bin/
 birt.controls.lib/test-lib/
-birt.controls.lib/file:/
 birt.controls.lib/test_events.log
+eclipse
+eclipse.*

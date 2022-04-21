@@ -37,7 +37,7 @@ VERSION RULES
 <br>
 <a href='http://www.innoventsolutions.com/birt-consulting.html'>Innovent Solutions, Inc.</a> is a consulting firm and a member of the BIRT project team since 2004.  Working with the Blackboard product teams, Innovent has created a reporting solution that is both powerful and flexible.<br>
 <br>
-The software in this project has been donated back to the BIRT community by Blackboard and Innovent under an Eclipse Public License 1.0.<br>
+The software in this project has been donated back to the BIRT community by Blackboard and Innovent under an Eclipse Public License 2.0.<br>
 <br>
 We welcome you to use, critique, and contribute to this component library.<br>
 <br>

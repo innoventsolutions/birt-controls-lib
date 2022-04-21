@@ -1,15 +1,15 @@
 /*******************************************************************************
- * Copyright (c) 2008-2015  Innovent Solutions, Inc.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Actuate Corporation  - initial API and implementation
- *  Blackboard Learning Systems - significant modification / refactor
- *  Steve Schafer - Innovent Solutions, Inc. - significant modification / refactor
- *  
+ * Copyright (c) 2008-2022  Innovent Solutions, Inc.
+ * 
+ * All rights reserved. 
+ * 
+ * This program and the accompanying materials are made available under the terms 
+ * of the Eclipse Public License v2.0 which accompanies this distribution, 
+ * and is available at https://eclipse.org/org/documents/epl-2.0/EPL-2.0.html
+ * 
+ * Contributors: 
+ * 	Scott Rosenbaum - Innovent Solutions
+ * 	Steve Schafer - Innovent Solutions
  *******************************************************************************/
 package blackboard.birt.controls;
 

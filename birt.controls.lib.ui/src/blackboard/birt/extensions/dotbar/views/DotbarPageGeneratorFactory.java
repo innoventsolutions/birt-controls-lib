@@ -1,16 +1,16 @@
 /*
- * Copyright (c) 2008-2015  Innovent Solutions, Inc.
+ * (C) Copyright Blackboard Inc. 1998-2009 - All Rights Reserved
  * 
- * All rights reserved. 
+ * Permission to use, copy, modify, and distribute this software without prior explicit written approval is 
+ * strictly  prohibited. Please refer to the file "copyright.html" for further important copyright and licensing information.
  * 
- * This program and the accompanying materials are made available under the terms 
- * of the Eclipse Public License v1.0 which accompanies this distribution, 
- * and is available at http://www.eclipse.org/legal/epl-v10.html
+ * BLACKBOARD MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE, 
+ * EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. 
+ * BLACKBOARD SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, 
+ * MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
  * 
- * Contributors: 
- * 	Scott Rosenbaum - Innovent Solutions
- *  Steve Schafer - Innovent Solutions
- * 				 
+ * authors: Scott Rosenbaum / Steve Schafer, Innovent Solutions, Inc.
  */
 package blackboard.birt.extensions.dotbar.views;
 
@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IAdapterFactory;
 
 public class DotbarPageGeneratorFactory implements IAdapterFactory {
 	@SuppressWarnings("unchecked")
-	public Object getAdapter(Object adaptableObject, Class adapterType) {
+	public Object getAdapter(Object adaptableObject, @SuppressWarnings("rawtypes") Class adapterType) {
 		if (adaptableObject instanceof ExtendedItemHandle) {
 			ExtendedItemHandle extendedItemHandle = (ExtendedItemHandle) adaptableObject;
 			String extensionName = extendedItemHandle.getExtensionName();
@@ -30,7 +30,7 @@ public class DotbarPageGeneratorFactory implements IAdapterFactory {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Class[] getAdapterList() {
 		return new Class[] { IPageGenerator.class };
 	}

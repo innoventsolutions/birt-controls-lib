@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: birt.controls.lib.ui;singleton:=true
-Bundle-Version: 2.5.2.1
+Bundle-Version: 2.5.2.2
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.4.0",
  org.eclipse.birt.report.designer.core;bundle-version="2.3.1",
  org.eclipse.birt.report.designer.ui;bundle-version="2.3.1",
@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.4.0",
  org.eclipse.jface;bundle-version="3.4.0",
  org.eclipse.ui.forms;bundle-version="3.3.0",
  birt.controls.lib;bundle-version="1.0.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor
 Import-Package: com.ibm.icu.util;version="3.8.1"
+Automatic-Module-Name: birt.controls.lib.ui

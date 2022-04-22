@@ -27,8 +27,10 @@ Based on example code from the BIRT repository, the <b>RotatedText</b> control p
 </tr>
 </table></blockquote>
 
-This project will provide production ready controls that give your report developers new items to effectively communicate through their reports.  In addition, this project provides best practice implementations that can be used to create your own BIRT ReportItem  extensions.  These features have been validated to be compatible with the latest BIRT version 4.5.0.
-<br>
+This project will provide production ready controls that give your report developers new items to effectively communicate through their reports.  In addition, this project provides best practice implementations that can be used to create your own BIRT ReportItem extensions.
+<br/><br/>
+These features have been validated to be compatible with the latest BIRT version 4.9.0.
+<br/><br/>
 VERSION RULES
 <ul><li>If you are using BIRT 2.3.2, then use version 2.3.2.X.</li></ul>
 <ul><li>If you are using BIRT 2.5.1 or later, then use version 2.5.1.X. <b></li></ul></b>
@@ -37,7 +39,7 @@ VERSION RULES
 <br>
 <a href='http://www.innoventsolutions.com/birt-consulting.html'>Innovent Solutions, Inc.</a> is a consulting firm and a member of the BIRT project team since 2004.  Working with the Blackboard product teams, Innovent has created a reporting solution that is both powerful and flexible.<br>
 <br>
-The software in this project has been donated back to the BIRT community by Blackboard and Innovent under an Eclipse Public License 1.0.<br>
+The software in this project has been donated back to the BIRT community by Blackboard and Innovent under an Eclipse Public License 2.0.<br>
 <br>
 We welcome you to use, critique, and contribute to this component library.<br>
 <br>

@@ -29,7 +29,7 @@ Based on example code from the BIRT repository, the <b>RotatedText</b> control p
 
 This project will provide production ready controls that give your report developers new items to effectively communicate through their reports.  In addition, this project provides best practice implementations that can be used to create your own BIRT ReportItem extensions.
 <br/><br/>
-These features have been validated to be compatible with the latest BIRT version 4.9.0.
+These features have been validated to be compatible with the latest BIRT version 4.10.0.
 <br/><br/>
 VERSION RULES
 <ul><li>If you are using BIRT 2.3.2, then use version 2.3.2.X.</li></ul>

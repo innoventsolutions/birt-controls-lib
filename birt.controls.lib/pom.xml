@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.innoventsolutions</groupId>
+  <artifactId>birt.controls.lib</artifactId>
+  <version>2.5.2.5</version>
+  <packaging>eclipse-plugin</packaging>
+
+  <properties>
+    <tycho.version>3.0.0</tycho.version>
+    <repo.url>https://download.eclipse.org/releases/latest</repo.url>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>eclipse-repo</id>
+      <layout>p2</layout>
+      <url>${repo.url}</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

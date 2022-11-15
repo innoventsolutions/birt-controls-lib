@@ -1,0 +1,7 @@
+#!/bin/bash
+cd "$(dirname "${BASH_SOURCE[0]}")"
+if mvn clean install > install.log 2> install.err.log; then
+    echo "success"
+else
+    echo "failure"
+fi

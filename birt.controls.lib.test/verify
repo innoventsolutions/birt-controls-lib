@@ -1,0 +1,35 @@
+#!/bin/sh
+cd "$(dirname "${BASH_SOURCE[0]}")"
+NOTEST=""
+MVN="mvn"
+MAVEN_DEBUG_ADDRESS=""
+while [ "$#" -gt 0 ]; do
+    if [ "$1" == "notest" ]; then
+        NOTEST=" -DskipTests=true"
+        echo "skipping tests"
+        shift
+    else
+        if [ "$1" == "debug" ]; then
+            MAVEN_DEBUG_ADDRESS="5005"
+            MVN="mvnDebug -DforkCount=0"
+            echo "debugging"
+            shift
+        else
+            if [ "$1" == "surefiredebug" ]; then
+                MVN="mvn -Dmaven.surefire.debug=\"-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=localhost:5005\""
+                echo "surefire debugging"
+                shift
+            else
+                if [ "$1" != "" ]; then
+                    echo "Unrecogized option: $1"
+                    exit 1
+                fi
+            fi
+        fi
+    fi
+done
+if $MVN clean verify$NOTEST > verify.log 2> verify.err.log; then
+    echo "success"
+else
+    echo "failure"
+fi

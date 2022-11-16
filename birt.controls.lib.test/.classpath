@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" output="java-bin" path="src/test/java">
+		<attributes>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="resources-bin" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="test-lib/objenesis-2.2.jar"/>
+	<classpathentry kind="lib" path="test-lib/byte-buddy-1.11.13.jar"/>
+	<classpathentry kind="lib" path="test-lib/mockito-core-3.12.4.jar" sourcepath="test-lib/mockito-core-3.12.4-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
-	<classpathentry kind="src" path="test-res"/>
-	<classpathentry kind="src" path="test-src"/>
-	<classpathentry kind="lib" path="test-lib/mockito-core-2.0.31-beta.jar"/>
-	<classpathentry kind="lib" path="test-lib/byte-buddy-0.6.14.jar"/>
-	<classpathentry kind="lib" path="test-lib/objenesis-2.2.jar"/>
-	<classpathentry kind="lib" path="test-lib/junit-4.12.jar"/>
 </classpath>

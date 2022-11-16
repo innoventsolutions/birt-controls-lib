@@ -3,6 +3,7 @@ package innovent.birt.controls.test;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -36,11 +37,10 @@ import org.junit.Test;
 public class EventHandlerTest {
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testExecute() throws UnsupportedEncodingException {
+	public void testExecute() throws UnsupportedEncodingException, FileNotFoundException {
 		try {
 			final IReportEngine reportEngine = ReportEngine.getReportEngine();
-			final InputStream is = this.getClass()
-					.getResourceAsStream("/reports/test_events.rptdesign");
+			final InputStream is = new FileInputStream(ReportEngine.RESOURCE_DIR + "/test_events.rptdesign");
 			Assert.assertNotNull(is);
 			final IReportRunnable design = reportEngine.openReportDesign(is);
 			final IGetParameterDefinitionTask paramTask = reportEngine

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "birt.controls.lib"
+		},
+		{
+			"path": "birt.controls.lib.test"
+		},
+		{
+			"path": "../birt-functions-lib/branches/2.5.2/birt.functions.lib.test/META-INF"
+		}
+	],
+	"settings": {}
+}

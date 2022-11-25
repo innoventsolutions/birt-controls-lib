@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target name="4.11">
+	<locations>
+		<location path="/disk1/home/innovent/Downloads/birt-report-designer-all-in-one-4.11.0-20221120-linux-gtk.x86_64/eclipse" type="Profile"/>
+	</locations>
+</target>

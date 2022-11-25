@@ -1,5 +1,6 @@
 eclipse
 eclipse.*
 *.log
+*.log.lck
 target/
 bin/

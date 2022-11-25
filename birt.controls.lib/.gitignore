@@ -2,3 +2,5 @@
 /target/
 derby.log
 meta.log
+*.log
+*.log.*

@@ -32,7 +32,7 @@
 				<configuration>
 					<executionEnvironment>JavaSE-17</executionEnvironment>
 					<target>
-						<file>./4.11.target</file>
+						<file>./4.12.target</file>
 					</target>
 					<environments>
 						<environment>

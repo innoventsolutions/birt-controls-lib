@@ -7,14 +7,20 @@
 
   <properties>
     <tycho.version>3.0.0</tycho.version>
-    <repo.url>https://download.eclipse.org/releases/latest</repo.url>
+    <eclipse.repo.url>https://download.eclipse.org/releases/latest</eclipse.repo.url>
+    <birt.repo.url>https://download.eclipse.org/birt/update-site/latest</birt.repo.url>
   </properties>
 
   <repositories>
     <repository>
       <id>eclipse-repo</id>
       <layout>p2</layout>
-      <url>${repo.url}</url>
+      <url>${eclipse.repo.url}</url>
+    </repository>
+    <repository>
+      <id>birt-repo</id>
+      <layout>p2</layout>
+      <url>${birt.repo.url}</url>
     </repository>
   </repositories>
 

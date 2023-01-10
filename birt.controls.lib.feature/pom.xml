@@ -1,0 +1,13 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- https://codeandme.blogspot.com/2012/12/tycho-build-4-building-features.html -->
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>birt.controls.lib.feature</artifactId>
+  <packaging>eclipse-feature</packaging>
+  <version>2.5.2.3</version>
+  <parent>
+  	<groupId>com.innoventsolutions</groupId>
+  	<artifactId>innoventsolutions.birt.releng</artifactId>
+  	<version>2.5.2.1</version>
+  	<relativePath>../../innoventsolutions.birt.releng</relativePath>
+  </parent>
+</project>
